@@ -30,8 +30,9 @@ class ProductSectionsController extends AppController
             }
             $this->Flash->error(__('The product section could not be saved. Please, try again.'));
         }
-        $items = $this->ProductSections->Items->find('list', ['limit' => 200]);
-        $this->set(compact('productSection', 'items'));
+        $items = $this->ProductSections->Items->find('list', ['limit' => 200])->where(['Items.is_deleted'=>0]);
+        $product_views=$this->ProductSections->find()->where(['ProductSections.is_deleted'=>0])->contain(['Items']);
+        $this->set(compact('productSection', 'items','product_views'));
     }
 
     /**
@@ -81,6 +82,7 @@ class ProductSectionsController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->layout('index_layout');
         $productSection = $this->ProductSections->get($id, [
             'contain' => []
         ]);
@@ -108,7 +110,8 @@ class ProductSectionsController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $productSection = $this->ProductSections->get($id);
-        if ($this->ProductSections->delete($productSection)) {
+        $productSection->is_deleted=1;
+        if ($this->ProductSections->save($productSection)) {
             $this->Flash->success(__('The product section has been deleted.'));
         } else {
             $this->Flash->error(__('The product section could not be deleted. Please, try again.'));

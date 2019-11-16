@@ -39,12 +39,12 @@
                                                 </i>Sub Category
                                             </a>
                                         </li>
-                                        <!--<li>
-                                            <a href="masterAddItems.html">
+                                        <li>
+                                            <a href="<?= $this->Url->build(['controller'=>'Items','action' =>'add'])?>">
                                                 <i class="metismenu-icon">
                                                 </i>Add Items
                                             </a>
-                                        </li>-->
+                                        </li>
                                         <li>
                                             <a href="<?= $this->Url->build(['controller'=>'Sizes','action' =>'index'])?>">
                                                 <i class="metismenu-icon">

@@ -256,13 +256,10 @@ return [
             'className' => Connection::class,
             'driver' => Mysql::class,
             'persistent' => false,
+           // 'host' => 'localhost',
+
             'host' => 'mumkins.cmvbfqacs0tc.ap-south-1.rds.amazonaws.com',
-            /*
-             * CakePHP will use the default DB port based on the driver selected
-             * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
-             * the following line and set the port accordingly
-             */
-            //'port' => 'non_standard_port_number',
+
             'username' => 'Mumkins',
             'password' => 'Newmumkins',
             'database' => 'wwwkamle_mumkins',

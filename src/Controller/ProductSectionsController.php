@@ -19,12 +19,19 @@ class ProductSectionsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Items']
-        ];
-        $productSections = $this->paginate($this->ProductSections);
+        $this->viewBuilder()->layout('index_layout');
+        $productSection = $this->ProductSections->newEntity();
+        if ($this->request->is('post')) {
+            $productSection = $this->ProductSections->patchEntity($productSection, $this->request->getData());
+            if ($this->ProductSections->save($productSection)) {
+                $this->Flash->success(__('The product section has been saved.'));
 
-        $this->set(compact('productSections'));
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The product section could not be saved. Please, try again.'));
+        }
+        $items = $this->ProductSections->Items->find('list', ['limit' => 200]);
+        $this->set(compact('productSection', 'items'));
     }
 
     /**

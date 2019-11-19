@@ -53,15 +53,15 @@ class HomesController extends AppController
 			
 		}
 		
-		
+		$FooterSections=$this->Homes->FooterSections->find()->where(['FooterSections.is_deleted'=>0,'show_on'=>'Home Page']);
 		
 		
 		$success = true;
 		$message = 'Data Found';		
 
 
-		$this->set(compact('success','message','homeScreen'));
-		$this->set('_serialize',['success','message','homeScreen']);
+		$this->set(compact('success','message','homeScreen','FooterSections'));
+		$this->set('_serialize',['success','message','homeScreen','FooterSections']);
 		
 		
 	}

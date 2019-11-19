@@ -177,7 +177,7 @@ return [
      *   breathing room to complete logging or error handling.
      */
     'Error' => [
-        'errorLevel' => E_ALL,
+        'errorLevel' => E_ALL & ~E_USER_DEPRECATED,
         'exceptionRenderer' => ExceptionRenderer::class,
         'skipLog' => [],
         'log' => true,
@@ -256,13 +256,16 @@ return [
             'className' => Connection::class,
             'driver' => Mysql::class,
             'persistent' => false,
-           // 'host' => 'localhost',
+            'host' => 'localhost',
 
-            'host' => 'mumkins.cmvbfqacs0tc.ap-south-1.rds.amazonaws.com',
+           // 'host' => 'mumkins.cmvbfqacs0tc.ap-south-1.rds.amazonaws.com',
 
-            'username' => 'Mumkins',
-            'password' => 'Newmumkins',
-            'database' => 'wwwkamle_mumkins',
+            //'username' => 'Mumkins',
+            //'password' => 'Newmumkins',
+           // 'database' => 'wwwkamle_mumkins',
+            'username' => 'root',
+            'password' => '',
+            'database' => 'mumkin_new',
             /*
              * You do not need to set this flag to use full utf-8 encoding (internal default since CakePHP 3.6).
              */

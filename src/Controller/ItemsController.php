@@ -50,6 +50,7 @@ class ItemsController extends AppController
      */
     public function add()
     {
+        $this->viewBuilder()->layout('index_layout');
         $item = $this->Items->newEntity();
         if ($this->request->is('post')) {
             $item = $this->Items->patchEntity($item, $this->request->getData());
@@ -60,8 +61,10 @@ class ItemsController extends AppController
             }
             $this->Flash->error(__('The item could not be saved. Please, try again.'));
         }
-        $categories = $this->Items->Categories->find('list', ['limit' => 200]);
-        $this->set(compact('item', 'categories'));
+        $categories = $this->Items->Categories->find('list');
+        $colors = $this->Items->ItemRows->Colors->find('list');
+        $sizes = $this->Items->ItemRows->Sizes->find('list');
+        $this->set(compact('item', 'categories','colors','sizes'));
     }
 
     /**

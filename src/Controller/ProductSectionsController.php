@@ -22,8 +22,10 @@ class ProductSectionsController extends AppController
         $this->viewBuilder()->layout('index_layout');
         $productSection = $this->ProductSections->newEntity();
         if ($this->request->is('post')) {
-            $productSection = $this->ProductSections->patchEntity($productSection, $this->request->getData());
-            if ($this->ProductSections->save($productSection)) {
+            $data=$this->request->getData('product_section');
+            $productSection = $this->ProductSections->newEntities($data);
+           // pr($productSection);exit;
+            if ($this->ProductSections->saveMany($productSection)) {
                 $this->Flash->success(__('The product section has been saved.'));
 
                 return $this->redirect(['action' => 'index']);

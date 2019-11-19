@@ -90,7 +90,12 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->fallbacks(DashedRoute::class);
 });
-
+Router::prefix('api', function ($routes) {
+    $routes->extensions(['json', 'xml']);
+	$routes->resources('Users');
+	$routes->resources('Uploads');
+    $routes->fallbacks('InflectedRoute');
+});
 /**
  * If you need a different set of middleware or none at all,
  * open new scope and define routes there.

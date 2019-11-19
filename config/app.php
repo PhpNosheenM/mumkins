@@ -256,12 +256,15 @@ return [
             'className' => Connection::class,
             'driver' => Mysql::class,
             'persistent' => false,
-           // 'host' => 'localhost',
+           'host' => 'localhost',
 
-            'host' => 'mumkins.cmvbfqacs0tc.ap-south-1.rds.amazonaws.com',
+            //'host' => 'mumkins.cmvbfqacs0tc.ap-south-1.rds.amazonaws.com',
 
-            'username' => 'Mumkins',
-            'password' => 'Newmumkins',
+            // 'username' => 'Mumkins',
+            // 'password' => 'Newmumkins',
+            // 'database' => 'wwwkamle_mumkins',
+            'username' => 'root',
+            'password' => 'admin',
             'database' => 'wwwkamle_mumkins',
             /*
              * You do not need to set this flag to use full utf-8 encoding (internal default since CakePHP 3.6).

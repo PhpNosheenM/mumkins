@@ -146,13 +146,11 @@
                                                     </div>
                                                     
                                                     </div>
-
                                                     <div class="col-md-6">
-                                                        
+                                                       <a class="rhov btn remover1" style="float:right;"><i class="fa fa-trash"></i>Remove</a>
                                                     </div>
 
                                                     </div>
-                                                    <a class="rhov btn remover1" style="float:right;"><i class="fa fa-trash"></i>Remove</a>
                                                 
                                                 <hr>
                                                 
@@ -327,7 +325,7 @@
     var i=1;
     function rename_row()
       {
-      alert();
+      //alert();
         $('#sub-body').each(function()
         {
             
@@ -344,7 +342,8 @@
     function add_row()
     {
 
-      var tr = $('#sub-body').clone();
+      var tr = $('#sub-body').clone().find("input:text").val("").end()
+                          .appendTo('#sub-body:last');
       $('.repeatt1').append(tr);
       rename_row();
     }
@@ -357,6 +356,8 @@
 
 // Remove parent of 'remove' link when link is clicked.
     $(document).on("click",".remover1",function(e){
+
+       rename_row();
        $(this).parents('.addersku').remove();
 });
         </script>

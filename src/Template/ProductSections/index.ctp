@@ -127,7 +127,8 @@
     function add_row()
     {
 
-      var tr = $('#sub-body').clone();
+      var tr = $('#sub-body').clone().find("input:text").val("").end()
+                          .appendTo('#sub-body:last');
       $('.repeatt').append(tr);
       rename_row();
     }

@@ -52,34 +52,6 @@ class FooterSectionsTable extends Table
             ->maxLength('show_on', 100)
             ->requirePresence('show_on', 'create')
             ->notEmptyString('show_on');
-
-        $validator
-            ->scalar('description')
-            ->requirePresence('description', 'create')
-            ->notEmptyString('description');
-
-        $validator
-            ->integer('is_deleted')
-            ->notEmptyString('is_deleted');
-
-        $validator
-            ->dateTime('created_on')
-            ->notEmptyDateTime('created_on');
-
-        $validator
-            ->integer('created_by')
-            ->requirePresence('created_by', 'create')
-            ->notEmptyString('created_by');
-
-        $validator
-            ->dateTime('edited_on')
-            ->notEmptyDateTime('edited_on');
-
-        $validator
-            ->integer('edited_by')
-            ->requirePresence('edited_by', 'create')
-            ->notEmptyString('edited_by');
-
         return $validator;
     }
 }

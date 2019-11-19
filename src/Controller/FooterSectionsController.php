@@ -19,9 +19,22 @@ class FooterSectionsController extends AppController
      */
     public function index()
     {
-        $footerSections = $this->paginate($this->FooterSections);
+        $this->viewBuilder()->layout('index_layout');
+        
+        $footerSection = $this->FooterSections->newEntity();
+        if ($this->request->is('post')) {
+            $footerSection = $this->FooterSections->patchEntity($footerSection, $this->request->getData());
+            if ($this->FooterSections->save($footerSection)) {
+                $this->Flash->success(__('The footer section has been saved.'));
 
-        $this->set(compact('footerSections'));
+                return $this->redirect(['action' => 'index']);
+            }
+            
+            $this->Flash->error(__('The footer section could not be saved. Please, try again.'));
+        }
+        $footer_views=$this->FooterSections->find()->where(['is_deleted'=>0]);
+       // pr($footer_views->toArray());exit;
+        $this->set(compact('footerSection','footer_views'));
     }
 
     /**
@@ -69,6 +82,7 @@ class FooterSectionsController extends AppController
      */
     public function edit($id = null)
     {
+         $this->viewBuilder()->layout('index_layout');
         $footerSection = $this->FooterSections->get($id, [
             'contain' => []
         ]);

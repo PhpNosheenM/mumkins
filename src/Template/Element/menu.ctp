@@ -146,6 +146,21 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="metismenu-icon pe-7s-browser"></i>
+                                        Footer
+                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="<?= $this->Url->build(['controller'=>'FooterSections','action' =>'index'])?>">
+                                                <i class="metismenu-icon">
+                                                </i>Content Section
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
                                <!-- <li>
                                     <a href="#">
                                         <i class="metismenu-icon pe-7s-car"></i>
@@ -212,21 +227,7 @@
                                         </li>
                                     </ul>
                                 </li> -->
-                                <!--<li>
-                                    <a href="#">
-                                        <i class="metismenu-icon pe-7s-browser"></i>
-                                        Footer
-                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                    </a>
-                                    <ul>
-                                        <li>
-                                            <a href="footerContent.html">
-                                                <i class="metismenu-icon">
-                                                </i>Content Section
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <!--
                                 <li>
                                     <a href="promoCode.html">
                                         <i class="metismenu-icon pe-7s-news-paper"></i>

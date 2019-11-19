@@ -41,6 +41,7 @@ class HomesTable extends Table
 		 $this->belongsTo('OfferSections');
 		 $this->belongsTo('ProductSections');
 		 $this->belongsTo('SliderSections');
+		 $this->belongsTo('FooterSections');
 		 
 		 
     }

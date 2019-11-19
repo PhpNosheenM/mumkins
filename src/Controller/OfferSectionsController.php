@@ -37,7 +37,7 @@ class OfferSectionsController extends AppController
                                 move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/offers/' . $img_name);
 
                                 //prepare the filename for database entry
-                                $offerSection->offer_image = $img_name;
+                                $offerSection->offer_image = 'offers/'.$img_name;
 
                         }
 
@@ -129,7 +129,7 @@ class OfferSectionsController extends AppController
                                 move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/offers/' . $img_name);
 
                                 //prepare the filename for database entry
-                                $offerSection->offer_image = $img_name;
+                                $offerSection->offer_image = 'offers/'.$img_name;
 
                         }
                     }

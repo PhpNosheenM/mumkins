@@ -84,32 +84,6 @@ class ItemRowsTable extends Table
             ->requirePresence('sale_rate', 'create')
             ->notEmptyString('sale_rate');
 
-        $validator
-            ->decimal('print_rate')
-            ->requirePresence('print_rate', 'create')
-            ->notEmptyString('print_rate');
-
-        $validator
-            ->scalar('feature_image')
-            ->maxLength('feature_image', 300)
-            ->requirePresence('feature_image', 'create')
-            ->notEmptyFile('feature_image');
-
-        $validator
-            ->integer('flag')
-            ->notEmptyString('flag');
-
-        $validator
-            ->scalar('discount')
-            ->maxLength('discount', 10)
-            ->requirePresence('discount', 'create')
-            ->notEmptyString('discount');
-
-        $validator
-            ->scalar('stock')
-            ->maxLength('stock', 5)
-            ->notEmptyString('stock');
-
         return $validator;
     }
 

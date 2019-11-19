@@ -53,11 +53,53 @@ class ItemsController extends AppController
         $this->viewBuilder()->layout('index_layout');
         $item = $this->Items->newEntity();
         if ($this->request->is('post')) {
+           // pr($this->request->getData());
+             $images=$this->request->getData('item_rows');
+            
+            
+                    //pr($img);exit;
+            //$item['item_rows']->feature_image=$img;
             $item = $this->Items->patchEntity($item, $this->request->getData());
+            $item->item_rows=[];
+            //pr($item);exit;
             if ($this->Items->save($item)) {
+               
+          
+            foreach ($images as $item_row) {
+                 // pr($item_row['sku']);exit;
+             $file = $item_row['feature_image']; //put the data into a var for easy use
+                        //pr($file);
+                        $ext = substr(strtolower(strrchr($file['name'], '.')), 1); //get the extension
+                        $arr_ext = array('jpg', 'jpeg', 'gif','png','jpg','jpeg'); //set allowed extensions
+                        //only process if the extension is valid
+                        $setNewFileName = uniqid();
+                        $img_name= $setNewFileName.'.'.$ext;
+                        if(in_array($ext, $arr_ext))
+                        {
+                           // pr("sds");exit;
+                                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/Items/' . $img_name);
+
+                                //prepare the filename for database entry
+                              $img[]= $img_name;
+                              //pr($item->item_rows=$image);
+
+                        }
+                 $query = $this->Items->ItemRows->query();
+                    $query->insert(['item_id', 'sku', 'color_id', 'size_id', 'quantity', 'sale_rate','feature_image'])
+                    ->values([
+                        'item_id' => $item->id,
+                        'sku' => $item_row['sku'],
+                        'color_id' => $item_row['color_id'],
+                        'size_id' => $item_row['size_id'],
+                        'quantity' => $item_row['quantity'],
+                        'sale_rate' => $item_row['sale_rate'],
+                        'feature_image' => 'images/'.$item->id.'/'.$item_row['feature_image']['name'],
+                   ]);
+                    $query->execute();
+                }
                 $this->Flash->success(__('The item has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'add']);
             }
             $this->Flash->error(__('The item could not be saved. Please, try again.'));
         }

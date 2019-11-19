@@ -95,28 +95,6 @@ class ItemsTable extends Table
             ->requirePresence('item_keyword', 'create')
             ->notEmptyString('item_keyword');
 
-        $validator
-            ->integer('is_deleted')
-            ->notEmptyString('is_deleted');
-
-        $validator
-            ->dateTime('created_on')
-            ->notEmptyDateTime('created_on');
-
-        $validator
-            ->integer('created_by')
-            ->requirePresence('created_by', 'create')
-            ->notEmptyString('created_by');
-
-        $validator
-            ->dateTime('edited_on')
-            ->notEmptyDateTime('edited_on');
-
-        $validator
-            ->integer('edited_by')
-            ->requirePresence('edited_by', 'create')
-            ->notEmptyString('edited_by');
-
         return $validator;
     }
 

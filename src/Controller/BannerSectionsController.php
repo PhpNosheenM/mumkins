@@ -37,7 +37,7 @@ class BannerSectionsController extends AppController
                                 move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/Banners/' . $img_name);
 
                                 //prepare the filename for database entry
-                                $bannerSection->background_image = $img_name;
+                                $bannerSection->background_image = 'Banners/'.$img_name;
 
                         }
 
@@ -147,7 +147,7 @@ class BannerSectionsController extends AppController
                                 move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/Banners/' . $img_name);
 
                                 //prepare the filename for database entry
-                                $bannerSection->background_image = $img_name;
+                                $bannerSection->background_image = 'Banners/'.$img_name;
 
                         }
             }

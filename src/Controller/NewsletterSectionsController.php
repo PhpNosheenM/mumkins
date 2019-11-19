@@ -36,7 +36,7 @@ class NewsletterSectionsController extends AppController
                                 move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/News/' . $img_name);
 
                                 //prepare the filename for database entry
-                                $newsletterSection->news_image = $img_name;
+                                $newsletterSection->news_image = 'News/'.$img_name;
 
                         }
             if ($this->NewsletterSections->save($newsletterSection)) {
@@ -126,7 +126,7 @@ class NewsletterSectionsController extends AppController
                                 move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/News/' . $img_name);
 
                                 //prepare the filename for database entry
-                                $newsletterSection->news_image = $img_name;
+                                $newsletterSection->news_image = 'News/'.$img_name;
 
                         }
                     }

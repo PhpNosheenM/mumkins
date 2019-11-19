@@ -36,7 +36,7 @@ class BoyGirlSectionsController extends AppController
                                 move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/BG/' . $img_name);
 
                                 //prepare the filename for database entry
-                                $boyGirlSection->bg_image = $img_name;
+                                $boyGirlSection->bg_image = 'BG/'.$img_name;
 
                         }
             if ($this->BoyGirlSections->save($boyGirlSection)) {
@@ -127,7 +127,7 @@ class BoyGirlSectionsController extends AppController
                                 move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/BG/' . $img_name);
 
                                 //prepare the filename for database entry
-                                $boyGirlSection->bg_image = $img_name;
+                                $boyGirlSection->bg_image = 'BG/'.$img_name;
 
                         }
                 }

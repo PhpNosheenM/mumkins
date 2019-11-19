@@ -37,7 +37,7 @@ class CategorySectionsController extends AppController
                                 move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/category/' . $img_name);
 
                                 //prepare the filename for database entry
-                                $categorySection->category_image = $img_name;
+                                $categorySection->category_image = 'category/'.$img_name;
 
                         }
             if ($this->CategorySections->save($categorySection)) {
@@ -127,7 +127,7 @@ class CategorySectionsController extends AppController
                                 move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/category/' . $img_name);
 
                                 //prepare the filename for database entry
-                                $categorySection->category_image = $img_name;
+                                $categorySection->category_image = 'category/'.$img_name;
 
                         }
                 }

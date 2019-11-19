@@ -111,7 +111,7 @@
         </script>
         <script type="text/javascript">
              var i=1;
-             $('.remover').hide();
+    $('.remover').hide();
     function rename_row()
       {
       
@@ -119,8 +119,6 @@
         $('#sub-body').each(function()
         {
               $('.remover').show();
-           
-            //alert(i);
             $(this).find('.item2').attr('name','product_section['+i+'][item_id]');
             i++;
           });

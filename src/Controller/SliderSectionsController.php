@@ -36,7 +36,7 @@ class SliderSectionsController extends AppController
                                 move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/Sliders/' . $img_name);
 
                                 //prepare the filename for database entry
-                                $sliderSection->slider_image = $img_name;
+                                $sliderSection->slider_image = 'Sliders/'.$img_name;
 
                         }
 
@@ -128,7 +128,7 @@ class SliderSectionsController extends AppController
                                 move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/Sliders/' . $img_name);
 
                                 //prepare the filename for database entry
-                                $sliderSections->slider_image = $img_name;
+                                $sliderSections->slider_image = 'Sliders/'.$img_name;
 
                         }
             }

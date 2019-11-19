@@ -97,39 +97,39 @@
                                                     </div>
                                                 </div>
                                                 <hr>
-                                            <div class="new" id="sub-body">
+                                        <div class="new addersku" id="sub-body">
                                             <div class="form-row">
                                                <div class="col-md-2">
                                                         <div class="position-relative form-group"><label class="">SKU</label>
                                                             <?php
                                                            
-                                                             echo $this->Form->control('sku', ['class'=>'form-control input-sm attribute sku','label'=>false]); ?>
+                                                             echo $this->Form->control('item_rows[0][sku]', ['class'=>'form-control input-sm attribute sku','label'=>false]); ?>
                                                         </div>
                                                     </div> 
                                                     <div class="col-md-3">
                                                         <div class="position-relative form-group"><label>Color</label>
                                                     <?php
                                                            
-                                                             echo $this->Form->control('color_id', ['empty'=>'--select--','options' => $colors,'class'=>'form-control input-sm attribute color_id','label'=>false]); ?>
+                                                             echo $this->Form->control('item_rows[0][color_id]', ['empty'=>'--select--','options' => $colors,'class'=>'form-control input-sm attribute color_id','label'=>false]); ?>
 
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                         <div class="position-relative form-group"><label for="exampleState" class="">Size</label><?php
                                                            
-                                                             echo $this->Form->control('size_id', ['empty'=>'--select--','options' => $sizes,'class'=>'form-control input-sm attribute size_id','label'=>false]); ?>
+                                                             echo $this->Form->control('item_rows[0][size_id]', ['empty'=>'--select--','options' => $sizes,'class'=>'form-control input-sm attribute size_id','label'=>false]); ?>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                         <div class="position-relative form-group"><label class="">Quantity</label> <?php
                                                            
-                                                             echo $this->Form->control('quantity', ['class'=>'form-control input-sm attribute quantity','label'=>false]); ?></div>
+                                                             echo $this->Form->control('item_rows[0][quantity]', ['class'=>'form-control input-sm attribute quantity','label'=>false]); ?></div>
                                                     </div>
                                             <div class="col-md-3">
                                                         <div class="position-relative form-group"><label for="example" class="">Sale Rate</label>
                                                             <?php
                                                            
-                                                             echo $this->Form->control('sale_rate', ['class'=>'form-control input-sm attribute sale_rate','label'=>false,'placeholder'=>'₹']); ?>
+                                                             echo $this->Form->control('item_rows[0][sale_rate]', ['class'=>'form-control input-sm attribute sale_rate','label'=>false,'placeholder'=>'₹']); ?>
                                                         </div>
                                                     </div>
 
@@ -141,7 +141,7 @@
                                                         <div class="position-relative form-group" style="margin-top: 10px;">
                                                              <?php
                                                            
-                                                             echo $this->Form->control('feature_image', ['class'=>'form-control input-sm attribute feature_image','label'=>false,'type'=>'file']); ?>
+                                                             echo $this->Form->control('item_rows[0][feature_image]', ['class'=>'form-control input-sm attribute feature_image','label'=>false,'type'=>'file']); ?>
                                                         <small class="form-text text-muted">Select Display Image. | Limit file size to less than 1 MB.</small>
                                                     </div>
                                                     
@@ -152,12 +152,12 @@
                                                     </div>
 
                                                     </div>
-                                                </div>
+                                                    <a class="rhov btn remover1" style="float:right;"><i class="fa fa-trash"></i>Remove</a>
                                                 
                                                 <hr>
-                                                <div class="repeatt1"> </div> 
-                                                 
-                                               
+                                                
+                                            </div> 
+                                               <div class="repeatt1"> </div> 
                                                 <div class=" row form-check">
                                                     <div class="col-md-12">
                                                         <button class="btn btn-warning" style="padding:6px 30px;font-size: 14px;margin-top: 30px;margin-left: -19px;">Submit</button>
@@ -323,14 +323,40 @@
 
 
 <script>
-            $('.apAddRow').click(function(e) {
 
-    $(".repeatt1").append(
-        '<div class="addersku"><div class="form-row"><div class="col-md-2"><div class="position-relative form-group"><label class="">SKU</label><input name="SKU" id="SKU" type="text" class="form-control"></div></div><div class="col-md-3"><div class="position-relative form-group"><label>Color</label><select class="mb-2 form-control"><option>Default Select</option><option>White & Yellow</option><option>Tangerine & Blue</option></select></div></div><div class="col-md-2"><div class="position-relative form-group"><label for="exampleState" class="">Size</label><select class="mb-2 form-control"><option>Default Select</option><option>6 Months-14in</option><option>1 Year-16 to 18in</option></select></div></div><div class="col-md-2"><div class="position-relative form-group"><label class="">Quantity</label><input name="qty" class="form-control" type="number"></div></div><div class="col-md-3"><div class="position-relative form-group"><label for="example" class="">Sale Rate</label><input name="city" id="exampleCity" type="text" placeholder="₹" class="form-control"></div></div></div><label>Select Images</label><div class="form-row"><div class="col-md-6" style="border: 1px solid #ced4da; border-radius: .25rem; margin: 0 0 16px;"><div class="position-relative form-group" style="margin-top: 10px;"><input name="file" id="exampleFile" type="file" class="form-control-file"><small class="form-text text-muted">Select Display Image. | Limit file size to less than 1 MB.</small></div></div><div class="col-md-6"><a class="rhov btn remover1" style="float:right;"><i class="fa fa-trash"></i>Remove</a></div><hr></div>');
+    var i=1;
+    function rename_row()
+      {
+      alert();
+        $('#sub-body').each(function()
+        {
+            
+            $(this).find('.sku').attr('name','item_rows['+i+'][sku]');
+            $(this).find('.color_id').attr('name','item_rows['+i+'][color_id]');
+            $(this).find('.size_id').attr('name','item_rows['+i+'][size_id]');
+            $(this).find('.quantity').attr('name','item_rows['+i+'][quantity]');
+            $(this).find('.sale_rate').attr('name','item_rows['+i+'][sale_rate]');
+            $(this).find('.feature_image').attr('name','item_rows['+i+'][feature_image]');
+            i++;
+          });
+          
+       }
+    function add_row()
+    {
+
+      var tr = $('#sub-body').clone();
+      $('.repeatt1').append(tr);
+      rename_row();
+    }
+            $('.apAddRow').click(function(e) {
+                add_row();
+
+    // $(".repeatt1").append(
+    //     '<div class="addersku"><div class="form-row"><div class="col-md-2"><div class="position-relative form-group"><label class="">SKU</label><input name="SKU" id="SKU" type="text" class="form-control"></div></div><div class="col-md-3"><div class="position-relative form-group"><label>Color</label><select class="mb-2 form-control"><option>Default Select</option><option>White & Yellow</option><option>Tangerine & Blue</option></select></div></div><div class="col-md-2"><div class="position-relative form-group"><label for="exampleState" class="">Size</label><select class="mb-2 form-control"><option>Default Select</option><option>6 Months-14in</option><option>1 Year-16 to 18in</option></select></div></div><div class="col-md-2"><div class="position-relative form-group"><label class="">Quantity</label><input name="qty" class="form-control" type="number"></div></div><div class="col-md-3"><div class="position-relative form-group"><label for="example" class="">Sale Rate</label><input name="city" id="exampleCity" type="text" placeholder="₹" class="form-control"></div></div></div><label>Select Images</label><div class="form-row"><div class="col-md-6" style="border: 1px solid #ced4da; border-radius: .25rem; margin: 0 0 16px;"><div class="position-relative form-group" style="margin-top: 10px;"><input name="file" id="exampleFile" type="file" class="form-control-file"><small class="form-text text-muted">Select Display Image. | Limit file size to less than 1 MB.</small></div></div><div class="col-md-6"><a class="rhov btn remover1" style="float:right;"><i class="fa fa-trash"></i>Remove</a></div><hr></div>');
 });
 
 // Remove parent of 'remove' link when link is clicked.
-    $("body").on("click",".remover1",function(e){
+    $(document).on("click",".remover1",function(e){
        $(this).parents('.addersku').remove();
 });
         </script>

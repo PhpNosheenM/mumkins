@@ -23,6 +23,7 @@ class FooterSectionsController extends AppController
         
         $footerSection = $this->FooterSections->newEntity();
         if ($this->request->is('post')) {
+            //pr($this->request->getData());exit;
             $footerSection = $this->FooterSections->patchEntity($footerSection, $this->request->getData());
             if ($this->FooterSections->save($footerSection)) {
                 $this->Flash->success(__('The footer section has been saved.'));

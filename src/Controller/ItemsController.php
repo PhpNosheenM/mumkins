@@ -17,6 +17,39 @@ class ItemsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
+     public function salesRateUpdate()
+    {
+        $this->viewBuilder()->layout('index_layout');
+         $item_rows = $this->Items->ItemRows->newEntity();
+        $items=$this->Items->ItemRows->find()->where(['is_deleted'=>0])->contain(['Items'=>['Categories']]);
+
+        if ($this->request->is(['post', 'put'])) {
+            $item_variation=$this->request->getData();
+            //pr($item_variation);exit;
+            foreach($item_variation['item_rows'] as $itemVariations){
+                //pr($itemVariations['print_rate']);exit;
+                $itemVariation=(object)$itemVariations;
+                $query = $this->Items->ItemRows->query();
+                    //$query->update(['promote_date', 'due_amount', amount', 'discount', 'end_date'])
+                    $query->update()
+                            ->set([
+                            'print_rate' => $itemVariations['print_rate'],
+                            'stock' => $itemVariations['stock'],
+                            'discount' => $itemVariations['discount'],
+                            'sale_rate' => $itemVariations['sale_rate']
+                            ])
+                            ->where(['id'=>$itemVariations['id']])
+                    ->execute();
+            }
+
+            
+            $this->Flash->success(__('Item rates have updated successfully.'));
+        }
+
+
+        $this->set(compact('items','item_rows'));
+    }
+
     public function index()
     {
         $this->paginate = [
@@ -104,6 +137,8 @@ class ItemsController extends AppController
             $this->Flash->error(__('The item could not be saved. Please, try again.'));
         }
         $categories = $this->Items->Categories->find('list');
+
+        //pr($results->toArray());exit;
         $colors = $this->Items->ItemRows->Colors->find('list');
         $sizes = $this->Items->ItemRows->Sizes->find('list');
         $this->set(compact('item', 'categories','colors','sizes'));

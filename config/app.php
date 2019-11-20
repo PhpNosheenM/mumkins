@@ -265,8 +265,8 @@ return [
             //'password' => 'Newmumkins',
            // 'database' => 'wwwkamle_mumkins',
             'username' => 'root',
-            'password' => '',
-            'database' => 'mumkin_new',
+            'password' => 'admin',
+            'database' => 'wwwkamle_mumkins',
 
             /*
              * You do not need to set this flag to use full utf-8 encoding (internal default since CakePHP 3.6).

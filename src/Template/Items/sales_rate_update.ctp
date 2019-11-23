@@ -18,49 +18,18 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-body">
-                                                <form class="">
+                                              <form method="GET">
                                                <div class="form-row">
 
                                                         <div class="col-md-4">
-                                                            <div class="position-relative form-group"><label for="exampleState" class=""> Category</label><select class="mb-2 form-control">
-                                                            <option>Default Select</option>
-                                                            <option>Boy</option>
-                                                            <option>Girl</option>
-                                                        </select>
+                                                            <div class="position-relative form-group"><label for="exampleState" class=""> Category</label>
+                                                                <?php echo $this->Form->control('category_id', ['empty'=>'--select--','options' => $catsub,'class'=>'form-control input-sm attribute category','label'=>false]); ?>
+                                                            </div>
                                                         </div>
-                                                    </div>
                                                         <div class="col-md-4">
-                                                            <div class="position-relative form-group"><label for="exampleState" class="">Sub Category</label><select class="mb-2 form-control">
-                                                            <option>Default Select</option>
-                                                            <option>Boy's Shirt</option>
-                                                            <option>Boy's T-Shirt</option>
-                                                            <option>Boy's shorts</option>
-                                                            <option>Boy's Jeans</option>
-                                                            <option>Boy's Accesories</option>
-                                                            <option>Girl's Top</option>
-                                                            <option>Girl's T-Shirt</option>
-                                                            <option>Girl's shorts</option>
-                                                            <option>Girl's Jeans</option>
-                                                            <option>Girl's Accesories</option>
-                                                        </select>
+                                                                <div class="position-relative form-group"><label for="exampleState" class="">Select Item</label> <?php echo $this->Form->control('item_id', ['empty'=>'--select--','options' => $items_list,'class'=>'form-control input-sm attribute','label'=>false]); ?>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                            <div class="position-relative form-group"><label for="exampleState" class="">Select Item</label><select class="mb-2 form-control">
-                                                            <option>Default Select</option>
-                                                            <option>Boy's Turtle Neck Shirt</option>
-                                                            <option>Boy's Blue lagoon T-Shirt</option>
-                                                            <option>Boy's Avengers shorts</option>
-                                                            <option>Boy's Pencil Jeans</option>
-                                                            <option>Boy's Accesories</option>
-                                                            <option>Girl's Slick Top</option>
-                                                            <option>Girl's WWoman T-Shirt</option>
-                                                            <option>Girl's Frow shorts</option>
-                                                            <option>Girl's Jeans</option>
-                                                            <option>Girl's Accesories</option>
-                                                        </select>
-                                                        </div>
-                                                    </div>
                                                 </div>
 
                                                     <div class="form-row">
@@ -71,7 +40,7 @@
                                                     </div>
                                                     <hr style="border-top: none;">
                                                 </form>
-
+                                        <?php if(!empty($items)){?>
                                         <?= $this->Form->create($item_rows,['id'=>'form_sample_3']) ?>    
                                         <div class="col-m-12">
                                             <table class="mb-0 table table-striped table-hover">
@@ -81,6 +50,7 @@
                                                     <th>Category</th>
                                                     <th>Sub Category</th>
                                                     <th>Item Name</th>
+                                                    <th>SKU</th>
                                                     <th>Print Rate</th>
                                                     <th>Discount</th>
                                                     <th>Sale Rate</th>
@@ -93,9 +63,10 @@
                                                     <th scope="row"><?= $i;?>
                                                         <?php echo  $this->Form->control('item_rows['.$i.'][id]',['class'=>'form-control input-sm','value'=>$item_row->id,'type'=>'hidden']); ?></td>
                                                     </th>
+                                                    <td><?= $item_row->item->category->parent_category->name ?></td>
                                                     <td><?= $item_row->item->category->name ?></td>
-                                                    <td>T-Shirt</td>
                                                     <td><?= $item_row->item->name ?></td>
+                                                    <td><?= $item_row->sku ?></td>
                                                     <td>
                                                         <!-- <input name="print_rate" id="example" type="Name" class="form-control" style="margin: 8px -20px;font-size: 14px;" placeholder="₹"> -->
                                                          <?php echo $this->Form->control('item_rows['.$i.'][print_rate]',[
@@ -129,6 +100,7 @@
                                               </tbody>
                                                 </table>
                                             </div>
+                                        <?php } ?>
                                             <div class=" row form-check">
                                                     <div class="col-md-12">
                                                         <!-- <button class="btn btn-warning" style="padding:6px 30px;font-size: 14px;margin-top: 30px;margin-left: -19px;">Update</button> -->
@@ -166,7 +138,19 @@
         // });
 
               $(document).ready(function() {
-
+                 // $('.category').on('change',function(){
+                 //    var category_id=$(this).val();
+                 //    //alert(category_id);
+                 //      var url="<?php echo $this->Url->build(['controller'=>'Items','action'=>'getSubcategory']); ?>";
+                 //        url=url+'/'+category_id,
+                 //    $.ajax({
+                 //        url: url,
+                 //    }).done(function(response) {
+                 //        //alert(response);
+                 //        $(".subcategory").html(response);
+                       
+                 //    });
+                 //             });
                 $('.check').on('change',function(){
                      //alert($('.stock').val());
                     if($(this).prop("checked") == true){

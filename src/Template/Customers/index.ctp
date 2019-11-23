@@ -45,7 +45,7 @@
                                                 <td><?= $customer_view->email?></td>
                                                 <td><?= $customer_view->mobile?></td>
                                                 <td>
-                                                    <?= $this->Html->link(__('<i class="pe-7s-note"></i>'), ['action' => 'addresses', $customer_view->id],['class'=>' btn-condensed btn-xs','escape'=>false]) ?></td>
+                                                    <?= $this->Html->link(__('<i class="fa fa-book"></i>'), ['action' => 'addresses', $customer_view->id],['class'=>' btn-condensed btn-xs','escape'=>false,'title'=>'Addresses']) ?></td>
                                             </tr>
                                         <?php } ?>
                                       </tbody>

@@ -22,7 +22,7 @@
                                                 <div class="form-row">
                                                     <div class="col-md-12">
                                                         <div class="position-relative form-group"><label for="example" class="">Description</label>
-                                                             <?=  $this->Form->control('description', ['class'=>'form-control input-sm description','label'=>false,'id'=>'editor1','style'=>'height:300px;','value'=>@$footerSection->description]); ?>
+                                                             <textarea id="editor1" name="description" rows="10" cols="135"><?= @$footerSection->description ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>

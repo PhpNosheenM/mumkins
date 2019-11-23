@@ -17,11 +17,41 @@ class ItemsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
+    public function getSubcategory($category_id=null)
+    {
+       $sub_category=$this->Items->Categories->find()->where(['Categories.parent_id'=>$category_id]);
+        ?>
+                    <option>--Select</option>
+                    <?php foreach($sub_category as $show){ ?>
+                        
+                        <option value="<?= $show->id ?>"><?= $show->name ?></option>
+                    <?php } ?>
+            <?php
+                 
+        exit;  
+    }
      public function salesRateUpdate()
     {
         $this->viewBuilder()->layout('index_layout');
-         $item_rows = $this->Items->ItemRows->newEntity();
-        $items=$this->Items->ItemRows->find()->where(['is_deleted'=>0])->contain(['Items'=>['Categories']]);
+        $item_rows = $this->Items->ItemRows->newEntity();
+        //$items=$this->Items->ItemRows->find()->where(['is_deleted'=>0])->contain(['Items'=>['Categories']]);
+        $category_id=$this->request->query('category_id');
+        $item_id=$this->request->query('item_id');
+         if($category_id!=null)
+            {
+                $items=$this->Items->ItemRows->find()->where(['Items.category_id'=>$category_id])->contain(['Items'=>['Categories'=>['ParentCategories']]]);
+            } 
+        if($item_id!=null)
+            {
+                $items=$this->Items->ItemRows->find()->where(['Items.id'=>$item_id])->contain(['Items'=>['Categories'=>['ParentCategories']]]);
+            } 
+        if (($category_id!=null)&&($item_id!=null)) {
+            $items=$this->Items->ItemRows->find()->where(['Items.category_id'=>$category_id,'Items.id'=>$item_id])->contain(['Items'=>['Categories'=>['ParentCategories']]]);
+        }
+        if (($category_id==null)&&($item_id==null)) {
+            $items=$this->Items->ItemRows->find()->contain(['Items'=>['Categories'=>['ParentCategories']]]);
+        }
+
 
         if ($this->request->is(['post', 'put'])) {
             $item_variation=$this->request->getData();
@@ -46,8 +76,14 @@ class ItemsController extends AppController
             $this->Flash->success(__('Item rates have updated successfully.'));
         }
 
-
-        $this->set(compact('items','item_rows'));
+        $categories = $this->Items->Categories->find()->where(['Categories.parent_id IS NOT NULL'])->contain(['ParentCategories'])->order(['Categories.name']);
+        $name="";
+        foreach ($categories as $cat) {
+            $name=$cat->parent_category->name.' >'.$cat->name;
+            $catsub[$cat->id] = $name;
+        }
+        $items_list=$this->Items->find('list')->where(['is_deleted'=>0]);
+        $this->set(compact('items','item_rows','catsub','items_list'));
     }
 
     public function index()
@@ -136,12 +172,20 @@ class ItemsController extends AppController
             }
             $this->Flash->error(__('The item could not be saved. Please, try again.'));
         }
-        $categories = $this->Items->Categories->find('list');
+        $item_views=$this->Items->find()->contain(['Categories']);
+        $categories = $this->Items->Categories->find()->where(['Categories.parent_id IS NOT NULL'])->contain(['ParentCategories']);
+        $name="";
+        foreach ($categories as $cat) {
+            $name=$cat->parent_category->name.' >'.$cat->name;
+            $catsub[$cat->id] = $name;
+        }
+
+        //pr($catsub);exit;
 
         //pr($results->toArray());exit;
         $colors = $this->Items->ItemRows->Colors->find('list');
         $sizes = $this->Items->ItemRows->Sizes->find('list');
-        $this->set(compact('item', 'categories','colors','sizes'));
+        $this->set(compact('item', 'categories','colors','sizes','item_views','catsub'));
     }
 
     /**
@@ -151,12 +195,27 @@ class ItemsController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
+
+    public function skuList($id=null)
+    {
+       
+        
+        
+        $items_sku = $this->Items->ItemRows->find()->where(['ItemRows.item_id'=>$id])->contain(['Colors','Sizes']);
+        
+        
+        $this->set('items_sku', $items_sku);
+        $this->set('_serialize', ['items_sku']);
+    }
+
     public function edit($id = null)
     {
+         $this->viewBuilder()->layout('index_layout');
         $item = $this->Items->get($id, [
-            'contain' => []
+            'contain' => ['ItemRows'=>['Colors','Sizes']]
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
+           // pr($this->request->getData());exit;
             $item = $this->Items->patchEntity($item, $this->request->getData());
             if ($this->Items->save($item)) {
                 $this->Flash->success(__('The item has been saved.'));
@@ -165,8 +224,14 @@ class ItemsController extends AppController
             }
             $this->Flash->error(__('The item could not be saved. Please, try again.'));
         }
-        $categories = $this->Items->Categories->find('list', ['limit' => 200]);
-        $this->set(compact('item', 'categories'));
+         $categories = $this->Items->Categories->find()->where(['Categories.parent_id!='=>null]);
+
+        pr($categories->toArray());exit;
+        $item_row=$this->Items->ItemRows->find()->where(['ItemRows.item_id'=>$id])->contain(['Colors','Sizes']);
+        //pr($item_row->toArray());exit;
+        $colors = $this->Items->ItemRows->Colors->find('list');
+        $sizes = $this->Items->ItemRows->Sizes->find('list');
+        $this->set(compact('item', 'categories','colors','sizes','item_row'));
     }
 
     /**
@@ -176,16 +241,18 @@ class ItemsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
+    public function Active($id=null)
+    {
+        $item = $this->Items->get($id);
+        $item->is_deleted=0;
+        if($this->Items->save($item))
+            exit;
+    }
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
         $item = $this->Items->get($id);
-        if ($this->Items->delete($item)) {
-            $this->Flash->success(__('The item has been deleted.'));
-        } else {
-            $this->Flash->error(__('The item could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
+        $item->is_deleted=1;
+        if($this->Items->save($item))
+            exit;
     }
 }

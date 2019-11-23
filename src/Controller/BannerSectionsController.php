@@ -54,7 +54,7 @@ class BannerSectionsController extends AppController
                                 move_uploaded_file($file1['tmp_name'], WWW_ROOT . 'img/Banners/' . $img_name1);
 
                                 //prepare the filename for database entry
-                                $bannerSection->hero_image = 'Banners/'$img_name1;
+                                $bannerSection->hero_image = 'Banners/'.$img_name1;
 
                         }
 

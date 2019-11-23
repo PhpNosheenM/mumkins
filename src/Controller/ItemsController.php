@@ -48,9 +48,9 @@ class ItemsController extends AppController
         if (($category_id!=null)&&($item_id!=null)) {
             $items=$this->Items->ItemRows->find()->where(['Items.category_id'=>$category_id,'Items.id'=>$item_id])->contain(['Items'=>['Categories'=>['ParentCategories']]]);
         }
-        if (($category_id==null)&&($item_id==null)) {
-            $items=$this->Items->ItemRows->find()->contain(['Items'=>['Categories'=>['ParentCategories']]]);
-        }
+        // if (($category_id==null)&&($item_id==null)) {
+        //     $items=$this->Items->ItemRows->find()->contain(['Items'=>['Categories'=>['ParentCategories']]]);
+        // }
 
 
         if ($this->request->is(['post', 'put'])) {

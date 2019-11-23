@@ -22,7 +22,10 @@
                                                 <div class="form-row">
                                                     <div class="col-md-12">
                                                         <div class="position-relative form-group"><label for="example" class="">Description</label>
-                                                             <textarea id="editor1" name="description" rows="10" cols="135"><?= @$footerSection->description ?></textarea>
+                                                             <!-- <textarea id="editor1" name="description" rows="10" cols="135"><?= @$footerSection->description ?></textarea> -->
+                                                              <div id="editor1">
+                                                                <textarea><?= @$footerSection->description ?></textarea>
+                                                            </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -81,8 +84,12 @@
     // });
 
           $(document).ready(function() {
+
         $("#navt").load("navigationtest.html");
     });
+
+            $("#editor1").val($("#editor1").Editor("getText"));
+       
 
     </script>
     <script>

@@ -50,7 +50,11 @@ class HomesController extends AppController
 				$homeScreen[]=['title'=>$Home->title,'layout'=>$layout,'Section'=>$ProductSections];
 				
 			}
-			
+			if($layout=='Newsletter Section'){
+				$NewsletterSections=$this->Homes->NewsletterSections->find()->where(['NewsletterSections.is_deleted'=>0]);
+				$homeScreen[]=['title'=>$Home->title,'layout'=>$layout,'Section'=>$NewsletterSections];
+				
+			} 
 		}
 		
 		$FooterSections=$this->Homes->FooterSections->find()->where(['FooterSections.is_deleted'=>0,'show_on'=>'Home Page']);

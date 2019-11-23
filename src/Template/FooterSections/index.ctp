@@ -34,9 +34,7 @@
                                                 <div class="form-row">
                                                     <div class="col-md-12">
                                                         <div class="position-relative form-group"><label for="example" class="">Description</label>
-                                                            <div id="editor1" name="description">
-                                                                <textarea></textarea>
-                                                            </div>
+                                                            <textarea class="ckeditor" id="myEditor" name="description" cols="35" rows="20"></textarea>
                                                              <!-- <textarea id="editor1" name="description" rows="10" cols="135"></textarea> -->
                                                     </div>
                                                 </div>
@@ -107,6 +105,8 @@
                    
                     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
                 <script type="text/javascript" src="./assets/scripts/main.js"></script>
+               <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+
 
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
             </body>
@@ -122,6 +122,9 @@
     });
     </script>
     <script>
+        CKEDITOR.replace( 'description' );
+    </script>
+    <script>
     //     $.get("navigationtest.html", function(data){
     //     $("#nav").replaceWith(data);
     // });
@@ -132,11 +135,11 @@
          
 
     </script>
-    <script>
+   <!--  <script>
       var quill = new Quill('#editor1', {
         theme: 'snow'
       });
-    </script>
+    </script> -->
 
 
 

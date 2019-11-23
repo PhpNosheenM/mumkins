@@ -46,7 +46,7 @@
                                                 <!--  -->
                                                     <div class="col-md-3">
                                                         <div class="position-relative form-group"><label class="">Style No.</label>
-                                                            <?php echo $this->Form->control('style_no', ['class'=>'form-control input-sm attribute style','label'=>false]); ?>
+                                                            <?php echo $this->Form->control('style_no', ['class'=>'form-control input-sm attribute','label'=>false]); ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -69,7 +69,7 @@
                                                     <div class="col-md-12">
                                                         <div class="position-relative form-group"><label for="example" class="">Description</label>
                                                            <!--  <div id="editor1"></div> -->
-                                                           <?=  $this->Form->control('description', ['class'=>'form-control input-sm description','label'=>false,'id'=>'editor1']); ?>
+                                                           <textarea class="ckeditor" id="myEditor" name="description" cols="35" rows="20"><?= $item->description?></textarea>
                                                     </div>
                                                     </div>
                                                     
@@ -255,6 +255,7 @@
                    
                     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
                <!--  <script type="text/javascript" src="./assets/scripts/main.js"></script> -->
+ <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
             </body>
@@ -280,16 +281,8 @@
 
     </script>
     <script>
-      var quill = new Quill('#editor1', {
-        theme: 'snow'
-      });
+        CKEDITOR.replace( 'description' );
     </script>
-      <script>
-      var quill = new Quill('#editor2', {
-        theme: 'snow'
-      });
-    </script>
-
 
 
 <script>

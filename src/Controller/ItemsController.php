@@ -224,9 +224,9 @@ class ItemsController extends AppController
             }
             $this->Flash->error(__('The item could not be saved. Please, try again.'));
         }
-         $categories = $this->Items->Categories->find()->where(['Categories.parent_id!='=>null]);
+         $categories = $this->Items->Categories->find('list')->where(['Categories.parent_id IS NOT NULL']);
 
-        pr($categories->toArray());exit;
+        //pr($categories->toArray());exit;
         $item_row=$this->Items->ItemRows->find()->where(['ItemRows.item_id'=>$id])->contain(['Colors','Sizes']);
         //pr($item_row->toArray());exit;
         $colors = $this->Items->ItemRows->Colors->find('list');

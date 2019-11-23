@@ -14,12 +14,12 @@
                                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                     </a>
                                     <ul>
-                                        <!--<li>
-                                            <a href="customer.html">
+                                        <li>
+                                            <a href="<?= $this->Url->build(['controller'=>'Customers','action' =>'index'])?>">
                                                 <i class="metismenu-icon"></i>
                                                 Customer
                                             </a>
-                                        </li>-->
+                                        </li>
                                         <li>
                                             <a href="#">
                                                 <i class="metismenu-icon">
@@ -67,18 +67,18 @@
                                             </a>
                                         </li> -->
                                         </li>
-                                        <!--<li>
-                                            <a href="masterSalesRate.html">
+                                        <li>
+                                            <a href="<?= $this->Url->build(['controller'=>'Items','action' =>'salesRateUpdate'])?>">
                                                 <i class="metismenu-icon">
                                                 </i>Sales Rate
                                             </a>
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                             <a href="masterPincode.html">
                                                 <i class="metismenu-icon">
                                                 </i>Pincode
                                             </a>
-                                        </li>-->
+                                        </li>--> 
                                         
                                         
                                     </ul>

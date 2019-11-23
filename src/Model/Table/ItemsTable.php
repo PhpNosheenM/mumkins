@@ -85,15 +85,6 @@ class ItemsTable extends Table
             ->requirePresence('description', 'create')
             ->notEmptyString('description');
 
-        $validator
-            ->scalar('specification')
-            ->requirePresence('specification', 'create')
-            ->notEmptyString('specification');
-
-        $validator
-            ->scalar('item_keyword')
-            ->requirePresence('item_keyword', 'create')
-            ->notEmptyString('item_keyword');
 
         return $validator;
     }

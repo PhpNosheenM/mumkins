@@ -28,7 +28,7 @@
                                                         <li class="nav-item"><a data-toggle="tab" href="#tab-eg5-0" class="active nav-link">Add</a></li>
                                                         <li class="nav-item"><a data-toggle="tab" href="#tab-eg5-1" class="nav-link">View</a></li>
 
-                                                        <li class="nav-item"><a data-toggle="tab" href="#tab-eg5-2" class="nav-link"><i class="fa fa-file-excel"></i>&nbsp;&nbsp;Upload</a></li>
+                                                        <!-- <li class="nav-item"><a data-toggle="tab" href="#tab-eg5-2" class="nav-link"><i class="fa fa-file-excel"></i>&nbsp;&nbsp;Upload</a></li> -->
 
                                                     </ul>
                                                 </div>
@@ -40,13 +40,13 @@
                                                 <div class="form-row">
                                                      <div class="col-md-3">
                                                         <div class="position-relative form-group"><label for="exampleState" class="">Select Item Category</label>
-                                                             <?php echo $this->Form->control('category_id', ['empty'=>'--select--','options' => $categories,'class'=>'form-control input-sm attribute category','label'=>false]); ?>
+                                                             <?php echo $this->Form->control('category_id', ['empty'=>'--select--','options' => $catsub,'class'=>'form-control input-sm attribute category','label'=>false]); ?>
                                                     </div>
                                                 </div>
                                                 <!--  -->
                                                     <div class="col-md-3">
                                                         <div class="position-relative form-group"><label class="">Style No.</label>
-                                                            <?php echo $this->Form->control('style_no', ['class'=>'form-control input-sm attribute style','label'=>false]); ?>
+                                                            <?php echo $this->Form->control('style_no', ['class'=>'form-control input-sm attribute','label'=>false]); ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -97,7 +97,7 @@
                                                     </div>
                                                 </div>
                                                 <hr>
-                                        <div class="new addersku" id="sub-body">
+                                        <div class="new addersku len" id="sub-body">
                                             <div class="form-row">
                                                <div class="col-md-2">
                                                         <div class="position-relative form-group"><label class="">SKU</label>
@@ -173,80 +173,44 @@
                                             <div class="col-m-10">
                                     
                                         <div class="card-body">
-                                            <table class="mb-0 table table-striped table-hover table-responsive">
+                                           <table class="table table-striped table-hover">
                                                 <thead>
                                                 <tr>
                                                     <th>#</th>
+                                                    <th>Category</th>
                                                     <th>Item Name</th>
-                                                    <th>SKU</th>
-                                                    <th>Sale Rate</th>
-                                                    <th>Discount</th>
-                                                    <th>Description</th>
-                                                    <th>Material Care Inst.</th>
+                                                    <th>Style No.</th>
+                                                    <th>Material Type</th>
                                                     <th>Specification</th>
-                                                    <th>Size</th>
-                                                    <th>Images</th>
-                                                    <th>Color</th>
+                                                    <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <?php $i=1;foreach ($item_views as $item_view) {?>
                                                 <tr>
-                                                    <th scope="row">1</th>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="100" placeholder="Fashion Seeds White & Yellow Party wear Set for Boys prop" ></textarea></td>
-                                                    <td>5</td>
-                                                    <td>1500</td>
-                                                    <td>300</td>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="100" placeholder="Fashion Seeds White & Yellow Party wear Set for Boys prop"></textarea></td>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="100" placeholder="Fashion Seeds White & Yellow Party wear Set for Boys prop"></textarea></td>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="100" placeholder="Fashion Seeds White & Yellow Party wear Set for Boys prop"></textarea></td>
-                                                    <td><p>06 Months/14in</p></td>
-                                                    <td><img src="./assets/images/logo2.png" width="30px" height="30px"><img src="./assets/images/logo-2.png" width="30px" height="30px"><img src="./assets/images/logo-2.png" width="30px" height="30px"></td>
-                                                    <td><p>Tangerine & Blue</p></td>
-                                                    <td><span><a href="#"> <i class="pe-7s-note"></i></a></span>          <span><a href="#"><i class="pe-7s-trash"></i></a></span></td>
+                                                    <th scope="row"><?= $i;$i++;?></th>
+                                                    <td><?= $item_view->category->name?></td>
+                                                    <td><textarea disabled="true" class="form-control" id="message" rows="2" value=""><?= $item_view->name?></textarea></td>
+                                                    <td>
+                                                        <input type="hidden" class="item_id" value="<?= $item_view->id ?>">
+                                                        <a data-toggle="modal" data-target="#accSKU" href="#" class="style"><?= $item_view->style_no?><i class="pe-7s-angle-down" style="vertical-align: middle;"></i></a></td>
+                                                    <td><?= $item_view->material_type?></td>
+                                                    <td><?= $item_view->specification?></td>
+                                                    <td><label class="switch">
+                                                        <?php if($item_view->is_deleted == 0)
+                                                        {?>
+                                                        <input type="checkbox" checked class="check">
+                                                    <?php } if($item_view->is_deleted == 1)
+                                                    {?>
+                                                        <input type="checkbox" class="check">
+                                                    <?php } ?>
+
+                                                        <span class="slider round"></span></label></td>
+                                                    <td><span>
+                                                     <?= $this->Html->link(__('<i class="pe-7s-note"></i>'), ['action' => 'edit', $item_view->id],['class'=>' btn-condensed btn-xs','escape'=>false]) ?></span></td>
                                                 </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="100" placeholder="Fashion Seeds White & Yellow Party wear Set for Boys prop" ></textarea></td>
-                                                    <td>5</td>
-                                                    <td>1500</td>
-                                                    <td>300</td>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="100" placeholder="Fashion Seeds White & Yellow Party wear Set for Boys prop"></textarea></td>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="100" placeholder="Fashion Seeds White & Yellow Party wear Set for Boys prop"></textarea></td>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="100" placeholder="Fashion Seeds White & Yellow Party wear Set for Boys prop"></textarea></td>
-                                                    <td><p>06 Months/14in</p></td>
-                                                    <td><img src="./assets/images/logo2.png" width="30px" height="30px"><img src="./assets/images/logo-2.png" width="30px" height="30px"><img src="./assets/images/logo-2.png" width="30px" height="30px"></td>
-                                                    <td><p>Tangerine & Blue</p></td>
-                                                    <td><span><a href="#"> <i class="pe-7s-note"></i></a></span>          <span><a href="#"><i class="pe-7s-trash"></i></a></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="100" placeholder="Fashion Seeds White & Yellow Party wear Set for Boys prop" ></textarea></td>
-                                                    <td>5</td>
-                                                    <td>1500</td>
-                                                    <td>300</td>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="100" placeholder="Fashion Seeds White & Yellow Party wear Set for Boys prop"></textarea></td>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="100" placeholder="Fashion Seeds White & Yellow Party wear Set for Boys prop"></textarea></td>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="100" placeholder="Fashion Seeds White & Yellow Party wear Set for Boys prop"></textarea></td>
-                                                    <td><p>06 Months/14in</p></td>
-                                                    <td><img src="./assets/images/logo-2.png" width="30px" height="30px"><img src="./assets/images/logo-2.png" width="30px" height="30px"><img src="./assets/images/logo-2.png" width="30px" height="30px"></td>
-                                                    <td><p>Tangerine & Blue</p></td>
-                                                    <td><span><a href="#"> <i class="pe-7s-note"></i></a></span>          <span><a href="#"><i class="pe-7s-trash"></i></a></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">4</th>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="100" placeholder="Fashion Seeds White & Yellow Party wear Set for Boys prop" ></textarea></td>
-                                                    <td>5</td>
-                                                    <td>1500</td>
-                                                    <td>300</td>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="100" placeholder="Fashion Seeds White & Yellow Party wear Set for Boys prop"></textarea></td>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="100" placeholder="Fashion Seeds White & Yellow Party wear Set for Boys prop"></textarea></td>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="100" placeholder="Fashion Seeds White & Yellow Party wear Set for Boys prop"></textarea></td>
-                                                    <td><p>06 Months/14in</p></td>
-                                                    <td><img src="./assets/images/logo-2.png" width="30px" height="30px"><img src="./assets/images/logo-2.png" width="30px" height="30px"><img src="./assets/images/logo-2.png" width="30px" height="30px"></td>
-                                                    <td><p>Tangerine & Blue</p></td>
-                                                    <td><span><a href="#"> <i class="pe-7s-note"></i></a></span>          <span><a href="#"><i class="pe-7s-trash"></i></a></span></td>
-                                                </tr>
+                                                <?php } ?>
                                           </tbody>
                                             </table>
                                         </div>
@@ -321,13 +285,23 @@
 
 
 <script>
-
+     $('.remover1').hide();
     var i=1;
     function rename_row()
       {
       //alert();
         $('#sub-body').each(function()
         {
+            var numItems = $('.len').length;
+            alert(numItems);
+            if(numItems >= 2)
+            {
+                  $(this).find('.remover1').show();
+            }
+            else
+            {
+                   $(this).find('.remover1').hide();
+            }
             
             $(this).find('.sku').attr('name','item_rows['+i+'][sku]');
             $(this).find('.color_id').attr('name','item_rows['+i+'][color_id]');
@@ -362,7 +336,48 @@
 });
         </script>
 
-        <script>
+<script>
+     $('.check').on('change',function(){
+         var item_id=$(this).closest('tr').find('.item_id').val();
+                    if($(this).prop("checked") == true){
+                        var url="<?php echo $this->Url->build(['controller'=>'Items','action'=>'Active']); ?>";
+                            url=url+'/'+item_id,
+                        $.ajax({
+                            url: url,
+                        }).done(function(response) {
+                           alert("Item has been Active");
+                        }); 
+                    }
+                    else if($(this).prop("checked") == false){
+                        var url="<?php echo $this->Url->build(['controller'=>'Items','action'=>'Delete']); ?>";
+                            url=url+'/'+item_id,
+                        $.ajax({
+                            url: url,
+                        }).done(function(response) {
+                           alert("Item has been Deactive");
+                        }); 
+                    }
+                });
+
+    $(document).on("click",".closebtn",function(e){
+        $(".modal").hide();
+    });
+        $(document).on("click",".style",function(e){
+          var item_id=$(this).closest('tr').find('.item_id').val();
+          $("#result_ajax").html('<div align="center"><?php echo $this->Html->image('/img/wait.gif', ['alt' => 'wait']); ?> Loading</div>');
+            var url="<?php echo $this->Url->build(['controller'=>'Items','action'=>'skuList']); ?>";
+            url=url+'/'+item_id,
+            //alert(url);
+             $("#myModal1").show();
+        $.ajax({
+            url: url,
+        }).done(function(response) {
+            //alert(response);
+            $("#result_ajax").html(response);
+           
+        });
+        });
+
             var firstElement = document.getElementById('tagmark');
 var choices1 = new Choices(firstElement, {
     delimiter: ',',
@@ -375,3 +390,44 @@ var choices1 = new Choices(firstElement, {
 
 
            </html>
+
+<div class="modal" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="passTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="passTitle">SKU DETAILS</h5>
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="col-md-12" >
+                        <table class="table table-striped table-hover" style="table-layout: auto;" >
+                            <thead>
+                            <tr>
+                                <th>SKU No.</th>
+                                <th>Item Size</th>
+                                <th>Color</th>
+                                <th>Quantity</th>
+                                <th>Sale Rate</th>
+                            </tr>
+                            </thead>
+                            <tbody id="result_ajax" >
+                                
+                            
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                            
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary closebtn" style="margin: 0 auto;padding: 8px 68px;">Close</button>
+               
+            </div>
+        </div>
+    </div>
+</div>

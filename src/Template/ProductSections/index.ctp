@@ -25,11 +25,11 @@
                                                 <label for="example" class="">Select Items to show</label>
                                                 <div  class="form-row repeatt" style="border: 1px solid #ced4da; border-radius: .25rem; margin: 0 0 16px;">
                                                     <div class="col-md-6 adderow" id="sub-body">
-                                                        <div class="position-relative form-group" style="margin-top: 10px;">
+                                                        <div class="position-relative form-group len" style="margin-top: 10px;">
                                                             <?php echo $this->Form->control('product_section[0][item_id]', ['empty'=>'--select--','options' => $items,'class'=>'form-control input-sm attribute item2','label'=>false]); ?>
                                                             <a class="btn btn-success remover" style="color: white; float: right;margin-top: 15px;"><i class=" fa fa-minus"></i></a>
-                                                        </div>
-                                                    </div>
+                                                        </div>                                                   
+                                                </div>
                                                     <div class="col-md-6">
                                                         <div class="position-relative form-group">
                                                            <a class="btn btn-success addert" style="color: white; float: right;margin-top: 15px;"><i class=" fa fa-plus"></i></a>
@@ -110,15 +110,27 @@
 
         </script>
         <script type="text/javascript">
-             var i=1;
+
     $('.remover').hide();
+             var i=1;
+   
     function rename_row()
       {
       
        
         $('#sub-body').each(function()
         {
-              $('.remover').show();
+            var numItems = $('.len').length;
+            alert(numItems);
+            if(numItems == 1)
+            {
+                  $(this).find('.remover').hide();
+            }
+            else
+            {
+                   $(this).find('.remover').show();
+            }
+            
             $(this).find('.item2').attr('name','product_section['+i+'][item_id]');
             i++;
           });
@@ -133,6 +145,7 @@
       rename_row();
     }
             $('.addert').click(function(e) {
+           
                 add_row();
     // $(".repeatt").append(
     //     '<div class="col-md-12 adderow" ><div class="col-md-6" style="margin-left: -15px;"><div class="position-relative form-group" style="margin-top: 10px;margin-right: -26px;"><select class="mb-2 form-control"><option>Default Select</option><option>It no- 732 | Boys</option><option>It no- 432 | Girls Top</option></select></div></div><div class=""><div class="position-relative form-group"><a class="btn btn-danger remover" style="color: white; float: right;margin-top: -45px;"><i class=" fa fa-trash"></i></a></div></div></div>');

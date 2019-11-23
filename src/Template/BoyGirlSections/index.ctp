@@ -59,7 +59,7 @@
                                                 <?php $i=1;foreach ($bg_views as $bg_view) {?>
                                                 <tr>
                                                     <th scope="row"><?= $i;$i++;?></th>
-                                                    <td><?= $this->Html->image('/img/BG/'.$bg_view->bg_image, ['style'=>'width:50px; height:50px;']); ?></td>
+                                                    <td><?= $this->Html->image('/img/'.$bg_view->bg_image, ['style'=>'width:50px; height:50px;']); ?></td>
                                                     <td><p><?= $bg_view->bg_url?></p></td>
                                                     <td class="actions">
 

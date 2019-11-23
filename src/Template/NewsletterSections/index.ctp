@@ -60,7 +60,7 @@
                                                 <?php $i=1;foreach ($news_views as $news_view) {?>
                                                 <tr>
                                                     <th scope="row"><?= $i;$i++;?></th>
-                                                    <td><?= $this->Html->image('/img/News/'.$news_view->news_image, ['style'=>'width:50px; height:50px;']); ?></td>
+                                                    <td><?= $this->Html->image('/img/'.$news_view->news_image, ['style'=>'width:50px; height:50px;']); ?></td>
                                                     <td><p><?= $news_view->news_url?></p></td>
                                                     <td class="actions">
 

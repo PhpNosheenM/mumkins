@@ -59,7 +59,7 @@
                                                 <?php $i=1;foreach ($category_views as $category_view) {?>
                                                 <tr>
                                                     <th scope="row"><?= $i;$i++;?></th>
-                                                    <td><?= $this->Html->image('/img/category/'.$category_view->category_image, ['style'=>'width:50px; height:50px;']); ?></td>
+                                                    <td><?= $this->Html->image('/img/'.$category_view->category_image, ['style'=>'width:50px; height:50px;']); ?></td>
                                                     <td><p><?= $category_view->category_url?></p></td>
                                                     <td class="actions">
 

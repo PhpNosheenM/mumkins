@@ -59,7 +59,7 @@
                                                 <?php $i=1;foreach ($offer_views as $offer_view) {?>
                                                 <tr>
                                                     <th scope="row"><?= $i;$i++;?></th>
-                                                    <td><?= $this->Html->image('/img/offers/'.$offer_view->offer_image, ['style'=>'width:50px; height:50px;']); ?></td>
+                                                    <td><?= $this->Html->image('/img/'.$offer_view->offer_image, ['style'=>'width:50px; height:50px;']); ?></td>
                                                     <td><p><?= $offer_view->offer_url?></p></td>
                                                     <td class="actions">
 

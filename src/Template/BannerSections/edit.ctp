@@ -15,14 +15,14 @@
                                                 <div class="position-relative row form-group"><label for="exampleFile" class="col-sm-2 col-form-label">Select Background Image</label>
                                                     <div class="col-sm-10">
                                                         <?= $this->Form->input('background_image',['type'=>'file','label'=>false]) ?>
-                                                        <?= $this->Html->image('/img/Banners/'.$bannerSection->background_image, ['style'=>'width:50px; height:50px;','id'=>'img_prev']); ?>
+                                                        <?= $this->Html->image('/img/'.$bannerSection->background_image, ['style'=>'width:50px; height:50px;','id'=>'img_prev']); ?>
                                                         <small class="form-text text-muted">Image to display behind the hero image,limit size to less than 2 MB. </small>
                                                     </div>
                                                 </div>
                                                 <div class="position-relative row form-group"><label for="exampleFile" class="col-sm-2 col-form-label">Select Hero Image</label>
                                                     <div class="col-sm-10">
                                                         <?= $this->Form->input('hero_image',['type'=>'file','label'=>false]) ?>
-                                                        <?= $this->Html->image('/img/Banners/'.$bannerSection->hero_image, ['style'=>'width:50px; height:50px;','id'=>'hero_image']); ?>
+                                                        <?= $this->Html->image('/img/'.$bannerSection->hero_image, ['style'=>'width:50px; height:50px;','id'=>'hero_image']); ?>
                                                         <small class="form-text text-muted"></small>
                                                     </div>
                                                 </div>

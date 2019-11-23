@@ -24,7 +24,7 @@
                                                 <?php $i=1;foreach ($slider_views as $slider_view) {?>
                                                 <tr>
                                                     <th scope="row"><?= $i;$i++;?></th>
-                                                    <td><?= $this->Html->image('/img/Sliders/'.$slider_view->slider_image, ['style'=>'width:50px; height:50px;']); ?></td>
+                                                    <td><?= $this->Html->image('/img/'.$slider_view->slider_image, ['style'=>'width:50px; height:50px;']); ?></td>
                                                     <td><p><?= @$slider_view->button_text?> | <?= @$slider_view->button2_text?></p></td>
                                                     <td><p><?= @$slider_view->slider_url?></p></td>
                                                     <td><?= @$slider_view->slider2_url?></p></td>

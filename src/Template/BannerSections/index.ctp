@@ -84,8 +84,8 @@
                                                 <?php $i=1;foreach ($banner_views as $banner_view) {?>
                                                 <tr>
                                                     <th scope="row"><?= $i;$i++;?></th>
-                                                    <td><?= $this->Html->image('/img/Banners/'.$banner_view->background_image, ['style'=>'width:50px; height:50px;']); ?>
-                                                        <?= $this->Html->image('/img/Banners/'.$banner_view->hero_image, ['style'=>'width:50px; height:50px;']); ?>
+                                                    <td><?= $this->Html->image('/img/'.$banner_view->background_image, ['style'=>'width:50px; height:50px;']); ?>
+                                                        <?= $this->Html->image('/img/'.$banner_view->hero_image, ['style'=>'width:50px; height:50px;']); ?>
                                                     </td>
                                                     <td><span id="sBtn1"><?= @$banner_view->button1_text?></span>&nbsp;|&nbsp;<span id="sBtn2"><?= @$banner_view->button2_text?></span></td>
                                                     <td><p><?= $banner_view->button1_url?></p></td>

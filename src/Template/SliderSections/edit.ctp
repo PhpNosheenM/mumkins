@@ -16,7 +16,7 @@
                                                     <div class="col-md-12">
                                                         <div class="position-relative form-group"><label for="exampleEmail11" class="">Select Image</label>
                                                          <?= $this->Form->control('slider_image',['class'=>'file','label'=>false,'type'=>'file','id'=>'exampleFile']) ?>
-                                                         <?= $this->Html->image('/img/Sliders/'.$sliderSection->slider_image, ['style'=>'width:50px; height:50px;','id'=>'img_prev']); ?>
+                                                         <?= $this->Html->image('/img/'.$sliderSection->slider_image, ['style'=>'width:50px; height:50px;','id'=>'img_prev']); ?>
                                                           <small class="form-text text-muted">limit file size to less than 2 MB.</small>
                                                          </div>
                                                     </div>

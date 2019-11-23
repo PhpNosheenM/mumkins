@@ -16,7 +16,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group"><label>Select Image</label>
                                                         <?= $this->Form->input('category_image',['type'=>'file','label'=>false]) ?>
-                                                        <?= $this->Html->image('/img/Category/'.$categorySection->category_image, ['style'=>'width:50px; height:50px;','id'=>'img_prev']); ?>
+                                                        <?= $this->Html->image('/img/'.$categorySection->category_image, ['style'=>'width:50px; height:50px;','id'=>'img_prev']); ?>
                                                           <small class="form-text text-muted">limit file size to less than 2 MB.</small>
                                                          </div>
                                                     </div>

@@ -82,7 +82,7 @@
                                                 <tr>
                                                     <th scope="row"><?= $i;$i++;?></th>
                                                     <td><?= $footer->show_on?></td>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="80" placeholder="" ><?= $footer->description?>
+                                                    <td><textarea disabled="true" class="form-control" id="message" rows="4" cols="80" placeholder="" ><?= strip_tags($footer->description)?>
                                                       </textarea></td>
                                                     <td> <?= $this->Html->link(__('<i class="pe-7s-note"></i>'), ['action' => 'edit', $footer->id],['class'=>' btn-condensed btn-xs','escape'=>false]) ?>
 

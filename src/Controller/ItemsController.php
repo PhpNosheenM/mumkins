@@ -2,6 +2,13 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Database\Expression\QueryExpression;
+use Cake\ORM\Query;
+use Cake\Filesystem\Folder;
+use Cake\Filesystem\File;
+use Cake\View\View;
+use Cake\View\Helper\HtmlHelper;
+use Cake\Event\Event;
 
 /**
  * Items Controller
@@ -135,6 +142,7 @@ class ItemsController extends AppController
                
           
             foreach ($images as $item_row) {
+               // $upload_dir = FULL_ROOT . "/uploads/blog/";
                  // pr($item_row['sku']);exit;
              $file = $item_row['feature_image']; //put the data into a var for easy use
                         //pr($file);
@@ -145,14 +153,18 @@ class ItemsController extends AppController
                         $img_name= $setNewFileName.'.'.$ext;
                         if(in_array($ext, $arr_ext))
                         {
-                           // pr("sds");exit;
-                                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/Items/' . $img_name);
+                        
+                            $uploads_dir =new Folder();
+                            $uploads_dir->create(WWW_ROOT . '/img/Items/'.$item->id);
+                            move_uploaded_file($file['tmp_name'],'img/Items/'.$item->id.'/'.$img_name);
+                               
 
-                                //prepare the filename for database entry
+                                
                               $img[]= $img_name;
-                              //pr($item->item_rows=$image);
+                              
 
                         }
+                       
                  $query = $this->Items->ItemRows->query();
                     $query->insert(['item_id', 'sku', 'color_id', 'size_id', 'quantity', 'sale_rate','feature_image'])
                     ->values([
@@ -162,7 +174,7 @@ class ItemsController extends AppController
                         'size_id' => $item_row['size_id'],
                         'quantity' => $item_row['quantity'],
                         'sale_rate' => $item_row['sale_rate'],
-                        'feature_image' => 'images/'.$item->id.'/'.$item_row['feature_image']['name'],
+                        'feature_image' => 'Items/'.$item->id.'/'.$img_name,
                    ]);
                     $query->execute();
                 }
@@ -215,9 +227,32 @@ class ItemsController extends AppController
             'contain' => ['ItemRows'=>['Colors','Sizes']]
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-           // pr($this->request->getData());exit;
-            $item = $this->Items->patchEntity($item, $this->request->getData());
-            if ($this->Items->save($item)) {
+            $datas=$this->request->getData();
+            //pr($datas['item_rows']);exit;
+            foreach ($datas['item_rows'] as $data) {
+               $file = $data['feature_image']; //put the data into a var for easy use
+                    pr($file);exit;
+                    $ext = substr(strtolower(strrchr($file['name'], '.')), 1); //get the extension
+                    $arr_ext = array('jpg', 'jpeg', 'gif','png','jpg','jpeg'); //set allowed extensions
+                    //only process if the extension is valid
+                    $setNewFileName = uniqid();
+                    $img_name= $setNewFileName.'.'.$ext;
+                    if(in_array($ext, $arr_ext))
+                    {
+                       // pr("sds");exit;
+                            $uploads_dir =new Folder();
+                            $uploads_dir->create(WWW_ROOT . '/img/Items/'.$item->id);
+                            move_uploaded_file($file['tmp_name'],'img/Items/'.$item->id.'/'.$img_name);
+
+                            //prepare the filename for database entry
+                           $datas['item_rows']['feature_image']= $img_name;
+                          //pr($item->item_rows=$image);
+
+                    }
+            }
+            $items = $this->Items->patchEntity($item, $datas);
+            pr($items);exit;
+            if ($this->Items->save($items)) {
                 $this->Flash->success(__('The item has been saved.'));
 
                 return $this->redirect(['action' => 'index']);

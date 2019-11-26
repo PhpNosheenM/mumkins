@@ -104,7 +104,7 @@
                                             <div class="form-row">
                                                <div class="col-md-2">
                                                         <div class="position-relative form-group"><label>SKU</label>
-                                                           <input type="text" name="item_rows[<?= $i ?>][id]" value="<?= $row->id ?>" id="item_row_id">
+                                                           <input type="text" name="item_rows[<?= $i ?>][id]" value="<?= $row->id ?>" id="item_row_id" class="item_row_id">
 
                                                             <?php
                                                              echo $this->Form->control('item_rows['.$i.'][sku]', ['class'=>'form-control input-sm attribute sku','label'=>false,'value'=>@$row->sku]); ?>
@@ -145,13 +145,17 @@
                                                         <div class="position-relative form-group" style="margin-top: 10px;">
                                                              <?php
                                                            
-                                                             echo $this->Form->control('item_rows['.$i.'][feature_image]', ['class'=>'form-control input-sm attribute feature_image','label'=>false,'type'=>'file','value'=>@$row->feature_image]); ?>
+                                                            //echo $this->Form->control('item_rows['.$i.'][feature_image]', ['class'=>'form-control input-sm attribute feature_image','label'=>false,'type'=>'file']); ?>
+
+                                                             <input type="file" onchange="readURL(this);" id="exampleInputFile" name="item_rows[<?=$i ?>][feature_image]" class="feature_image">
+
                                                         <small class="form-text text-muted">Select Display Image. | Limit file size to less than 1 MB.</small>
+
+                                                    <?=  $this->Html->image('/img/'.$row->feature_image, array('alt' => 'CakePHP','height'=>'80px','width'=>'130px','id'=>'img_prev','onclick'=>'readURL(this)')); ?> 
                                                     </div>
                                                     
                                                     </div>
-                                                    <div class="col-md-6">
-                                                       <a class="rhov btn remover1" style="float:right;"><i class="fa fa-trash"></i>Remove</a>
+                                                    <div class="col-md-6 minnus">
                                                     </div>
 
                                                     </div>
@@ -270,6 +274,36 @@
         
     });
     </script>
+<script>
+function readURL(input) {
+if (input.files && input.files[0]) {
+var reader = new FileReader();
+
+reader.onload = function (e) {
+$('#img_prev')
+.attr('src', e.target.result)
+.width(170)
+.height(180);
+};
+
+reader.readAsDataURL(input.files[0]);
+}
+}
+function readURL1(input) {
+if (input.files && input.files[0]) {
+var reader1 = new FileReader();
+
+reader1.onload = function (e) {
+$('#img_prev1')
+.attr('src', e.target.result)
+.width(170)
+.height(180);
+};
+
+reader1.readAsDataURL(input.files[0]);
+}
+}
+</script>
     <script>
     //     $.get("navigationtest.html", function(data){
     //     $("#nav").replaceWith(data);
@@ -286,8 +320,9 @@
 
 
 <script>
+
  $(document).ready(function() {
- $('.remover1').hide();
+ //$('.remover1').hide();
  var j=$('.loop').val();
     //rename_row()
     function rename_row()
@@ -295,8 +330,9 @@
       
         $('#sub-body').each(function()
         {
-           alert(j);
+           //alert(j);
             
+            $(this).find('.item_row_id').attr('name','item_rows['+j+'][id]');
             $(this).find('.sku').attr('name','item_rows['+j+'][sku]');
             $(this).find('.color_id').attr('name','item_rows['+j+'][color_id]');
             $(this).find('.size_id').attr('name','item_rows['+j+'][size_id]');
@@ -309,10 +345,11 @@
        }
     function add_row()
     {
-
+        alert("xs");
       var tr = $('#sub-body').clone().find("input:text").val("").end()
                           .appendTo('#sub-body:last');
       $('.repeatt1').append(tr);
+      $('.remover1').append('<a class="rhov btn" style="float:right;"><i class="fa fa-trash"></i>Remove</a>');
       rename_row();
     }
             $('.apAddRow').click(function(e) {

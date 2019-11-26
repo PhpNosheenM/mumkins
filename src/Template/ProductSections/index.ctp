@@ -1,11 +1,4 @@
-
-                   
-                       
-
-
-
-
-                       <div class="row">
+<div class="row">
                            <div class="col-md-12 card">
                         <div class="card-header-tab card-header">
                                                     <div class="card-header-title">
@@ -22,6 +15,7 @@
                                                         <div class="tab-pane active" id="tab-eg5-0" role="tabpanel">
                                                             <div class="card-body">
                                             <?= $this->Form->create($productSection,['enctype'=>'multipart/form-data']) ?>
+                                        </br>
                                                 <label for="example" class="">Select Items to show</label>
                                                 <div  class="form-row repeatt" style="border: 1px solid #ced4da; border-radius: .25rem; margin: 0 0 16px;">
                                                     <div class="col-md-6 adderow" id="sub-body">
@@ -121,7 +115,6 @@
         $('#sub-body').each(function()
         {
             var numItems = $('.len').length;
-            alert(numItems);
             if(numItems == 1)
             {
                   $(this).find('.remover').hide();

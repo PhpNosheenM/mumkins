@@ -46,7 +46,7 @@
                                                 <!--  -->
                                                     <div class="col-md-3">
                                                         <div class="position-relative form-group"><label class="">Style No.</label>
-                                                            <?php echo $this->Form->control('style_no', ['class'=>'form-control input-sm attribute style','label'=>false]); ?>
+                                                            <?php echo $this->Form->control('style_no', ['class'=>'form-control input-sm attribute','label'=>false]); ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -69,7 +69,7 @@
                                                     <div class="col-md-12">
                                                         <div class="position-relative form-group"><label for="example" class="">Description</label>
                                                            <!--  <div id="editor1"></div> -->
-                                                           <?=  $this->Form->control('description', ['class'=>'form-control input-sm description','label'=>false,'id'=>'editor1']); ?>
+                                                           <textarea class="ckeditor" id="myEditor" name="description" cols="35" rows="20"><?= $item->description?></textarea>
                                                     </div>
                                                     </div>
                                                     
@@ -104,7 +104,7 @@
                                             <div class="form-row">
                                                <div class="col-md-2">
                                                         <div class="position-relative form-group"><label>SKU</label>
-                                                           <input type="text" name="item_rows[<?= $i ?>][id]" value="<?= $row->id ?>" id="item_row_id">
+                                                           <input type="text" name="item_rows[<?= $i ?>][id]" value="<?= $row->id ?>" id="item_row_id" class="item_row_id">
 
                                                             <?php
                                                              echo $this->Form->control('item_rows['.$i.'][sku]', ['class'=>'form-control input-sm attribute sku','label'=>false,'value'=>@$row->sku]); ?>
@@ -145,13 +145,17 @@
                                                         <div class="position-relative form-group" style="margin-top: 10px;">
                                                              <?php
                                                            
-                                                             echo $this->Form->control('item_rows['.$i.'][feature_image]', ['class'=>'form-control input-sm attribute feature_image','label'=>false,'type'=>'file','value'=>@$row->feature_image]); ?>
+                                                            //echo $this->Form->control('item_rows['.$i.'][feature_image]', ['class'=>'form-control input-sm attribute feature_image','label'=>false,'type'=>'file']); ?>
+
+                                                             <input type="file" onchange="readURL(this);" id="exampleInputFile" name="item_rows[<?=$i ?>][feature_image]" class="feature_image">
+
                                                         <small class="form-text text-muted">Select Display Image. | Limit file size to less than 1 MB.</small>
+
+                                                    <?=  $this->Html->image('/img/'.$row->feature_image, array('alt' => 'CakePHP','height'=>'80px','width'=>'130px')); ?> 
                                                     </div>
                                                     
                                                     </div>
-                                                    <div class="col-md-6">
-                                                       <a class="rhov btn remover1" style="float:right;"><i class="fa fa-trash"></i>Remove</a>
+                                                    <div class="col-md-6 minnus">
                                                     </div>
 
                                                     </div>
@@ -255,6 +259,7 @@
                    
                     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
                <!--  <script type="text/javascript" src="./assets/scripts/main.js"></script> -->
+ <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
             </body>
@@ -269,6 +274,36 @@
         
     });
     </script>
+<script>
+function readURL(input) {
+if (input.files && input.files[0]) {
+var reader = new FileReader();
+
+reader.onload = function (e) {
+$('#img_prev')
+.attr('src', e.target.result)
+.width(170)
+.height(180);
+};
+
+reader.readAsDataURL(input.files[0]);
+}
+}
+function readURL1(input) {
+if (input.files && input.files[0]) {
+var reader1 = new FileReader();
+
+reader1.onload = function (e) {
+$('#img_prev1')
+.attr('src', e.target.result)
+.width(170)
+.height(180);
+};
+
+reader1.readAsDataURL(input.files[0]);
+}
+}
+</script>
     <script>
     //     $.get("navigationtest.html", function(data){
     //     $("#nav").replaceWith(data);
@@ -280,21 +315,14 @@
 
     </script>
     <script>
-      var quill = new Quill('#editor1', {
-        theme: 'snow'
-      });
+        CKEDITOR.replace( 'description' );
     </script>
-      <script>
-      var quill = new Quill('#editor2', {
-        theme: 'snow'
-      });
-    </script>
-
 
 
 <script>
+
  $(document).ready(function() {
- $('.remover1').hide();
+ //$('.remover1').hide();
  var j=$('.loop').val();
     //rename_row()
     function rename_row()
@@ -302,8 +330,9 @@
       
         $('#sub-body').each(function()
         {
-           alert(j);
+           //alert(j);
             
+            $(this).find('.item_row_id').attr('name','item_rows['+j+'][id]');
             $(this).find('.sku').attr('name','item_rows['+j+'][sku]');
             $(this).find('.color_id').attr('name','item_rows['+j+'][color_id]');
             $(this).find('.size_id').attr('name','item_rows['+j+'][size_id]');
@@ -316,10 +345,11 @@
        }
     function add_row()
     {
-
+        alert("xs");
       var tr = $('#sub-body').clone().find("input:text").val("").end()
                           .appendTo('#sub-body:last');
       $('.repeatt1').append(tr);
+      $('.remover1').append('<a class="rhov btn" style="float:right;"><i class="fa fa-trash"></i>Remove</a>');
       rename_row();
     }
             $('.apAddRow').click(function(e) {

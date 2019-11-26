@@ -151,7 +151,7 @@
 
                                                         <small class="form-text text-muted">Select Display Image. | Limit file size to less than 1 MB.</small>
 
-                                                    <?=  $this->Html->image('/img/'.$row->feature_image, array('alt' => 'CakePHP','height'=>'80px','width'=>'130px','id'=>'img_prev','onclick'=>'readURL(this)')); ?> 
+                                                    <?=  $this->Html->image('/img/'.$row->feature_image, array('alt' => 'CakePHP','height'=>'80px','width'=>'130px')); ?> 
                                                     </div>
                                                     
                                                     </div>

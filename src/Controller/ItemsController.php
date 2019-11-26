@@ -231,7 +231,7 @@ class ItemsController extends AppController
             //pr($datas['item_rows']);exit;
             foreach ($datas['item_rows'] as $data) {
                $file = $data['feature_image']; //put the data into a var for easy use
-                    pr($file);exit;
+                   // pr($file);exit;
                     $ext = substr(strtolower(strrchr($file['name'], '.')), 1); //get the extension
                     $arr_ext = array('jpg', 'jpeg', 'gif','png','jpg','jpeg'); //set allowed extensions
                     //only process if the extension is valid
@@ -240,8 +240,8 @@ class ItemsController extends AppController
                     if(in_array($ext, $arr_ext))
                     {
                        // pr("sds");exit;
-                            $uploads_dir =new Folder();
-                            $uploads_dir->create(WWW_ROOT . '/img/Items/'.$item->id);
+                            // $uploads_dir =new Folder();
+                            // $uploads_dir->create(WWW_ROOT . '/img/Items/'.$item->id);
                             move_uploaded_file($file['tmp_name'],'img/Items/'.$item->id.'/'.$img_name);
 
                             //prepare the filename for database entry
@@ -251,7 +251,7 @@ class ItemsController extends AppController
                     }
             }
             $items = $this->Items->patchEntity($item, $datas);
-            pr($items);exit;
+           //pr($items);exit;
             if ($this->Items->save($items)) {
                 $this->Flash->success(__('The item has been saved.'));
 

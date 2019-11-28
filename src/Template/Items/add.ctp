@@ -86,7 +86,9 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="position-relative form-group"><label class="">Item Tags</label>
-                                                            <?php echo $this->Form->control('item_keyword', ['class'=>'form-control input-sm attribute item_keyword','label'=>false]); ?>
+                                                           <!--  <?php echo $this->Form->control('item_keyword', ['class'=>'form-control input-sm attribute item_keyword','label'=>false]); ?> -->
+                                                             <?php echo $this->Form->control('parent_mobile_no',[
+                        'label' => false,'class'=>'form-control ','placeholder'=>'Mobile No.','data-role'=>'tagsinput','oninput'=>"this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"]);?>
                                                         </div>
                                                     </div>
                                                     

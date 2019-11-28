@@ -12,6 +12,19 @@
                                                         <div class="tab-pane active" id="tab-eg5-0" role="tabpanel">
                                                             <div class="card-body">
                                            <?= $this->Form->create($bannerSection,['enctype'=>'multipart/form-data']) ?>
+                                                <div class="form-row">
+                                                 <div class="col-md-12" style="height: 20%;">
+                                                        <div class="position-relative form-group"><label for="example" class="">Description</label>
+                                                           <!--  <div id="editor1"></div> -->
+                                                            <textarea class="ckeditor" id="myEditor" name="description"><?= @$bannerSection->description?></textarea>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div class="position-relative row form-group"><label for="exampleSubject" class="col-sm-2 col-form-label">Title</label>
+                                                    <div class="col-sm-10">
+                                                         <?= $this->Form->control('title',['class'=>'form-control','label'=>false,'required']) ?>
+                                                    </div>
+                                                </div>
                                                 <div class="position-relative row form-group"><label for="exampleFile" class="col-sm-2 col-form-label">Select Background Image</label>
                                                     <div class="col-sm-10">
                                                         <?= $this->Form->input('background_image',['type'=>'file','label'=>false]) ?>
@@ -26,13 +39,13 @@
                                                         <small class="form-text text-muted"></small>
                                                     </div>
                                                 </div>
-                                                <div class="position-relative row form-group"><label for="exampleFile" class="col-sm-2 col-form-label">Button Alignment</label>
+                                              <!--   <div class="position-relative row form-group"><label for="exampleFile" class="col-sm-2 col-form-label">Button Alignment</label>
                                                         <div class="col-sm-10">
                                                             <div class="custom-radio custom-control custom-control-inline"><input type="radio" id="exampleCustomRadio" name="customRadio" class="custom-control-input"><label class="custom-control-label" for="exampleCustomRadio">Align Left</label></div>
                                                             <div class="custom-radio custom-control custom-control-inline"><input type="radio" id="exampleCustomRadio2" name="customRadio" class="custom-control-input"><label class="custom-control-label" for="exampleCustomRadio2">Align Right</label></div>
                                                             <small class="form-text text-muted">Select any one to align buttons & hero image will align to opposite side.</small>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                  <div class="position-relative row form-group"><label for="exampleSubject" class="col-sm-2 col-form-label">Button 1 Text</label>
                                                     <div class="col-sm-10">
                                                          <?= $this->Form->control('button1_text',['class'=>'form-control','label'=>false,'required','id'=>'exampleName']) ?>
@@ -67,3 +80,7 @@
                                 </div>
                                 </div>
                                 </div>
+<script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+ <script>
+    CKEDITOR.replace( 'description' );
+</script>

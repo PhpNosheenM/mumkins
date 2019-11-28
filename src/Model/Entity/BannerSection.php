@@ -35,6 +35,8 @@ class BannerSection extends Entity
         'button2_text' => true,
         'button1_url' => true,
         'button2_url' => true,
+        'title' => true,
+        'description' => true,
         'is_deleted' => true
     ];
 }

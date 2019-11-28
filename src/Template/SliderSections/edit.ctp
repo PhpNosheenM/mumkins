@@ -13,14 +13,6 @@
                                                             <div class="card-body">
                                             <?= $this->Form->create($sliderSection,['enctype'=>'multipart/form-data']) ?>
                                                 <div class="form-row">
-                                                    <div class="col-md-12" style="height: 20%;">
-                                                        <div class="position-relative form-group"><label for="example" class="">Description</label>
-                                                           <!--  <div id="editor1"></div> -->
-                                                            <textarea class="ckeditor" id="myEditor" name="description"><?= @$sliderSection->description?></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
                                                     <div class="col-md-4">
                                                         <div class="position-relative form-group"><label for="exampleEmail11" class="">Title</label>
                                                          <?= $this->Form->control('title',['class'=>'form-control','label'=>false,'id'=>'exampleName','required']) ?>
@@ -36,7 +28,7 @@
                                                          <?= $this->Form->control('slider_url',['class'=>'form-control','label'=>false,'required','id'=>'exampleName','placeholder'=>'https://']) ?>
                                                          </div>
                                                     </div>
-                                                </div>
+                                                </div><!-- 
                                                 
                                                  <div class="form-row">
                                                     <div class="col-md-4">
@@ -49,9 +41,17 @@
                                                          <?= $this->Form->control('slider2_url',['class'=>'form-control','label'=>false,'id'=>'exampleName','placeholder'=>'https://']) ?>
                                                          </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
+
                                                 <div class="form-row">
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-4">
+                                                        <div class="position-relative form-group"><label for="example" class="">Description</label>
+                                                           <!--  <div id="editor1"></div> -->
+                                                             <!-- <?php echo $this->Form->control('description', ['class'=>'form-control input-sm attribute ','label'=>false]); ?> -->
+                                                             <textarea rows="4" cols="50"><?= $sliderSection->description?></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-8">
                                                         <div class="position-relative form-group"><label for="exampleEmail11" class="">Select Image</label>
                                                          <?= $this->Form->control('slider_image',['class'=>'file','label'=>false,'type'=>'file','id'=>'exampleFile']) ?>
                                                          <?= $this->Html->image('/img/'.$sliderSection->slider_image, ['style'=>'width:50px; height:50px;','id'=>'img_prev']); ?>
@@ -72,10 +72,7 @@
                                 </div>
                                 </div>
                                 </div>
-<script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
- <script>
-    CKEDITOR.replace( 'description' );
-</script>
+
                                             
                        
                    

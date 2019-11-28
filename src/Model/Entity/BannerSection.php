@@ -29,7 +29,7 @@ class BannerSection extends Entity
      */
     protected $_accessible = [
         'background_image' => true,
-        'hero_image' => true,
+        // 'hero_image' => true,
         'button_alignment' => true,
         'button1_text' => true,
         'button2_text' => true,

@@ -12,17 +12,21 @@
                                                         <div class="tab-pane active" id="tab-eg5-0" role="tabpanel">
                                                             <div class="card-body">
                                            <?= $this->Form->create($bannerSection,['enctype'=>'multipart/form-data']) ?>
-                                                <div class="form-row">
+                                                <!-- <div class="form-row">
                                                  <div class="col-md-12" style="height: 20%;">
                                                         <div class="position-relative form-group"><label for="example" class="">Description</label>
-                                                           <!--  <div id="editor1"></div> -->
-                                                            <textarea class="ckeditor" id="myEditor" name="description"><?= @$bannerSection->description?></textarea>
+                                                            <textarea  name="description"><?= @$bannerSection->description?></textarea>
                                                     </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="position-relative row form-group"><label for="exampleSubject" class="col-sm-2 col-form-label">Title</label>
                                                     <div class="col-sm-10">
                                                          <?= $this->Form->control('title',['class'=>'form-control','label'=>false,'required']) ?>
+                                                    </div>
+                                                </div>
+                                                <div class="position-relative row form-group"><label for="exampleSubject" class="col-sm-2 col-form-label">Description</label>
+                                                    <div class="col-sm-10">
+                                                        <textarea rows="4" cols="50" name="description"><?= $bannerSection->description?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="position-relative row form-group"><label for="exampleFile" class="col-sm-2 col-form-label">Select Background Image</label>
@@ -32,13 +36,13 @@
                                                         <small class="form-text text-muted">Image to display behind the hero image,limit size to less than 2 MB. </small>
                                                     </div>
                                                 </div>
-                                                <div class="position-relative row form-group"><label for="exampleFile" class="col-sm-2 col-form-label">Select Hero Image</label>
+                                                <!-- <div class="position-relative row form-group"><label for="exampleFile" class="col-sm-2 col-form-label">Select Hero Image</label>
                                                     <div class="col-sm-10">
                                                         <?= $this->Form->input('hero_image',['type'=>'file','label'=>false]) ?>
                                                         <?= $this->Html->image('/img/'.$bannerSection->hero_image, ['style'=>'width:50px; height:50px;','id'=>'hero_image']); ?>
                                                         <small class="form-text text-muted"></small>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                               <!--   <div class="position-relative row form-group"><label for="exampleFile" class="col-sm-2 col-form-label">Button Alignment</label>
                                                         <div class="col-sm-10">
                                                             <div class="custom-radio custom-control custom-control-inline"><input type="radio" id="exampleCustomRadio" name="customRadio" class="custom-control-input"><label class="custom-control-label" for="exampleCustomRadio">Align Left</label></div>

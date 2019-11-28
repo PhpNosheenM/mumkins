@@ -100,7 +100,6 @@
                                                 <tr>
                                                     <th scope="row"><?= $i;$i++;?></th>
                                                     <td><?= $this->Html->image('/img/'.$banner_view->background_image, ['style'=>'width:50px; height:50px;']); ?>
-                                                        <?= $this->Html->image('/img/'.$banner_view->hero_image, ['style'=>'width:50px; height:50px;']); ?>
                                                     </td>
                                                     <td><?= @$banner_view->title?></td>
                                                     <td><textarea><?= strip_tags(@$banner_view->description)?></textarea></td>

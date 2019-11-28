@@ -27,8 +27,6 @@ class SliderSection extends Entity
         'slider_image' => true,
         'button_text' => true,
         'slider_url' => true,
-        'slider2_url' => true,
-        'button2_text' => true,
         'title' => true,
         'description' => true,
         'is_deleted' => true

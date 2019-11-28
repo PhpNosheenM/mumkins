@@ -29,6 +29,8 @@ class SliderSection extends Entity
         'slider_url' => true,
         'slider2_url' => true,
         'button2_text' => true,
+        'title' => true,
+        'description' => true,
         'is_deleted' => true
     ];
 }

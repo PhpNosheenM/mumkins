@@ -7,14 +7,14 @@
                                                        HOME NEWSLETTER SECTION
 
                                                     </div>
-                                                    <ul class="nav">
+                                                    <!-- <ul class="nav">
                                                         <li class="nav-item"><a data-toggle="tab" href="#tab-eg5-0" class="active nav-link">Add</a></li>
                                                         <li class="nav-item"><a data-toggle="tab" href="#tab-eg5-1" class="nav-link">View</a></li>
-                                                    </ul>
+                                                    </ul> -->
                                                 </div>
                                                 
-                                                    <div class="tab-content">
-                                                        <div class="tab-pane active" id="tab-eg5-0" role="tabpanel">
+                                        <div class="tab-content">
+                                    <!-- <div class="tab-pane active" id="tab-eg5-0" role="tabpanel">
                                                             <div class="card-body">
                                             <?= $this->Form->create($newsletterSection,['enctype'=>'multipart/form-data']) ?>
                                                 <div class="form-row">
@@ -42,8 +42,8 @@
                                                     </div>
                                              <?= $this->Form->end() ?>
                                         </div>
-                                                        </div>
-                                                        <div class="tab-pane" id="tab-eg5-1" role="tabpanel">
+                                                        </div> -->
+                                  <!--   <div class="tab-pane" id="tab-eg5-1" role="tabpanel"> -->
                                                             <div class="col-m-10">
                                     
                                         <div class="card-body">
@@ -66,14 +66,14 @@
 
                                                         <?= $this->Html->link(__('<i class="pe-7s-note"></i>'), ['action' => 'edit', $news_view->id],['class'=>' btn-condensed btn-xs','escape'=>false]) ?>
 
-                                                        <?= $this->Form->postLink(__('<i class="pe-7s-trash"></i>'), ['action' => 'delete', $news_view->id], ['confirm' => __('Are you sure you want to Deactive # {0}?'),'class'=>'btn btn-xs green','escape'=>false]) ?>
+                                                       <!--  <?= $this->Form->postLink(__('<i class="pe-7s-trash"></i>'), ['action' => 'delete', $news_view->id], ['confirm' => __('Are you sure you want to Deactive # {0}?'),'class'=>'btn btn-xs green','escape'=>false]) ?> -->
                                                 </tr>
                                             <?php } ?>
                                           </tbody>
                                             </table>
                                         </div>
                                 </div>
-                        </div>
+                       <!--  </div> -->
                                 </div>
                                     </div>
                                     </div>

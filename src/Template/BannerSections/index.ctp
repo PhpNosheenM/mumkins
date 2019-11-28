@@ -6,16 +6,29 @@
                                                         <i class="header-icon lnr-bicycle icon-gradient bg-love-kiss"> </i>
                                                        HOME BANNER SECTION
                                                     </div>
-                                                    <ul class="nav">
+                                                    <!-- <ul class="nav">
                                                         <li class="nav-item"><a data-toggle="tab" href="#tab-eg5-0" class="active nav-link">Add</a></li>
                                                         <li class="nav-item"><a data-toggle="tab" href="#tab-eg5-1" class="nav-link">View</a></li>
-                                                    </ul>
+                                                    </ul> -->
                                                 </div>
                                                 
                                                     <div class="tab-content">
-                                                        <div class="tab-pane active" id="tab-eg5-0" role="tabpanel">
+                                                       <!--  <div class="tab-pane active" id="tab-eg5-0" role="tabpanel">
                                                             <div class="card-body">
                                            <?= $this->Form->create($bannerSection,['enctype'=>'multipart/form-data']) ?>
+                                            
+                                                <div class="form-row">
+                                                 <div class="col-md-12" style="height: 20%;">
+                                                        <div class="position-relative form-group"><label for="example" class="">Description</label>
+                                                            <textarea class="ckeditor" id="myEditor" name="description"></textarea>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div class="position-relative row form-group"><label for="exampleSubject" class="col-sm-2 col-form-label">Title</label>
+                                                    <div class="col-sm-10">
+                                                         <?= $this->Form->control('title',['class'=>'form-control','label'=>false,'required']) ?>
+                                                    </div>
+                                                </div>
                                                 <div class="position-relative row form-group"><label for="exampleFile" class="col-sm-2 col-form-label">Select Background Image</label>
                                                     <div class="col-sm-10">
                                                         <?= $this->Form->input('background_image',['type'=>'file','label'=>false]) ?>
@@ -64,9 +77,9 @@
                                                     </div>
                                             <?= $this->Form->end() ?>
                                         </div>
-                                                        </div>
-                                                        <div class="tab-pane" id="tab-eg5-1" role="tabpanel">
-                                                            <div class="col-m-10">
+                                                        </div> -->
+                                                        <!-- <div class="tab-pane" id="tab-eg5-1" role="tabpanel">
+                                                            <div class="col-m-10"> -->
                                     
                                         <div class="card-body">
                                             <table class="mb-0 table table-striped table-hover">
@@ -74,6 +87,8 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Images</th>
+                                                    <th>Title</th>
+                                                    <th>Descripton</th>
                                                     <th>Button Text</th>
                                                     <th>URL 1</th>
                                                     <th>URL 2</th>
@@ -87,6 +102,8 @@
                                                     <td><?= $this->Html->image('/img/'.$banner_view->background_image, ['style'=>'width:50px; height:50px;']); ?>
                                                         <?= $this->Html->image('/img/'.$banner_view->hero_image, ['style'=>'width:50px; height:50px;']); ?>
                                                     </td>
+                                                    <td><?= @$banner_view->title?></td>
+                                                    <td><textarea><?= strip_tags(@$banner_view->description)?></textarea></td>
                                                     <td><span id="sBtn1"><?= @$banner_view->button1_text?></span>&nbsp;|&nbsp;<span id="sBtn2"><?= @$banner_view->button2_text?></span></td>
                                                     <td><p><?= $banner_view->button1_url?></p></td>
                                                     <td><p><?= $banner_view->button2_url?></p></td>
@@ -94,7 +111,7 @@
 
                                                         <?= $this->Html->link(__('<i class="pe-7s-note"></i>'), ['action' => 'edit', $banner_view->id],['class'=>' btn-condensed btn-xs','escape'=>false]) ?>
 
-                                                        <?= $this->Form->postLink(__('<i class="pe-7s-trash"></i>'), ['action' => 'delete', $banner_view->id], ['confirm' => __('Are you sure you want to Deactive # {0}?'),'class'=>'btn btn-xs green','escape'=>false]) ?>
+                                                        <!-- <?= $this->Form->postLink(__('<i class="pe-7s-trash"></i>'), ['action' => 'delete', $banner_view->id], ['confirm' => __('Are you sure you want to Deactive # {0}?'),'class'=>'btn btn-xs green','escape'=>false]) ?> -->
                                                     </td>
                                                 </tr>
                                                 <?php } ?>
@@ -102,10 +119,16 @@
                                             </table>
                                         </div>
                                 </div>
-                                                        </div>
+                                                 <!--        </div> -->
                                 </div>
                                     </div>
                                     </div>
                                 </div>
                                 </div>
                                 </div>
+ <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+<script>
+        CKEDITOR.replace( 'description');
+        editor.resize( '20%', '350', true );
+      
+</script>

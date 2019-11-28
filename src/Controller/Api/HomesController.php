@@ -74,18 +74,20 @@ class HomesController extends AppController
 	   
 		$home = $this->Homes->Newsletters->newEntity();
 		if($this->request->is('post')){
+			//pr($this->request->data); exit;
 			 $isemail=$this->Homes->Newsletters->exists(['Newsletters.email'=>$this->request->data['email']]);
 			if($isemail==1){
-				$success = false;
-				$message = 'The Email is already exits';	
+				$success = 'false'; 
+				  
+				$message = 'You have already subscribed.';	
 			}else{
 				$home = $this->Homes->Newsletters->patchEntity($home, $this->request->getData());
 				if($this->Homes->Newsletters->save($home)){
-				   $success = true;
-				   $message = 'The data has been saved.';		
+				   $success = 'true';
+				   $message = 'You have subscribed successfully.';		
 				   
 				}else{
-					$success = false;
+					$success = 'false';
 					$message = 'The data could not be saved. Please, try again.';	
 				}
 			}	

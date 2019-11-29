@@ -113,11 +113,11 @@
 												<span>
 													 <?= $this->Html->link(__('<i class="pe-7s-note"></i>'), ['action' => 'edit', $sizedata->id],['escape'=>false]) ?>
 												</span>          
-												<span>
+												<!-- <span>
 													
 													<?= $this->Form->postLink('<i class="pe-7s-trash"></i>', ['action' => 'delete', $sizedata->id], ['confirm' => __('Are you sure you want to delete # {0}?', $sizedata->id),'escape'=>false]) ?>
 												</span>
-											
+											 -->
 											</td>
 										</tr>
 									   <?php endforeach; ?>

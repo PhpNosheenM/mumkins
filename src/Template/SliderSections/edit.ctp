@@ -48,7 +48,7 @@
                                                         <div class="position-relative form-group"><label for="example" class="">Description</label>
                                                            <!--  <div id="editor1"></div> -->
                                                              <!-- <?php echo $this->Form->control('description', ['class'=>'form-control input-sm attribute ','label'=>false]); ?> -->
-                                                             <textarea rows="4" cols="50"><?= $sliderSection->description?></textarea>
+                                                             <textarea rows="4" cols="50" name="description"><?= $sliderSection->description?></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-8">

@@ -27,7 +27,7 @@
                                                     <th scope="row"><?= $i;$i++;?></th>
                                                     <td><?= $this->Html->image('/img/'.$slider_view->slider_image, ['style'=>'width:50px; height:50px;']); ?></td>
                                                     <td><?= @$slider_view->title?></td>
-                                                    <td><textarea><?= strip_tags(@$slider_view->description)?></textarea></td>
+                                                    <td><?=@$slider_view->description?></td>
                                                     <td><p><?= @$slider_view->button_text?> </p></td>
                                                     <td><p><?= @$slider_view->slider_url?></p></td>
                                                     <td class="actions">

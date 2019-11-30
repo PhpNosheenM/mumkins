@@ -109,10 +109,10 @@
 												<span>
 													 <?= $this->Html->link(__('<i class="pe-7s-note"></i>'), ['action' => 'edit', $category1->id],['escape'=>false]) ?>
 												</span>          
-												<span>
+												<!-- <span>
 													
 													<?= $this->Form->postLink('<i class="pe-7s-trash"></i>', ['action' => 'delete', $category1->id], ['confirm' => __('Are you sure you want to delete # {0}?', $category1->id),'escape'=>false]) ?>
-												</span>
+												</span> -->
 											
 											</td>
 										</tr>

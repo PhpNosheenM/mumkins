@@ -50,6 +50,7 @@ class Item extends Entity
         'edited_by' => true,
         'category' => true,
         'item_rows' => true,
+        'item_tag' => true,
         'product_sections' => true
     ];
 }

@@ -85,8 +85,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <div class="position-relative form-group"><label class="">Item Tags</label>
+                                                        <div class="position-relative form-group"><label class="">Item Keywords</label>
                                                             <?php echo $this->Form->control('item_keyword', ['class'=>'form-control input-sm attribute item_keyword','label'=>false]); ?>
+                                                        </div>
+                                                         <div class="position-relative form-group"><label class="">Item Tags</label>
+                                                            <?php 
+                                                             $tag = ['Hot' => 'Hot', 'New' => 'New'];
+                                                            echo $this->Form->control('item_tag', ['empty'=>'--Select--','class'=>'form-control input-sm attribute item_tag','label'=>false,'options'=>$tag]); ?>
                                                         </div>
                                                     </div>
                                                     

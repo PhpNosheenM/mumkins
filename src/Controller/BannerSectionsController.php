@@ -121,8 +121,9 @@ class BannerSectionsController extends AppController
             'contain' => []
         ]);
         $image=$bannerSection->background_image;
-        $image1=$bannerSection->hero_image;
+        // $image1=$bannerSection->hero_image;
         if ($this->request->is(['patch', 'post', 'put'])) {
+           // pr($this->request->getData());
             $bannerSection = $this->BannerSections->patchEntity($bannerSection, $this->request->getData());
 
              if($this->request->data['background_image']['name'] == null)
@@ -152,39 +153,38 @@ class BannerSectionsController extends AppController
                         }
             }
 
-             if($this->request->data['hero_image']['name'] == null)
-            {
-                //pr('sc');
+            //  if($this->request->data['hero_image']['name'] == null)
+            // {
+            //     //pr('sc');
              
-                $bannerSection->hero_image=$image1;
-            }
+            //     $bannerSection->hero_image=$image1;
+            // }
            // pr($sliderSections);exit;
-            else
-            {
+            // else
+            // {
 
-            $file1= $this->request->data['hero_image']; //put the data into a var for easy use
-                        //pr($file1);
-                        $ext1 = substr(strtolower(strrchr($file1['name'], '.')), 1); //get the extension
-                        $arr_ext1 = array('jpg', 'jpeg', 'gif','png','jpg','jpeg'); //set allowed extensions
-                        //only process if the extension is valid
-                        $setNewFileName1 = uniqid();
-                        $img_name1= $setNewFileName1.'.'.$ext1;
-                        if(in_array($ext1, $arr_ext1))
-                        {
-                           // pr("sds");exit;
-                                move_uploaded_file($file1['tmp_name'], WWW_ROOT . 'img/Banners/' . $img_name1);
+            // $file1= $this->request->data['hero_image']; //put the data into a var for easy use
+            //             //pr($file1);
+            //             $ext1 = substr(strtolower(strrchr($file1['name'], '.')), 1); //get the extension
+            //             $arr_ext1 = array('jpg', 'jpeg', 'gif','png','jpg','jpeg'); //set allowed extensions
+            //             //only process if the extension is valid
+            //             $setNewFileName1 = uniqid();
+            //             $img_name1= $setNewFileName1.'.'.$ext1;
+            //             if(in_array($ext1, $arr_ext1))
+            //             {
+            //                // pr("sds");exit;
+            //                     move_uploaded_file($file1['tmp_name'], WWW_ROOT . 'img/Banners/' . $img_name1);
 
-                                //prepare the filename for database entry
-                                $bannerSection->hero_image ='Banners/'.$img_name1;
+            //                     //prepare the filename for database entry
+            //                     $bannerSection->hero_image ='Banners/'.$img_name1;
 
-                        }
-                }
+            //             }
+            //     }
 
+//pr($bannerSection);exit;
             if ($this->BannerSections->save($bannerSection)) {
                  return $this->redirect(['action' => 'index']);
                 $this->Flash->success(__('The banner section has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The banner section could not be saved. Please, try again.'));
         }

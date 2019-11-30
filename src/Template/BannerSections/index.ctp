@@ -1,88 +1,15 @@
-        
+   
                        <div class="row">
                            <div class="col-md-12 card">
                         <div class="card-header-tab card-header">
                                                     <div class="card-header-title">
                                                         <i class="header-icon lnr-bicycle icon-gradient bg-love-kiss"> </i>
-                                                       HOME BANNER SECTION
-                                                    </div>
-                                                    <!-- <ul class="nav">
-                                                        <li class="nav-item"><a data-toggle="tab" href="#tab-eg5-0" class="active nav-link">Add</a></li>
-                                                        <li class="nav-item"><a data-toggle="tab" href="#tab-eg5-1" class="nav-link">View</a></li>
-                                                    </ul> -->
-                                                </div>
-                                                
-                                                    <div class="tab-content">
-                                                       <!--  <div class="tab-pane active" id="tab-eg5-0" role="tabpanel">
-                                                            <div class="card-body">
-                                           <?= $this->Form->create($bannerSection,['enctype'=>'multipart/form-data']) ?>
-                                            
-                                                <div class="form-row">
-                                                 <div class="col-md-12" style="height: 20%;">
-                                                        <div class="position-relative form-group"><label for="example" class="">Description</label>
-                                                            <textarea class="ckeditor" id="myEditor" name="description"></textarea>
-                                                    </div>
+                                                       HOME SLIDER
                                                     </div>
                                                 </div>
-                                                <div class="position-relative row form-group"><label for="exampleSubject" class="col-sm-2 col-form-label">Title</label>
-                                                    <div class="col-sm-10">
-                                                         <?= $this->Form->control('title',['class'=>'form-control','label'=>false,'required']) ?>
-                                                    </div>
-                                                </div>
-                                                <div class="position-relative row form-group"><label for="exampleFile" class="col-sm-2 col-form-label">Select Background Image</label>
-                                                    <div class="col-sm-10">
-                                                        <?= $this->Form->input('background_image',['type'=>'file','label'=>false]) ?>
-                                                        <small class="form-text text-muted">Image to display behind the hero image,limit size to less than 2 MB. </small>
-                                                    </div>
-                                                </div>
-                                                <div class="position-relative row form-group"><label for="exampleFile" class="col-sm-2 col-form-label">Select Hero Image</label>
-                                                    <div class="col-sm-10">
-                                                        <?= $this->Form->input('hero_image',['type'=>'file','label'=>false]) ?>
-                                                        <small class="form-text text-muted"></small>
-                                                    </div>
-                                                </div>
-                                                <div class="position-relative row form-group"><label for="exampleFile" class="col-sm-2 col-form-label">Button Alignment</label>
-                                                        <div class="col-sm-10">
-                                                            <div class="custom-radio custom-control custom-control-inline"><input type="radio" id="exampleCustomRadio" name="customRadio" class="custom-control-input"><label class="custom-control-label" for="exampleCustomRadio">Align Left</label></div>
-                                                            <div class="custom-radio custom-control custom-control-inline"><input type="radio" id="exampleCustomRadio2" name="customRadio" class="custom-control-input"><label class="custom-control-label" for="exampleCustomRadio2">Align Right</label></div>
-                                                            <small class="form-text text-muted">Select any one to align buttons & hero image will align to opposite side.</small>
-                                                        </div>
-                                                    </div>
-                                                 <div class="position-relative row form-group"><label for="exampleSubject" class="col-sm-2 col-form-label">Button 1 Text</label>
-                                                    <div class="col-sm-10">
-                                                         <?= $this->Form->control('button1_text',['class'=>'form-control','label'=>false,'required','id'=>'exampleName']) ?>
-                                                             
-                                                    </div>
-                                                </div>
-                                                <div class="position-relative row form-group"><label for="exampleSubject" class="col-sm-2 col-form-label">Button 2 Text</label>
-                                                    <div class="col-sm-10">
-                                                         <?= $this->Form->control('button2_text',['class'=>'form-control','label'=>false,'required','id'=>'exampleName']) ?>
-                                                    </div>
-                                                </div>
-                                                <div class="position-relative row form-group"><label for="exampleURL" class="col-sm-2 col-form-label"> Button 1 URL</label>
-                                                    <div class="col-sm-10">
-                                                         <?= $this->Form->control('button1_url',['class'=>'form-control','label'=>false,'required','id'=>'exampleName','placeholder'=>'https://']) ?>
-                                                    </div>
-                                                </div>
-                                                <div class="position-relative row form-group"><label for="exampleURL" class="col-sm-2 col-form-label"> Button 2 URL</label>
-                                                    <div class="col-sm-10">
-                                                         <?= $this->Form->control('button2_url',['class'=>'form-control','label'=>false,'required','id'=>'exampleName','placeholder'=>'https://']) ?>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="position-relative row form-check">
-                                                        <div class="col-sm-10">
-                                                             <?= $this->Form->button(('Submit'),['class'=>'btn btn-warning','style'=>'padding:6px 30px;font-size: 14px;margin-top: 30px;margin-left: -14px;']) ?>
-                                                        </div>
-                                                    </div>
-                                            <?= $this->Form->end() ?>
-                                        </div>
-                                                        </div> -->
-                                                        <!-- <div class="tab-pane" id="tab-eg5-1" role="tabpanel">
-                                                            <div class="col-m-10"> -->
                                     
-                                        <div class="card-body">
-                                            <table class="mb-0 table table-striped table-hover">
+                                        <div class="card-body col-md-12">
+                                           <table class="mb-0 table table-striped table-hover">
                                                 <thead>
                                                 <tr>
                                                     <th>#</th>
@@ -90,8 +17,8 @@
                                                     <th>Title</th>
                                                     <th>Descripton</th>
                                                     <th>Button Text</th>
-                                                    <th>URL 1</th>
-                                                    <th>URL 2</th>
+                                                    <th style="width: 10%;">URL 1</th>
+                                                    <th style="width: 10%;">URL 2</th>
                                                     <th>Action</th>
                                                 </tr>
                                                 </thead>
@@ -100,10 +27,9 @@
                                                 <tr>
                                                     <th scope="row"><?= $i;$i++;?></th>
                                                     <td><?= $this->Html->image('/img/'.$banner_view->background_image, ['style'=>'width:50px; height:50px;']); ?>
-                                                        <?= $this->Html->image('/img/'.$banner_view->hero_image, ['style'=>'width:50px; height:50px;']); ?>
                                                     </td>
                                                     <td><?= @$banner_view->title?></td>
-                                                    <td><textarea><?= strip_tags(@$banner_view->description)?></textarea></td>
+                                                    <td><?= @$banner_view->description?></td>
                                                     <td><span id="sBtn1"><?= @$banner_view->button1_text?></span>&nbsp;|&nbsp;<span id="sBtn2"><?= @$banner_view->button2_text?></span></td>
                                                     <td><p><?= $banner_view->button1_url?></p></td>
                                                     <td><p><?= $banner_view->button2_url?></p></td>
@@ -119,16 +45,14 @@
                                             </table>
                                         </div>
                                 </div>
-                                                 <!--        </div> -->
+                                                        </div>
                                 </div>
                                     </div>
                                     </div>
                                 </div>
                                 </div>
                                 </div>
- <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
-<script>
-        CKEDITOR.replace( 'description');
-        editor.resize( '20%', '350', true );
-      
-</script>
+
+                                            
+                       
+                   

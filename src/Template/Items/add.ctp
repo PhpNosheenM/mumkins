@@ -79,20 +79,22 @@
                                                 </div>
                                                 
                                                 <div class="form-row">
-                                                <div class="col-md-6">
+                                                    <div class="col-md-6">
                                                         <div class="position-relative form-group"><label for="example" class="">Specification</label>
                                                            <?php echo $this->Form->control('specification', ['class'=>'form-control input-sm attribute specification','label'=>false]); ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <div class="position-relative form-group"><label class="">Item Tags</label>
-                                                           <!--  <?php echo $this->Form->control('item_keyword', ['class'=>'form-control input-sm attribute item_keyword','label'=>false]); ?> -->
-                                                             <?php echo $this->Form->control('parent_mobile_no',[
-                        'label' => false,'class'=>'form-control ','placeholder'=>'Mobile No.','data-role'=>'tagsinput','oninput'=>"this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"]);?>
-                                                        </div>
+                                                        <div class="position-relative form-group"><label class="">Item Keywords</label>
+                                                          <!-- <?php echo $this->Form->control('item_keyword', ['class'=>'form-control input-sm attribute item_keyword','label'=>false]); ?> -->
+                                                          <input name="item_keyword" id="tagmark" class="form-control" type="text" >                                                        </div>
+                                                          <div class="position-relative form-group"><label class="">Item Tags</label>
+                                                          <?php 
+                                                         $tag = ['Hot' => 'Hot', 'New' => 'New'];
+                                                          echo $this->Form->control('item_tag', ['empty'=>'--select--','class'=>'form-control input-sm attribute item_tag','label'=>false,'options'=>$tag]); ?>                                                        </div>
                                                     </div>
                                                     
-                                            </div>
+                                                </div>
                                               <div class="form-row">
                                                     <div class="col-md-12">
                                                         <a class="btn btn-success apAddRow" style="color: white; float: right; cursor:pointer;"><i class="fa fa-plus"></i> ADD ROW</a>
@@ -193,7 +195,7 @@
                                                 <tr>
                                                     <th scope="row"><?= $i;$i++;?></th>
                                                     <td><?= $item_view->category->name?></td>
-                                                    <td><textarea disabled="true" class="form-control" id="message" rows="2" value=""><?= $item_view->name?></textarea></td>
+                                                    <td><?= $item_view->name?></td>
                                                     <td>
                                                         <input type="hidden" class="item_id" value="<?= $item_view->id ?>">
                                                         <a data-toggle="modal" data-target="#accSKU" href="#" class="style"><?= $item_view->style_no?><i class="pe-7s-angle-down" style="vertical-align: middle;"></i></a></td>
@@ -289,7 +291,6 @@
         $('#sub-body').each(function()
         {
             var numItems = $('.len').length;
-            alert(numItems);
             if(numItems >= 2)
             {
                   $(this).find('.remover1').show();

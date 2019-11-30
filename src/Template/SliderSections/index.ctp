@@ -17,8 +17,7 @@
                                                     <th>Title</th>
                                                     <th>Decription</th>
                                                     <th>Button Text</th>
-                                                    <th>URL 1</th>
-                                                    <th>URL 2</th>
+                                                    <th>URL </th>
                                                     <th>Action</th>
                                                 </tr>
                                                 </thead>
@@ -28,10 +27,9 @@
                                                     <th scope="row"><?= $i;$i++;?></th>
                                                     <td><?= $this->Html->image('/img/'.$slider_view->slider_image, ['style'=>'width:50px; height:50px;']); ?></td>
                                                     <td><?= @$slider_view->title?></td>
-                                                    <td><textarea><?= strip_tags(@$slider_view->description)?></textarea></td>
-                                                    <td><p><?= @$slider_view->button_text?> | <?= @$slider_view->button2_text?></p></td>
+                                                    <td><?=@$slider_view->description?></td>
+                                                    <td><p><?= @$slider_view->button_text?> </p></td>
                                                     <td><p><?= @$slider_view->slider_url?></p></td>
-                                                    <td><?= @$slider_view->slider2_url?></p></td>
                                                     <td class="actions">
 
                                                         <?= $this->Html->link(__('<i class="pe-7s-note"></i>'), ['action' => 'edit', $slider_view->id],['class'=>' btn-condensed btn-xs','escape'=>false]) ?>

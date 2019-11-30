@@ -49,6 +49,11 @@ class CategoriesTable extends Table
             'className' => 'Categories',
             'foreignKey' => 'parent_id'
         ]);
+		
+		$this->belongsTo('Colors');
+		$this->belongsTo('Sizes');
+		$this->belongsTo('Items');
+		$this->belongsTo('FooterSections');
     }
 
     /**

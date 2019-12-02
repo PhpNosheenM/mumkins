@@ -22,35 +22,33 @@ class CustomersController extends AppController
 		$this->set('_serialize',['success','message','customer']);		 
     } 
 
-    public function registrationsendotp(){
+    public function sendotp(){
 		
 		$mobile_no=$this->request->query('mobile_no');
 		if(!empty($mobile_no)){
-			//echo $mobile_no;exit;
-			 $customerDetails = $this->Customers->find()->where(['mobile'=>$mobile_no])->first();
+
+			$customerDetails = $this->Customers->find()->where(['mobile'=>$mobile_no])->first();
 			if($customerDetails){
-				$status=false;
-				$error='Mobile number is already registered please login.';
-				$otp='';
-			}else{
-					// $random=(string)mt_rand(1000,9999);
-					// $sms=str_replace(' ', '+', 'Your one time OTP is: '.$random.' ovRpCuXDUvO');
-					// $working_key='A7a76ea72525fc05bbe9963267b48dd96';
-					// $sms_sender='HEALTH';
-					// $sms=str_replace(' ', '+', $sms); 
-					// file_get_contents('http://103.39.134.40/api/mt/SendSMS?user=phppoetsit&password=9829041695&senderid='.$sms_sender.'&channel=Trans&DCS=0&flashsms=0&number='.$mobile_no.'&text='.$sms.'&route=7'); 
+				$availiable="Yes";
+			}
+			else
+			{
+				$availiable="No";
+			}
+			$random=(string)mt_rand(1000,9999);
+					
 				$status=true;
 				$error='Otp sent successfully.';
-				$otp='123';//$random;
-			}
+				$otp=$random;
+		
 		}else{
 			$status=false;
 			$error='Empty mobile number';
 			$otp='';
 		}
-		//echo $mobile_no;exit;
-		$this->set(compact('status', 'error', 'otp'));
-	    $this->set('_serialize', ['status', 'error', 'otp']);
+		//echo $otp;exit;
+		$this->set(compact('status', 'error', 'otp','availiable'));
+	    $this->set('_serialize', ['status', 'error', 'otp','availiable']);
 	}
 	public function registrationnew()
 		{

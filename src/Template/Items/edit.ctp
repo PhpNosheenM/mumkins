@@ -40,8 +40,8 @@
                                                 <div class="form-row">
                                                      <div class="col-md-3">
                                                         <div class="position-relative form-group"><label for="exampleState" class="">Select Item Category</label>
-                                                             <?php echo $this->Form->control('category_id', ['empty'=>'--select--','options' => $categories,'class'=>'form-control input-sm attribute category','label'=>false]); ?>
-                                                    </div>
+                                                             <?php echo $this->Form->control('category_id', ['empty'=>'--select--','options' => $catsub,'class'=>'form-control input-sm attribute category','label'=>false]); ?>
+                                                        </div>
                                                 </div>
                                                 <!--  -->
                                                     <div class="col-md-3">
@@ -91,7 +91,7 @@
                                                          <div class="position-relative form-group"><label class="">Item Tags</label>
                                                             <?php 
                                                              $tag = ['Hot' => 'Hot', 'New' => 'New'];
-                                                            echo $this->Form->control('item_tag', ['empty'=>'--Select--','class'=>'form-control input-sm attribute item_tag','label'=>false,'options'=>$tag]); ?>
+                                                            echo $this->Form->control('item_tag', ['empty'=>'--Select--','class'=>'form-control input-sm attribute item_tag','label'=>false,'options'=>$tag,'value'=>$item->item_tag]); ?>
                                                         </div>
                                                     </div>
                                                     
@@ -155,7 +155,7 @@
                                                              <input type="file" onchange="readURL(this);" id="exampleInputFile" name="item_rows[<?=$i ?>][feature_image]" class="feature_image">
 
                                                         <small class="form-text text-muted">Select Display Image. | Limit file size to less than 1 MB.</small>
-
+                                                    <input type="hidden" name="item_rows[<?= $i?>][image_hide]" value="<?= @$row->feature_image?>">
                                                     <?=  $this->Html->image('/img/'.$row->feature_image, array('alt' => 'CakePHP','height'=>'80px','width'=>'130px')); ?> 
                                                     </div>
                                                     
@@ -329,28 +329,29 @@ reader1.readAsDataURL(input.files[0]);
  $(document).ready(function() {
  //$('.remover1').hide();
  var j=$('.loop').val();
+ //alert(j);
     //rename_row()
     function rename_row()
       {
       
-        $('#sub-body').each(function()
-        {
-           //alert(j);
+        // $('#sub-body div:last').each(function()
+        // {
+           alert(j);
             
-            $(this).find('.item_row_id').attr('name','item_rows['+j+'][id]');
-            $(this).find('.sku').attr('name','item_rows['+j+'][sku]');
-            $(this).find('.color_id').attr('name','item_rows['+j+'][color_id]');
-            $(this).find('.size_id').attr('name','item_rows['+j+'][size_id]');
-            $(this).find('.quantity').attr('name','item_rows['+j+'][quantity]');
-            $(this).find('.sale_rate').attr('name','item_rows['+j+'][sale_rate]');
-            $(this).find('.feature_image').attr('name','item_rows['+j+'][feature_image]');
-            i++;
-          });
+            $('#sub-body div:last').find('.item_row_id').attr('name','item_rows['+j+'][id]');
+            $('#sub-body div:last').find('.sku').attr('name','item_rows['+j+'][sku]');
+            $('#sub-body div:last').find('.color_id').attr('name','item_rows['+j+'][color_id]');
+            $('#sub-body div:last').find('.size_id').attr('name','item_rows['+j+'][size_id]');
+            $('#sub-body div:last').find('.quantity').attr('name','item_rows['+j+'][quantity]');
+            $('#sub-body div:last').find('.sale_rate').attr('name','item_rows['+j+'][sale_rate]');
+            $('#sub-body div:last').find('.feature_image').attr('name','item_rows['+j+'][feature_image]');
+          //});
           
+          //  j++;
        }
     function add_row()
     {
-        alert("xs");
+       // alert("xs");
       var tr = $('#sub-body').clone().find("input:text").val("").end()
                           .appendTo('#sub-body:last');
       $('.repeatt1').append(tr);

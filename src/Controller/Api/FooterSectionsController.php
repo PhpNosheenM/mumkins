@@ -13,11 +13,11 @@ class FooterSectionsController extends AppController
 {
     public function footerdata()
     {
-    	$page=$this->request->query('show_on');
+    	$show_on=$this->request->query('show_on');
 		
-		if(!empty($page))
+		if(!empty($show_on))
 		{
-			$footerdata = $this->FooterSections->find()->where(['is_deleted'=>0,'show_on'=>$page]);
+			$footerdata = $this->FooterSections->find()->where(['is_deleted'=>0,'show_on'=>$show_on]);
 		}
 		$status = true;
 		$message = 'Success';

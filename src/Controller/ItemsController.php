@@ -226,47 +226,68 @@ class ItemsController extends AppController
         $item = $this->Items->get($id, [
             'contain' => ['ItemRows'=>['Colors','Sizes']]
         ]);
+       // pr($item);exit;
         if ($this->request->is(['patch', 'post', 'put'])) {
             $datas=$this->request->getData();
-            //pr($datas['item_rows']);exit;
+           pr($datas);exit;
+            $i=0;
             foreach ($datas['item_rows'] as $data) {
-               $file = $data['feature_image']; //put the data into a var for easy use
-                   // pr($file);exit;
-                    $ext = substr(strtolower(strrchr($file['name'], '.')), 1); //get the extension
-                    $arr_ext = array('jpg', 'jpeg', 'gif','png','jpg','jpeg'); //set allowed extensions
-                    //only process if the extension is valid
-                    $setNewFileName = uniqid();
-                    $img_name= $setNewFileName.'.'.$ext;
-                    if(in_array($ext, $arr_ext))
-                    {
-                       // pr("sds");exit;
-                            // $uploads_dir =new Folder();
-                            // $uploads_dir->create(WWW_ROOT . '/img/Items/'.$item->id);
-                            move_uploaded_file($file['tmp_name'],'img/Items/'.$item->id.'/'.$img_name);
+                //pr($data);
+                if($data['feature_image']['name'] == null)
+                {
+                   // pr("aa");exit;
+                    @$img=$data['image_hide'];
+                    $datas['item_rows'][$i]['feature_image']= $img;
+                }
+                else
+                {
+                   // pr("bb");exit;
+                   $file = $data['feature_image']; //put the data into a var for easy use
+                        //pr($file);exit;
+                        $ext = substr(strtolower(strrchr($file['name'], '.')), 1); //get the extension
+                        $arr_ext = array('jpg', 'jpeg', 'gif','png','jpg','jpeg'); //set allowed extensions
+                        //only process if the extension is valid
+                        $setNewFileName = uniqid();
+                        $img_name= $setNewFileName.'.'.$ext;
+                        if(in_array($ext, $arr_ext))
+                        {
+                           // pr("sds");exit;
+                                // $uploads_dir =new Folder();
+                                // $uploads_dir->create(WWW_ROOT . '/img/Items/'.$item->id);
+                                move_uploaded_file($file['tmp_name'],'img/Items/'.$item->id.'/'.$img_name);
 
-                            //prepare the filename for database entry
-                           $datas['item_rows']['feature_image']= $img_name;
-                          //pr($item->item_rows=$image);
+                                //prepare the filename for database entry
+                               $datas['item_rows'][$i]['feature_image']='Items/'.$item->id.'/'.$img_name;
+                              //pr($item->item_rows=$image);
 
-                    }
+                        }
+                }
+                    $i++;
             }
+            //pr($datas);exit;
             $items = $this->Items->patchEntity($item, $datas);
-           //pr($items);exit;
+          // pr($items);exit;
             if ($this->Items->save($items)) {
                 $this->Flash->success(__('The item has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'add']);
             }
             $this->Flash->error(__('The item could not be saved. Please, try again.'));
         }
          $categories = $this->Items->Categories->find('list')->where(['Categories.parent_id IS NOT NULL']);
+         $categories = $this->Items->Categories->find()->where(['Categories.parent_id IS NOT NULL'])->contain(['ParentCategories']);
+        $name="";
+        foreach ($categories as $cat) {
+            $name=$cat->parent_category->name.' >'.$cat->name;
+            $catsub[$cat->id] = $name;
+        }
 
         //pr($categories->toArray());exit;
         $item_row=$this->Items->ItemRows->find()->where(['ItemRows.item_id'=>$id])->contain(['Colors','Sizes']);
         //pr($item_row->toArray());exit;
         $colors = $this->Items->ItemRows->Colors->find('list');
         $sizes = $this->Items->ItemRows->Sizes->find('list');
-        $this->set(compact('item', 'categories','colors','sizes','item_row'));
+        $this->set(compact('item', 'categories','colors','sizes','item_row','catsub'));
     }
 
     /**

@@ -64,8 +64,8 @@ class HomesController extends AppController
 		$message = 'Data Found';		
 
 
-		$this->set(compact('success','message','homeScreen','FooterSections'));
-		$this->set('_serialize',['success','message','homeScreen','FooterSections']);
+		$this->set(compact('success','message','Homes','FooterSections'));
+		$this->set('_serialize',['success','message','Homes','FooterSections']);
 		
 		
 	}

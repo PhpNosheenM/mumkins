@@ -24,6 +24,77 @@ class ItemsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
+    public function uploadImage()
+    {
+
+            
+        $this->viewBuilder()->layout('index_layout');
+        $item_images = $this->Items->ItemRows->ItemImages->newEntity();
+
+        if ($this->request->is(['post', 'put'])) {
+            $datas=$this->request->getData('item_image');
+            foreach ($datas as $key => $data) {
+                $item_row_id=$this->request->getData('item_row_id');
+                $item_id=$this->request->getData('item_id');
+                $datas[$key]['item_row_id']=$item_row_id;
+                //pr($datas);
+                $file = $datas[$key]['name']; //put the data into a var for easy use
+                        //pr($file);exit;
+                        $ext = substr(strtolower(strrchr($file, '.')), 1); //get the extension
+                        $arr_ext = array('jpg', 'jpeg', 'gif','png','jpg','jpeg'); //set allowed extensions
+                        //only process if the extension is valid
+                        $setNewFileName = uniqid();
+                        $img_name= $setNewFileName.'.'.$ext;
+                        if(in_array($ext, $arr_ext))
+                        {
+                        
+                            $uploads_dir =new Folder();
+                            $uploads_dir->create(WWW_ROOT . '/img/Items/'.$item_id.'/'.$item_row_id);
+                            move_uploaded_file($datas[$key]['tmp_name'],'img/Items/'.$item_id.'/'.$item_row_id.'/'.$img_name);
+                               
+
+                                
+                              $datas[$key]['image_name']='Items/'.$item_id.'/'.$item_row_id.'/'.$img_name;
+                              
+
+                        }
+
+            }
+           // pr($datas);exit;
+            $Item_Image = $this->Items->ItemRows->ItemImages->newEntities($datas);
+            if ($this->Items->ItemRows->ItemImages->saveMany($Item_Image)) {
+
+                $this->Flash->success(__('The transaction has been saved.'));
+
+                return $this->redirect(['controller'=>'Items','action' => 'uploadImage']);
+            }
+            //pr($transaction);exit;
+            $this->Flash->error(__('The transaction could not be saved. Please, try again.'));
+        }
+
+
+        $style_nos = $this->Items->find()->where(['is_deleted'=>0]);
+        $style="";
+        foreach ($style_nos as $styleno) {
+            $style_no=$styleno->style_no;
+            $styles[$styleno->id] = $style_no;
+        }
+          $this->set(compact('styles','item_images'));
+    }
+    public function findsku($item_id=null)
+    {
+        
+            $items=$this->Items->ItemRows->find()->where(['ItemRows.item_id '=>$item_id]);
+            ?>
+                    <option>--Select--</option>
+                    <?php foreach($items as $show){ ?>
+                        
+                        <option value="<?= $show->id ?>"><?= $show->sku ?></option>
+                    <?php } ?>
+            <?php
+        
+        exit;  
+    }
     public function getSubcategory($category_id=null)
     {
        $sub_category=$this->Items->Categories->find()->where(['Categories.parent_id'=>$category_id]);

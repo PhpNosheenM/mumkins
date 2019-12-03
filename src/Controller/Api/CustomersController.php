@@ -52,14 +52,12 @@ class CustomersController extends AppController
 	}
 	public function registrationnew()
 		{
+			$customerDetails = $this->Customers->newEntity();
 			if ($this->request->is(['post'])) {
-				$customerDetails = $this->Customers->newEntity();
+				
 				$customerDetails= $this->Customers->patchEntity($customerDetails, $this->request->getData());
 				if($this->Customers->save($customerDetails)) {
 					$status=true;
-					$customerDetails=$this->Customers->get($customerDetails->id);
-					// $customerDetails->referral_code='HM'.$customerDetails->id;
-					// $customerDetails=$this->Customers->save($customerDetails);
 					$customerDetails=$this->Customers->get($customerDetails->id);
 					$error='Customer registration successfully.';
 				}else{ 

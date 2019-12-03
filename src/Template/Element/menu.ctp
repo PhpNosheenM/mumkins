@@ -46,6 +46,12 @@
                                             </a>
                                         </li>
                                         <li>
+                                            <a href="<?= $this->Url->build(['controller'=>'Items','action' =>'uploadImage'])?>">
+                                                <i class="metismenu-icon">
+                                                </i>Add Item Images
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="<?= $this->Url->build(['controller'=>'Sizes','action' =>'index'])?>">
                                                 <i class="metismenu-icon">
                                                 </i>Size

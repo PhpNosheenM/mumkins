@@ -156,7 +156,6 @@
                         $.ajax({
                             url: url,
                         }).done(function(response) {
-                           alert(response);
                            $('.sku').html(response);
                         }); 
         });

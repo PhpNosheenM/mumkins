@@ -313,7 +313,7 @@
     function add_row()
     {
 
-      var tr = $('#sub-body').clone().find("input:text").val("").end()
+      var tr = $('#sub-body').clone().find("input:text,select,file,hidden").val("").end()
                           .appendTo('#sub-body:last');
       $('.repeatt1').append(tr);
       rename_row();

@@ -72,14 +72,15 @@ class ItemsController extends AppController
             $this->Flash->error(__('The SKU Images could not be saved. Please, try again.'));
         }
 
-
+        $item_image_views=$this->Items->ItemRows->ItemImages->find()->where(['ItemImages.is_deleted'=>0])->contain(['ItemRows'=>['Items']])->group(['item_row_id']);
+        //pr($item_image_views->toArray());exit;
         $style_nos = $this->Items->find()->where(['is_deleted'=>0]);
         $style="";
         foreach ($style_nos as $styleno) {
             $style_no=$styleno->style_no;
             $styles[$styleno->id] = $style_no;
         }
-          $this->set(compact('styles','item_images'));
+          $this->set(compact('styles','item_images','item_image_views'));
     }
     public function findsku($item_id=null)
     {
@@ -300,15 +301,15 @@ class ItemsController extends AppController
        // pr($item);exit;
         if ($this->request->is(['patch', 'post', 'put'])) {
             $datas=$this->request->getData();
-           pr($datas);exit;
+            //pr($datas);exit;
             $i=0;
-            foreach ($datas['item_rows'] as $data) {
-                //pr($data);
+            foreach ($datas['item_rows'] as $key =>$data) {
+               // pr($datas['item_rows'][$key]['size_id']);exit;
                 if($data['feature_image']['name'] == null)
                 {
                    // pr("aa");exit;
                     @$img=$data['image_hide'];
-                    $datas['item_rows'][$i]['feature_image']= $img;
+                    $datas['item_rows'][$key]['feature_image']= $img;
                 }
                 else
                 {
@@ -328,14 +329,14 @@ class ItemsController extends AppController
                                 move_uploaded_file($file['tmp_name'],'img/Items/'.$item->id.'/'.$img_name);
 
                                 //prepare the filename for database entry
-                               $datas['item_rows'][$i]['feature_image']='Items/'.$item->id.'/'.$img_name;
+                               $datas['item_rows'][$key]['feature_image']='Items/'.$item->id.'/'.$img_name;
                               //pr($item->item_rows=$image);
 
                         }
                 }
                     $i++;
             }
-            //pr($datas);exit;
+           // pr($datas);exit;
             $items = $this->Items->patchEntity($item, $datas);
           // pr($items);exit;
             if ($this->Items->save($items)) {

@@ -155,13 +155,13 @@
                                                              <input type="file" onchange="readURL(this);" id="exampleInputFile" name="item_rows[<?=$i ?>][feature_image]" class="feature_image">
 
                                                         <small class="form-text text-muted">Select Display Image. | Limit file size to less than 1 MB.</small>
-                                                    <input type="hidden" name="item_rows[<?= $i?>][image_hide]" value="<?= @$row->feature_image?>">
-                                                    <?=  $this->Html->image('/img/'.$row->feature_image, array('alt' => 'CakePHP','height'=>'80px','width'=>'130px')); ?> 
+                                                    <input type="hidden" name="item_rows[<?= $i?>][image_hide]" value="<?= @$row->feature_image?>" class="image_hide">
+                                                    <?=  $this->Html->image('/img/'.$row->feature_image, array('alt' => 'CakePHP','height'=>'80px','width'=>'130px','class'=>'show_image')); ?> 
                                                     </div>
                                                     
                                                     </div>
-                                                    <div class="col-md-6 minnus">
-                                                    </div>
+                                                    <!-- <div class="col-md-6 minnus">
+                                                    </div> -->
 
                                                     </div>
                                                 
@@ -172,7 +172,8 @@
 
                                      <input type="hidden" class="loop" value="<?= $i ?>"> 
                                            
-                                               <div class="repeatt1"> </div> 
+                                               <div class="repeatt1"><div class="col-md-6 minnus">
+                                                    </div> </div> 
                                                 <div class=" row form-check">
                                                     <div class="col-md-12">
                                                         <button class="btn btn-warning" style="padding:6px 30px;font-size: 14px;margin-top: 30px;margin-left: -19px;">Submit</button>
@@ -328,34 +329,39 @@ reader1.readAsDataURL(input.files[0]);
 
  $(document).ready(function() {
  //$('.remover1').hide();
+ $('.item_row_id').hide();
  var j=$('.loop').val();
  //alert(j);
     //rename_row()
     function rename_row()
       {
       
-        // $('#sub-body div:last').each(function()
-        // {
-           alert(j);
+        $('#sub-body').each(function()
+        {
+           //alert(j);
             
-            $('#sub-body div:last').find('.item_row_id').attr('name','item_rows['+j+'][id]');
-            $('#sub-body div:last').find('.sku').attr('name','item_rows['+j+'][sku]');
-            $('#sub-body div:last').find('.color_id').attr('name','item_rows['+j+'][color_id]');
-            $('#sub-body div:last').find('.size_id').attr('name','item_rows['+j+'][size_id]');
-            $('#sub-body div:last').find('.quantity').attr('name','item_rows['+j+'][quantity]');
-            $('#sub-body div:last').find('.sale_rate').attr('name','item_rows['+j+'][sale_rate]');
-            $('#sub-body div:last').find('.feature_image').attr('name','item_rows['+j+'][feature_image]');
-          //});
+            $(this).find('.item_row_id').attr('name','item_rows['+j+'][id]');
+            $(this).find('.image_hide').attr('name','item_rows['+j+'][image_hide]');
+            $(this).find('.sku').attr('name','item_rows['+j+'][sku]');
+            $(this).find('.color_id').attr('name','item_rows['+j+'][color_id]');
+            $(this).find('.size_id').attr('name','item_rows['+j+'][size_id]');
+            $(this).find('.quantity').attr('name','item_rows['+j+'][quantity]');
+            $(this).find('.sale_rate').attr('name','item_rows['+j+'][sale_rate]');
+            $(this).find('.feature_image').attr('name','item_rows['+j+'][feature_image]');
+            j++;
+          });
           
-          //  j++;
+          
        }
     function add_row()
     {
        // alert("xs");
-      var tr = $('#sub-body').clone().find("input:text").val("").end()
+      var tr = $('#sub-body').clone().find("input:text,select,file,hidden").val("").end()
                           .appendTo('#sub-body:last');
+    // $('.repeatt1').append('<a class="rhov btn remover1" style="float:right;"><i class="fa fa-trash"></i>Remove</a>');
       $('.repeatt1').append(tr);
-      $('.remover1').append('<a class="rhov btn" style="float:right;"><i class="fa fa-trash"></i>Remove</a>');
+      $('.repeatt1').find('.show_image').hide();
+     
       rename_row();
     }
             $('.apAddRow').click(function(e) {
@@ -369,7 +375,7 @@ reader1.readAsDataURL(input.files[0]);
     $(document).on("click",".remover1",function(e){
 
        rename_row();
-       $(this).parents('.addersku').remove();
+       $(this).parent('.repeatt1').remove();
 });
 });
         </script>

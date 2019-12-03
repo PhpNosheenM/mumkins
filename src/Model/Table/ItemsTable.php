@@ -48,6 +48,9 @@ class ItemsTable extends Table
         $this->hasMany('ProductSections', [
             'foreignKey' => 'item_id'
         ]);
+		
+		$this->belongsTo('FooterSections');
+		
     }
 
     /**

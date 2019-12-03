@@ -47,7 +47,7 @@ class CategoriesController extends AppController
 			
 			$FooterSections=$this->Categories->FooterSections->find()->where(['FooterSections.is_deleted'=>0,'show_on'=>'Category Page']);
 			
-			$Itemlist=$this->Categories->Items->find()->where(['Items.category_id IN'=>$subcategory_id]);
+			$Itemlist=$this->Categories->Items->find()->where(['Items.category_id IN'=>$subcategory_id,'Items.is_deleted'=>0]);
 			//$Itemlist->contain(['ItemRows'=>['Colors','Sizes','ItemImages']]);
 			$Itemlist->contain(['ItemRows'=>function($q) use($conditions){
 				return $q->where($conditions)->contain(['Colors','Sizes','ItemImages']);

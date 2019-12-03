@@ -64,12 +64,12 @@ class ItemsController extends AppController
             $Item_Image = $this->Items->ItemRows->ItemImages->newEntities($datas);
             if ($this->Items->ItemRows->ItemImages->saveMany($Item_Image)) {
 
-                $this->Flash->success(__('The transaction has been saved.'));
+                $this->Flash->success(__('The SKU Images has been saved.'));
 
                 return $this->redirect(['controller'=>'Items','action' => 'uploadImage']);
             }
             //pr($transaction);exit;
-            $this->Flash->error(__('The transaction could not be saved. Please, try again.'));
+            $this->Flash->error(__('The SKU Images could not be saved. Please, try again.'));
         }
 
 

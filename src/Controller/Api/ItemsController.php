@@ -68,6 +68,16 @@ class ItemsController extends AppController
 			$Items->size=$ItemRowsSizes;
 			
 			
+			
+			//// Related Item 
+			
+			
+			
+			$FooterSections=$this->Items->FooterSections->find()->where(['FooterSections.is_deleted'=>0,'show_on'=>'Product Details Page']);
+			
+			$Itemlist=$this->Items->find()->where(['Items.category_id'=>$Items->category_id,'Items.is_deleted'=>0]);
+			$Itemlist->contain(['ItemRows'=>['Colors','Sizes','ItemImages']]);
+			
 			$success = true;
 			$message = 'Data found';	
 			
@@ -76,8 +86,8 @@ class ItemsController extends AppController
 			$message = 'Empty item id';	
 			
 		}
-		$this->set(compact('success','message','Items','FooterSections'));
-		$this->set('_serialize',['success','message','Items','FooterSections']);	
+		$this->set(compact('success','message','Items','FooterSections','Itemlist'));
+		$this->set('_serialize',['success','message','Items','FooterSections','Itemlist']);	
 	}
 	
 }

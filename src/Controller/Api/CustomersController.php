@@ -50,19 +50,29 @@ class CustomersController extends AppController
 		$this->set(compact('status', 'error', 'otp','availiable'));
 	    $this->set('_serialize', ['status', 'error', 'otp','availiable']);
 	}
-	public function registrationnew()
+	public function newregister()
 		{
-			$customerDetails = $this->Customers->newEntity();
+			$customers = $this->Customers->newEntity();
 			if ($this->request->is(['post'])) {
-				
-				$customerDetails= $this->Customers->patchEntity($customerDetails, $this->request->getData());
-				if($this->Customers->save($customerDetails)) {
-					$status=true;
-					$customerDetails=$this->Customers->get($customerDetails->id);
-					$error='Customer registration successfully.';
-				}else{ 
-					$status=false;
-					$error='Customer registration unsuccessfully.';
+				$mobile=$this->request->getData('mobile');
+				$customerDetail=$this->Customers->exists(['Customers.mobile'=>$mobile]);
+				if($customerDetail==1){
+					$customers=$this->Customers->find()->where(['Customers.mobile'=>$mobile])->toArray();
+					$customerDetails=$this->Customers->get($customers['0']->id);
+					$status=true; 
+					$error='Customers';
+					
+				}else{
+					$customers= $this->Customers->patchEntity($customers, $this->request->getData());
+					//pr($customers);exit;
+					if($this->Customers->save($customers)) {
+						$status=true;
+						$customerDetails=$this->Customers->get($customers->id);
+						$error='Customer registration successfully.';
+					}else{ 
+						$status=false;
+						$error='Customer registration unsuccessfully.';
+					}
 				}
 			}
 			$this->set(compact('status', 'error', 'customerDetails'));

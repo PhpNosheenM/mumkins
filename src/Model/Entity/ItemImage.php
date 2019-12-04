@@ -4,20 +4,16 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Customer Entity
+ * ItemImage Entity
  *
  * @property int $id
- * @property string $first_name
- * @property string $last_name
- * @property string $email
- * @property string $mobile
- * @property string $otp
- * @property string $image
- * @property string $device_token
- * @property \Cake\I18n\FrozenTime $created_on
+ * @property int $item_row_id
+ * @property string $image_name
  * @property int $is_deleted
+ *
+ * @property \App\Model\Entity\ItemRow $item_row
  */
-class Customer extends Entity
+class ItemImage extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -29,13 +25,9 @@ class Customer extends Entity
      * @var array
      */
     protected $_accessible = [
-        'name' => true,
-        'email' => true,
-        'mobile' => true,
-        'otp' => true,
-        'customer_image' => true,
-        'device_token' => true,
-        'created_on' => true,
-        'is_deleted' => true
+        'item_row_id' => true,
+        'image_name' => true,
+        'is_deleted' => true,
+        'item_row' => true
     ];
 }

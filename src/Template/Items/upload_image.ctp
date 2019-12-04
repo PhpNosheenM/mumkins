@@ -81,36 +81,31 @@
                                             
                                     
                                         <div class="card-body">
-                                            <div class="form-row">
-                                                    <div class="col-md-4">
-                                                        <div class="position-relative form-group"><input name="search" type="text" placeholder="Search" class="form-control"></div>
-                                                    </div>
+                                            <!-- <div class="form-row">
+                                                <div class="col-md-4">
+                                                    <div class="position-relative form-group"><input name="search" type="text" placeholder="Search" class="form-control"></div>
                                                 </div>
+                                            </div> -->
                                             <table class="mb-0 table table-striped table-hover table-scroll">
                                                 <thead>
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Style No.</th>
                                                     <th>SKU</th>
-                                                    <th>Images</th>
+                                                    <!-- <th>Images</th> -->
                                                     <th>Action</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
+                                                <?php $i=1;foreach ($item_image_views as $item_image_view){?>
                                                 <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>GS1707</td>
-                                                    <td>MUM1452</td>
-                                                    <td><img src="./assets/images/kidthumb.jpg" width="30px" height="30px"><img src="./assets/images/kidthumb.jpg" width="30px" height="30px"><img src="./assets/images/kidthumb.jpg" width="30px" height="30px"><img src="./assets/images/kidthumb.jpg" width="30px" height="30px"></td>
+                                                    <th scope="row"><?= $i;$i++;?></th>
+                                                    <td><?= $item_image_view->item_row->item->style_no?></td>
+                                                    <td><?= $item_image_view->item_row->sku?></td>
+                                                    <!-- <td><img src="./assets/images/kidthumb.jpg" width="30px" height="30px"><img src="./assets/images/kidthumb.jpg" width="30px" height="30px"><img src="./assets/images/kidthumb.jpg" width="30px" height="30px"><img src="./assets/images/kidthumb.jpg" width="30px" height="30px"></td> -->
                                                     <td><span><a href="#"> <i class="pe-7s-note"></i></a></span>          <span><a href="#"><i class="pe-7s-trash"></i></a></span></td>
                                                 </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>GS1707</td>
-                                                    <td>MUM2254</td>
-                                                    <td><img src="./assets/images/kidthumb.jpg" width="30px" height="30px"><img src="./assets/images/kidthumb.jpg" width="30px" height="30px"><img src="./assets/images/kidthumb.jpg" width="30px" height="30px"><img src="./assets/images/kidthumb.jpg" width="30px" height="30px"></td>
-                                                    <td><span><a href="#"> <i class="pe-7s-note"></i></a></span>          <span><a href="#"><i class="pe-7s-trash"></i></a></span></td>
-                                                </tr>
+                                            <?php } ?>
                                           </tbody>
                                             </table>
                                         </div>

@@ -55,15 +55,25 @@ class CustomersController extends AppController
 			$customers = $this->Customers->newEntity();
 			if ($this->request->is(['post'])) {
 				//pr($this->request->getData());
-				$customers= $this->Customers->patchEntity($customers, $this->request->getData());
-				//pr($customers);exit;
-				if($this->Customers->save($customers)) {
-					$status=true;
-					$customerDetails=$this->Customers->get($customers->id);
-					$error='Customer registration successfully.';
-				}else{ 
-					$status=false;
-					$error='Customer registration unsuccessfully.';
+				$mobile=$this->request->getData('mobile');
+				$customerDetail=$this->Customers->exists(['Customers.mobile'=>$mobile]);
+				if($customerDetail==1){
+					$customers=$this->Customers->find()->where(['Customers.mobile'=>$mobile])->toArray();
+					$customerDetails=$this->Customers->get($customers['0']->id);
+					$status=true; 
+					$error='Customer.';
+					
+				}else{
+					$customers= $this->Customers->patchEntity($customers, $this->request->getData());
+					//pr($customers);exit;
+					if($this->Customers->save($customers)) {
+						$status=true;
+						$customerDetails=$this->Customers->get($customers->id);
+						$error='Customer registration successfully.';
+					}else{ 
+						$status=false;
+						$error='Customer registration unsuccessfully.';
+					}
 				}
 			}
 			$this->set(compact('status', 'error', 'customerDetails'));

@@ -55,15 +55,20 @@ class CustomersController extends AppController
 			$customers = $this->Customers->newEntity();
 			if ($this->request->is(['post'])) {
 				$mobile=$this->request->getData('mobile');
+				$otp=$this->request->getData('otp');
 				$customerDetail=$this->Customers->exists(['Customers.mobile'=>$mobile]);
 				if($customerDetail==1){
 					$customers=$this->Customers->find()->where(['Customers.mobile'=>$mobile])->toArray();
 					$customerDetails=$this->Customers->get($customers['0']->id);
-					$status=true; 
-					$error='Customers';
+					$customerDetails->otp=$otp;
+					if($this->Customers->save($customerDetails))
+					{		$status=true; 
+							$error='Customers';
+					}
 					
 				}else{
 					$customers= $this->Customers->patchEntity($customers, $this->request->getData());
+					$customers->last_login_from="E-Commerce";
 					//pr($customers);exit;
 					if($this->Customers->save($customers)) {
 						$status=true;

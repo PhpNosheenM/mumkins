@@ -132,13 +132,13 @@
                                                 <div class="col-md-2">
                                                         <div class="position-relative form-group"><label class="">Quantity</label> <?php
                                                            
-                                                             echo $this->Form->control('item_rows['.$i.'][quantity]', ['class'=>'form-control input-sm attribute quantity','label'=>false,'value'=>@$row->quantity]); ?></div>
+                                                             echo $this->Form->control('item_rows['.$i.'][quantity]', ['class'=>'form-control input-sm attribute quantity','label'=>false,'value'=>@$row->quantity,'type'=>'number']); ?></div>
                                                     </div>
                                             <div class="col-md-3">
                                                         <div class="position-relative form-group"><label for="example" class="">Sale Rate</label>
                                                             <?php
                                                            
-                                                             echo $this->Form->control('item_rows['.$i.'][sale_rate]', ['class'=>'form-control input-sm attribute sale_rate','label'=>false,'placeholder'=>'₹','value'=>@$row->sale_rate]); ?>
+                                                             echo $this->Form->control('item_rows['.$i.'][sale_rate]', ['class'=>'form-control input-sm attribute sale_rate','label'=>false,'placeholder'=>'₹','value'=>@$row->sale_rate,'type'=>'number']); ?>
                                                         </div>
                                                     </div>
 

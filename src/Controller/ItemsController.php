@@ -199,6 +199,14 @@ class ItemsController extends AppController
     public function add()
     {
         $this->viewBuilder()->layout('index_layout');
+        // $i=$this->Items->find()
+        // ->Select(['Items.id'])
+        // ->contain(['ItemRows'=>function($q)
+        //     {
+        //         return $q->Select('SUM(ItemRows.quantity)')->group('ItemRows.item_id');
+        //     }]);
+        // pr($i->toArray());exit;
+
         $item = $this->Items->newEntity();
         if ($this->request->is('post')) {
            // pr($this->request->getData());

@@ -29,12 +29,11 @@ class Customer extends Entity
      * @var array
      */
     protected $_accessible = [
-        'first_name' => true,
-        'last_name' => true,
+        'name' => true,
         'email' => true,
         'mobile' => true,
         'otp' => true,
-        'image' => true,
+        'customer_image' => true,
         'device_token' => true,
         'created_on' => true,
         'is_deleted' => true

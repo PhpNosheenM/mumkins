@@ -50,15 +50,16 @@ class CustomersController extends AppController
 		$this->set(compact('status', 'error', 'otp','availiable'));
 	    $this->set('_serialize', ['status', 'error', 'otp','availiable']);
 	}
-	public function registrationnew()
+	public function newregister()
 		{
-			$customerDetails = $this->Customers->newEntity();
+			$customers = $this->Customers->newEntity();
 			if ($this->request->is(['post'])) {
-				
-				$customerDetails= $this->Customers->patchEntity($customerDetails, $this->request->getData());
-				if($this->Customers->save($customerDetails)) {
+				//pr($this->request->getData());
+				$customers= $this->Customers->patchEntity($customers, $this->request->getData());
+				//pr($customers);exit;
+				if($this->Customers->save($customers)) {
 					$status=true;
-					$customerDetails=$this->Customers->get($customerDetails->id);
+					$customerDetails=$this->Customers->get($customers->id);
 					$error='Customer registration successfully.';
 				}else{ 
 					$status=false;

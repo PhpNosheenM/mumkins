@@ -50,22 +50,7 @@ class CustomersTable extends Table
             ->integer('id')
             ->allowEmptyString('id', null, 'create');
 
-        $validator
-            ->scalar('first_name')
-            ->maxLength('first_name', 255)
-            ->requirePresence('first_name', 'create')
-            ->notEmptyString('first_name');
-
-        $validator
-            ->scalar('last_name')
-            ->maxLength('last_name', 255)
-            ->requirePresence('last_name', 'create')
-            ->notEmptyString('last_name');
-
-        $validator
-            ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmptyString('email');
+       
 
         $validator
             ->scalar('mobile')
@@ -79,17 +64,7 @@ class CustomersTable extends Table
             ->requirePresence('otp', 'create')
             ->notEmptyString('otp');
 
-        $validator
-            ->scalar('image')
-            ->maxLength('image', 255)
-            ->requirePresence('image', 'create')
-            ->notEmptyFile('image');
-
-        $validator
-            ->scalar('device_token')
-            ->maxLength('device_token', 255)
-            ->requirePresence('device_token', 'create')
-            ->notEmptyString('device_token');
+      
 
         $validator
             ->dateTime('created_on')

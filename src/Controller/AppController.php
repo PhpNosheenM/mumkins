@@ -45,7 +45,9 @@ class AppController extends Controller
             'enableBeforeRedirect' => false,
         ]);
         $this->loadComponent('Flash');
-		$this->loadComponent('AwsFile');
+		//$this->loadComponent('AwsFile');
+		$awsFileLoad=$this->loadComponent('AwsFile');
+		$this->set(compact('awsFileLoad'));
 		$this->loadComponent('Auth', [
 			 'authenticate' => [
 					'Form' => [

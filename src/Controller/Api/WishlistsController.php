@@ -39,7 +39,7 @@ class WishlistsController extends AppController
 	{
 		$customer_id=$this->request->query('customer_id');
 		//pr($customer_id);exit;
-		$wishlists=$this->Wishlists->find()->where(['customer_id'=>$customer_id])->contain(['Items','ItemRows'])->first();
+		$wishlists=$this->Wishlists->find()->where(['customer_id'=>$customer_id])->contain(['Items','ItemRows']);
 		//pr($wishlists);exit;
 		$success = 'true';
 		$message = 'Data Found';

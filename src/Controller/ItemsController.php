@@ -36,6 +36,7 @@ class ItemsController extends AppController
             foreach ($datas as $key => $data) {
                 $item_row_id=$this->request->getData('item_row_id');
                 $item_id=$this->request->getData('item_id');
+				$styles=$this->Items->get($item_id);
                 $datas[$key]['item_row_id']=$item_row_id;
                 //pr($datas);
                 $file = $datas[$key]['name']; //put the data into a var for easy use
@@ -48,13 +49,15 @@ class ItemsController extends AppController
                         if(in_array($ext, $arr_ext))
                         {
                         
-                            $uploads_dir =new Folder();
-                            $uploads_dir->create(WWW_ROOT . '/img/Items/'.$item_id.'/'.$item_row_id);
-                            move_uploaded_file($datas[$key]['tmp_name'],'img/Items/'.$item_id.'/'.$item_row_id.'/'.$img_name);
+                            //$uploads_dir =new Folder();
+                           // $uploads_dir->create(WWW_ROOT . '/img/Items/'.$item_id.'/'.$item_row_id);
+                           // move_uploaded_file($datas[$key]['tmp_name'],'img/Items/'.$item_id.'/'.$item_row_id.'/'.$img_name);
                                
+							$keyname = 'Items/'.$styles->style_no.'/'.$img_name;
+							$this->AwsFile->putObjectFile($keyname,$datas[$key]['tmp_name'],$datas[$key]['type']);
+                                   
 
-                                
-                              $datas[$key]['image_name']='Items/'.$item_id.'/'.$item_row_id.'/'.$img_name;
+                              $datas[$key]['image_name']='Items/'.$styles->style_no.'/'.$img_name;
                               
 
                         }
@@ -234,17 +237,18 @@ class ItemsController extends AppController
                         if(in_array($ext, $arr_ext))
                         {
                         
-                            $uploads_dir =new Folder();
-                            $uploads_dir->create(WWW_ROOT . '/img/Items/'.$item->id);
-                            move_uploaded_file($file['tmp_name'],'img/Items/'.$item->id.'/'.$img_name);
+                           // $uploads_dir =new Folder();
+                            //$uploads_dir->create(WWW_ROOT . '/img/Items/'.$item->style_no);
+                           // move_uploaded_file($file['tmp_name'],'img/Items/'.$item->style_no.'/'.$img_name);
                                
-
+							$keyname = 'Items/'.$item->style_no.'/'.$img_name;
+							$this->AwsFile->putObjectFile($keyname,$file['tmp_name'],$file['type']);
                                 
                               $img[]= $img_name;
                               
 
                         }
-                       
+                     
                  $query = $this->Items->ItemRows->query();
                     $query->insert(['item_id', 'sku', 'color_id', 'size_id', 'quantity', 'sale_rate','feature_image'])
                     ->values([
@@ -254,7 +258,7 @@ class ItemsController extends AppController
                         'size_id' => $item_row['size_id'],
                         'quantity' => $item_row['quantity'],
                         'sale_rate' => $item_row['sale_rate'],
-                        'feature_image' => 'Items/'.$item->id.'/'.$img_name,
+                        'feature_image' => 'Items/'.$item->style_no.'/'.$img_name,
                    ]);
                     $query->execute();
                 }
@@ -334,10 +338,12 @@ class ItemsController extends AppController
                            // pr("sds");exit;
                                 // $uploads_dir =new Folder();
                                 // $uploads_dir->create(WWW_ROOT . '/img/Items/'.$item->id);
-                                move_uploaded_file($file['tmp_name'],'img/Items/'.$item->id.'/'.$img_name);
-
+                               // //move_uploaded_file($file['tmp_name'],'img/Items/'.$item->id.'/'.$img_name);
+								$keyname = 'Items/'.$item->style_no.'/'.$img_name;
+							    $this->AwsFile->putObjectFile($keyname,$file['tmp_name'],$file['type']);
+                                
                                 //prepare the filename for database entry
-                               $datas['item_rows'][$key]['feature_image']='Items/'.$item->id.'/'.$img_name;
+                               $datas['item_rows'][$key]['feature_image']='Items/'.$item->style_no.'/'.$img_name;
                               //pr($item->item_rows=$image);
 
                         }

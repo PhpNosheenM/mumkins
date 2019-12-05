@@ -257,6 +257,7 @@ return [
             'driver' => Mysql::class,
             'persistent' => false,
 
+
             'host' => 'database-1.c4xcdyut6dqn.ap-south-1.rds.amazonaws.com',
 
            // 'host' => 'mumkins.cmvbfqacs0tc.ap-south-1.rds.amazonaws.com',

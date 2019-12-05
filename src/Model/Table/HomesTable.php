@@ -42,7 +42,7 @@ class HomesTable extends Table
 		 $this->belongsTo('ProductSections');
 		 $this->belongsTo('SliderSections');
 		 $this->belongsTo('FooterSections');
-		 $this->belongsTo('Newsletters');
+         $this->belongsTo('Newsletters');
 		 
 		 
     }

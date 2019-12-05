@@ -257,13 +257,15 @@ return [
             'driver' => Mysql::class,
             'persistent' => false,
 
-            'host' => 'localhost',
+           'host' => 'localhost',
+            // 'host' => 'database-1.c4xcdyut6dqn.ap-south-1.rds.amazonaws.com',
 
            // 'host' => 'mumkins.cmvbfqacs0tc.ap-south-1.rds.amazonaws.com',
 
-            //'username' => 'Mumkins',
-            //'password' => 'Newmumkins',
-           // 'database' => 'wwwkamle_mumkins',
+            // 'username' => 'admin',
+            // 'password' => 'MUMKINSDB',
+            // 'database' => 'mumkin_new',
+            
             'username' => 'root',
             'password' => 'admin',
             'database' => 'wwwkamle_mumkins',

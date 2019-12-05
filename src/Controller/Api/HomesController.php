@@ -98,6 +98,4 @@ class HomesController extends AppController
 	   
 	}
    
-   
-   
 }

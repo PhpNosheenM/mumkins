@@ -33,7 +33,7 @@
                                                      <div class="col-md-12">
                                                         <div class="position-relative form-group"><label for="exampleState" class="">Show on</label>
                                                     <?php
-                                                            $pages = ['Home Page' => 'Home Page', 'Category Page' => 'Category Page', 'Checkout Page' => 'Checkout Page','Product Details Page'=>'Product Details Page','Register Page'=>'Register Page','Shopping Cart Page'=>'Shopping Cart Page','Stores Page'=>'Stores Page','Testimonial Page'=>'Testimonial Page'];
+                                                            $pages = ['Home Page' => 'Home Page', 'Category Page' => 'Category Page', 'Checkout Page' => 'Checkout Page','Product Details Page'=>'Product Details Page','Register Page'=>'Register Page','Shopping Cart Page'=>'Shopping Cart Page','Stores Page'=>'Stores Page','Testimonial Page'=>'Testimonial Page','Wishlist Page'=>'Wishlist Page'];
                                                              echo $this->Form->control('show_on', ['empty'=>'--select--','options' => $pages,'class'=>'form-control input-sm attribute show_on','label'=>false]); ?>
                                                     </div>
                                                 </div>

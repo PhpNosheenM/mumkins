@@ -53,7 +53,7 @@ class ItemsController extends AppController
 		$customer_id=$this->request->query('customer_id');
 		if(!empty($customer_id)){
 			
-			$Carts=$this->Items->Carts->find()->where(['customer_id'=>$customer_id]);
+			$Carts=$this->Items->Carts->find()->where(['customer_id'=>$customer_id])->contain(['Items','ItemRows']);
 			$Cartstotal=$this->Items->Carts->find()->select(['total'=>'sum(rate)'])->where(['customer_id'=>$customer_id])->first();
 			$Carttotal=$Cartstotal->total;
 			$Cartscount=$this->Items->Carts->find()->where(['customer_id'=>$customer_id])->count();

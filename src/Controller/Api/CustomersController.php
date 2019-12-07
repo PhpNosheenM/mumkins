@@ -84,4 +84,23 @@ class CustomersController extends AppController
 	        $this->set('_serialize', ['status', 'error', 'customerDetails']);
 			
 		}
+
+		public function customeraddress()
+		{
+			$customer_address=$this->Customers->CustomerAdresses->newEntity();
+			if ($this->request->is('post')) {
+				$customer_address = $this->Customers->CustomerAdresses->patchEntity($customer_address, $this->request->getData());
+	            if ($this->Customers->CustomerAdresses->save($customer_address)) {
+
+				   $success = 'true';
+				   $message = 'Address Added sucessfully';		
+				   
+				}else{
+					$success = 'false';
+					$message = 'Address not added';	
+				}	
+			}
+			$this->set(compact('success','message'));
+			$this->set('_serialize',['success','message']);
+		}
 }

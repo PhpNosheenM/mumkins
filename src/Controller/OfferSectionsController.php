@@ -34,7 +34,9 @@ class OfferSectionsController extends AppController
                         if(in_array($ext, $arr_ext))
                         {
                            // pr("sds");exit;
-                                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/offers/' . $img_name);
+                                // move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/offers/' . $img_name);
+                                $keyname = 'offers/' .$img_name;
+                                $this->AwsFile->putObjectFile($keyname,$file['tmp_name'],$file['type']);
 
                                 //prepare the filename for database entry
                                 $offerSection->offer_image = 'offers/'.$img_name;
@@ -126,8 +128,10 @@ class OfferSectionsController extends AppController
                         if(in_array($ext, $arr_ext))
                         {
                            // pr("sds");exit;
-                                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/offers/' . $img_name);
-
+                                // move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/offers/' . $img_name);
+                                $keyname = 'offers/' .$img_name;
+                                $this->AwsFile->putObjectFile($keyname,$file['tmp_name'],$file['type']);
+                                    
                                 //prepare the filename for database entry
                                 $offerSection->offer_image = 'offers/'.$img_name;
 

@@ -33,7 +33,10 @@ class NewsletterSectionsController extends AppController
                         if(in_array($ext, $arr_ext))
                         {
                            // pr("sds");exit;
-                                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/News/' . $img_name);
+                                //move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/News/' . $img_name);
+
+                                $keyname = 'News/' .$img_name;
+                                $this->AwsFile->putObjectFile($keyname,$file['tmp_name'],$file['type']);
 
                                 //prepare the filename for database entry
                                 $newsletterSection->news_image = 'News/'.$img_name;
@@ -123,8 +126,9 @@ class NewsletterSectionsController extends AppController
                         if(in_array($ext, $arr_ext))
                         {
                            // pr("sds");exit;
-                                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/News/' . $img_name);
-
+                                //move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/News/' . $img_name);
+                                $keyname = 'News/' .$img_name;
+                                $this->AwsFile->putObjectFile($keyname,$file['tmp_name'],$file['type']);
                                 //prepare the filename for database entry
                                 $newsletterSection->news_image = 'News/'.$img_name;
 

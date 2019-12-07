@@ -32,11 +32,16 @@ class ItemsController extends AppController
         $item_images = $this->Items->ItemRows->ItemImages->newEntity();
 
         if ($this->request->is(['post', 'put'])) {
+            //pr($this->request->getData());exit;
             $datas=$this->request->getData('item_image');
             foreach ($datas as $key => $data) {
                 $item_row_id=$this->request->getData('item_row_id');
                 $item_id=$this->request->getData('item_id');
-				$styles=$this->Items->get($item_id);
+                $styles=$this->Items->get($item_id);
+				$rows=$this->Items->ItemRows->get($item_row_id);
+                $colors=$this->Items->ItemRows->Colors->get($rows->color_id);
+                $color_name=strtoupper($colors->name);
+                //pr($color_name);exit;
                 $datas[$key]['item_row_id']=$item_row_id;
                 //pr($datas);
                 $file = $datas[$key]['name']; //put the data into a var for easy use
@@ -53,11 +58,11 @@ class ItemsController extends AppController
                            // $uploads_dir->create(WWW_ROOT . '/img/Items/'.$item_id.'/'.$item_row_id);
                            // move_uploaded_file($datas[$key]['tmp_name'],'img/Items/'.$item_id.'/'.$item_row_id.'/'.$img_name);
                                
-							$keyname = 'Items/'.$styles->style_no.'/'.$img_name;
+							$keyname = 'Items/'.$styles->style_no.'/'.$color_name.'/'.$img_name;
 							$this->AwsFile->putObjectFile($keyname,$datas[$key]['tmp_name'],$datas[$key]['type']);
                                    
 
-                              $datas[$key]['image_name']='Items/'.$styles->style_no.'/'.$img_name;
+                              $datas[$key]['image_name']='Items/'.$styles->style_no.'/'.$color_name.'/'.$img_name;
                               
 
                         }
@@ -214,7 +219,7 @@ class ItemsController extends AppController
         if ($this->request->is('post')) {
            // pr($this->request->getData());
              $images=$this->request->getData('item_rows');
-            
+            //pr($images);exit;
             
                     //pr($img);exit;
             //$item['item_rows']->feature_image=$img;
@@ -227,6 +232,10 @@ class ItemsController extends AppController
             foreach ($images as $item_row) {
                // $upload_dir = FULL_ROOT . "/uploads/blog/";
                  // pr($item_row['sku']);exit;
+                //pr($item_row['color_id']);exit;
+            $colors=$this->Items->ItemRows->Colors->get($item_row['color_id']);
+            $color_name=strtoupper($colors->name);
+             //pr($color_name);exit;
              $file = $item_row['feature_image']; //put the data into a var for easy use
                         //pr($file);
                         $ext = substr(strtolower(strrchr($file['name'], '.')), 1); //get the extension
@@ -238,10 +247,11 @@ class ItemsController extends AppController
                         {
                         
                            // $uploads_dir =new Folder();
-                            //$uploads_dir->create(WWW_ROOT . '/img/Items/'.$item->style_no);
-                           // move_uploaded_file($file['tmp_name'],'img/Items/'.$item->style_no.'/'.$img_name);
+                           //  $uploads_dir->create(WWW_ROOT . '/img/Items/'.$item->style_no.'/'.$color_name);
+                           //  pr($uploads_dir);exit;
+                           // move_uploaded_file($file['tmp_name'],'img/Items/'.$item->style_no.'/'.$img_name);.
                                
-							$keyname = 'Items/'.$item->style_no.'/'.$img_name;
+							$keyname = 'Items/'.$item->style_no.'/'.$color_name.'/'.$img_name;
 							$this->AwsFile->putObjectFile($keyname,$file['tmp_name'],$file['type']);
                                 
                               $img[]= $img_name;
@@ -258,7 +268,7 @@ class ItemsController extends AppController
                         'size_id' => $item_row['size_id'],
                         'quantity' => $item_row['quantity'],
                         'sale_rate' => $item_row['sale_rate'],
-                        'feature_image' => 'Items/'.$item->style_no.'/'.$img_name,
+                        'feature_image' => 'Items/'.$item->style_no.'/'.$color_name.'/'.$img_name,
                    ]);
                     $query->execute();
                 }
@@ -316,7 +326,10 @@ class ItemsController extends AppController
             //pr($datas);exit;
             $i=0;
             foreach ($datas['item_rows'] as $key =>$data) {
-               // pr($datas['item_rows'][$key]['size_id']);exit;
+               // pr($datas['item_rows'][$key]['color_id']);exit;
+                $color_id=$data['color_id'];
+                $colors=$this->Items->ItemRows->Colors->get($color_id);
+                $color_name=strtoupper($colors->name);
                 if($data['feature_image']['name'] == null)
                 {
                    // pr("aa");exit;
@@ -339,11 +352,11 @@ class ItemsController extends AppController
                                 // $uploads_dir =new Folder();
                                 // $uploads_dir->create(WWW_ROOT . '/img/Items/'.$item->id);
                                // //move_uploaded_file($file['tmp_name'],'img/Items/'.$item->id.'/'.$img_name);
-								$keyname = 'Items/'.$item->style_no.'/'.$img_name;
+								$keyname = 'Items/'.$item->style_no.'/'.$color_name.'/'.$img_name;
 							    $this->AwsFile->putObjectFile($keyname,$file['tmp_name'],$file['type']);
                                 
                                 //prepare the filename for database entry
-                               $datas['item_rows'][$key]['feature_image']='Items/'.$item->style_no.'/'.$img_name;
+                               $datas['item_rows'][$key]['feature_image']='Items/'.$item->style_no.'/'.$color_name.'/'.$img_name;
                               //pr($item->item_rows=$image);
 
                         }

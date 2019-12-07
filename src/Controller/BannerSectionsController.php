@@ -34,7 +34,9 @@ class BannerSectionsController extends AppController
                         if(in_array($ext, $arr_ext))
                         {
                            // pr("sds");exit;
-                                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/Banners/' . $img_name);
+                                // move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/Banners/' . $img_name);
+                                $keyname = 'Banners/' .$img_name;
+                                $this->AwsFile->putObjectFile($keyname,$file['tmp_name'],$file['type']);
 
                                 //prepare the filename for database entry
                                 $bannerSection->background_image = 'Banners/'.$img_name;
@@ -145,7 +147,10 @@ class BannerSectionsController extends AppController
                         if(in_array($ext, $arr_ext))
                         {
                            // pr("sds");exit;
-                                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/Banners/' . $img_name);
+                                // move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/Banners/' . $img_name);
+
+                                $keyname = 'Banners/' .$img_name;
+                                $this->AwsFile->putObjectFile($keyname,$file['tmp_name'],$file['type']);
 
                                 //prepare the filename for database entry
                                 $bannerSection->background_image = 'Banners/'.$img_name;

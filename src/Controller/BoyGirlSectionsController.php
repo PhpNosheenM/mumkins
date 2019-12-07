@@ -33,8 +33,10 @@ class BoyGirlSectionsController extends AppController
                         if(in_array($ext, $arr_ext))
                         {
                            // pr("sds");exit;
-                                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/BG/' . $img_name);
+                                //move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/BG/' . $img_name);
 
+                                $keyname = 'BG/' .$img_name;
+                                $this->AwsFile->putObjectFile($keyname,$file['tmp_name'],$file['type']);
                                 //prepare the filename for database entry
                                 $boyGirlSection->bg_image = 'BG/'.$img_name;
 
@@ -124,8 +126,9 @@ class BoyGirlSectionsController extends AppController
                         if(in_array($ext, $arr_ext))
                         {
                            // pr("sds");exit;
-                                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/BG/' . $img_name);
-
+                                //move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/BG/' . $img_name);
+                                $keyname = 'BG/' .$img_name;
+                                $this->AwsFile->putObjectFile($keyname,$file['tmp_name'],$file['type']);
                                 //prepare the filename for database entry
                                 $boyGirlSection->bg_image = 'BG/'.$img_name;
 

@@ -46,8 +46,8 @@ class ItemsController extends AppController
                         //only process if the extension is valid
                         $setNewFileName = uniqid();
                         $img_name= $setNewFileName.'.'.$ext;
-                        if(in_array($ext, $arr_ext))
-                        {
+                       // if(in_array($ext, $arr_ext))
+                       // {
                         
                             //$uploads_dir =new Folder();
                            // $uploads_dir->create(WWW_ROOT . '/img/Items/'.$item_id.'/'.$item_row_id);
@@ -60,7 +60,7 @@ class ItemsController extends AppController
                               $datas[$key]['image_name']='Items/'.$styles->style_no.'/'.$img_name;
                               
 
-                        }
+                       // }
 
             }
            // pr($datas);exit;

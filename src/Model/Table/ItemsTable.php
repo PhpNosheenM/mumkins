@@ -50,6 +50,7 @@ class ItemsTable extends Table
         ]);
 		
 		$this->belongsTo('FooterSections');
+		$this->belongsTo('Carts');
 		
     }
 

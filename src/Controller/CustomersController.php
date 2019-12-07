@@ -19,7 +19,7 @@ class CustomersController extends AppController
      */
     public function index()
     {
-         $this->viewBuilder()->layout('index_layout');
+       $this->viewBuilder()->layout('index_layout');
        $customer = $this->Customers->newEntity();
         if ($this->request->is('post')) {
             $customer = $this->Customers->patchEntity($customer, $this->request->getData());

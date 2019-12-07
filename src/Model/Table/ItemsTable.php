@@ -49,7 +49,9 @@ class ItemsTable extends Table
             'foreignKey' => 'item_id'
         ]);
 		
+
 		$this->belongsTo('FooterSections');
+
 		$this->belongsTo('Carts');
 		
     }

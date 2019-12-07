@@ -16,6 +16,7 @@ class AwsFileComponent extends Component
 		$this->bucketName=$AwsFiles->bucket_name;  // Bucket Name
 		$this->awsAccessKey=$AwsFiles->access_key; // Access Key
 		$this->awsSecretAccessKey=$AwsFiles->secret_access_key;  // Secret Access key
+		$this->awscdn=$AwsFiles->cdnpath;
 	}
 	
 	/*     Connect to AWS S3   */
@@ -105,6 +106,11 @@ class AwsFileComponent extends Component
 		$this->configuration();
 		$result = $this->s3Client->doesObjectExist($this->bucketName, $keyname);
 		return $result;
+	}
+	
+	function cdnpath(){
+		
+		return $this->awscdn ;
 	}
 }
 ?>

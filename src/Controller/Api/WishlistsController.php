@@ -21,7 +21,7 @@ class WishlistsController extends AppController
 		$duplicate=$this->Wishlists->find()->where(['customer_id'=>$customer_id,'item_id'=>$item_id,'item_row_id'=>$item_row_id])->toArray();
 		if($duplicate)
 		{
-			//pr("Item Alread added to your wishlist");
+			$availiable="Yes";
 		}
 		else
 		{
@@ -40,8 +40,8 @@ class WishlistsController extends AppController
 				}	
 		}
 		
-		$this->set(compact('success','message'));
-		$this->set('_serialize',['success','message']);
+		$this->set(compact('success','message','availiable'));
+		$this->set('_serialize',['success','message','availiable']);
 	   
 	}
 	public function wishlistview()

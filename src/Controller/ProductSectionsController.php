@@ -32,13 +32,16 @@ class ProductSectionsController extends AppController
             }
             $this->Flash->error(__('The product section could not be saved. Please, try again.'));
         }
-        $item_option = $this->ProductSections->Items->find()->where(['Items.is_deleted'=>0])->contain(['Categories']);
+        $item_option = $this->ProductSections->Items->find()
+        ->contain(['Categories'])
+        ->where(['Items.is_deleted'=>0]);
         //pr($item_option->toArray());exit;
         $name="";
         foreach ($item_option as $option) {
              $name=$option->category->name.' >'.$option->name;
             $items[$option->id] = $name;
         }
+        //pr($items);exit;
         $product_views=$this->ProductSections->find()->where(['ProductSections.is_deleted'=>0])->contain(['Items']);
         $this->set(compact('productSection', 'items','product_views'));
     }

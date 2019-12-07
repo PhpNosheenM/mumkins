@@ -33,7 +33,9 @@ class SliderSectionsController extends AppController
                         if(in_array($ext, $arr_ext))
                         {
                            // pr("sds");exit;
-                                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/Sliders/' . $img_name);
+                                // move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/Sliders/' . $img_name);
+                                $keyname = 'Sliders/' .$img_name;
+                                $this->AwsFile->putObjectFile($keyname,$file['tmp_name'],$file['type']);
 
                                 //prepare the filename for database entry
                                 $sliderSection->slider_image = 'Sliders/'.$img_name;
@@ -125,7 +127,10 @@ class SliderSectionsController extends AppController
                         if(in_array($ext, $arr_ext))
                         {
                            // pr("sds");exit;
-                                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/Sliders/' . $img_name);
+                                // move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/Sliders/' . $img_name);
+
+                                $keyname = 'Sliders/' .$img_name;
+                                $this->AwsFile->putObjectFile($keyname,$file['tmp_name'],$file['type']);
 
                                 //prepare the filename for database entry
                                 $sliderSections->slider_image = 'Sliders/'.$img_name;

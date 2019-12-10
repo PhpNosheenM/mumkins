@@ -92,6 +92,7 @@
                             </thead>
                             <tbody>
                                <?php $i=1;foreach ($orders as $order) {?>
+                                <tr>
                                     <td><?= $i;$i++; ?></td>
                                     <td><?= @$order->order_no ?></td>
                                     <td><?= @$order->customer->name ?></td>
@@ -101,9 +102,12 @@
                                     <td>COD</td>
                                     <td><?= @$order->order_from ?></td>
                                     <td><?= @$order->order_date ?></td>
-                                    <td><?= @$order->order_status ?></td>
+                                    <td><?= @$order->order_status ?>
+                                        <input type="hidden" name="id" class="id" value="<?= $order->id?>">
+                                    </td>
                                     <td><?php echo $this->Form->control('warehouses_id', ['empty'=>'--select--','options' =>$warehouses,'class'=>'form-control input-sm attribute warehouses','label'=>false]); ?>
                                     </td>
+                                </tr>
                                <?php } ?>
                             </tbody>
                         </table>
@@ -113,3 +117,20 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        $('.warehouses').on('change',function(){
+            var warehouse_id=$(this).val();
+            var id=$(this).closest('tr').find('.id').val();
+            //alert(id);
+            var url="<?php echo $this->Url->build(['controller'=>'Orders','action'=>'updateWarehouse']); ?>";
+                            url=url+'/'+warehouse_id+'/'+id,
+                        $.ajax({
+                            url: url,
+                        }).done(function(response) {
+                           alert('Warehouse Assigned');
+                        }); 
+        });
+    });
+</script>

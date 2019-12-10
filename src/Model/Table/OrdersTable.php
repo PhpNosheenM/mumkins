@@ -48,17 +48,17 @@ class OrdersTable extends Table
         $this->belongsTo('CustomerAddresses', [
             'foreignKey' => 'customer_address_id'
         ]);
-        $this->belongsTo('DeliveryCharges', [
-            'foreignKey' => 'delivery_charge_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('PromoCodes', [
-            'foreignKey' => 'promo_code_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('Trackings', [
-            'foreignKey' => 'tracking_id'
-        ]);
+        // $this->belongsTo('DeliveryCharges', [
+        //     'foreignKey' => 'delivery_charge_id',
+        //     'joinType' => 'INNER'
+        // ]);
+        // $this->belongsTo('PromoCodes', [
+        //     'foreignKey' => 'promo_code_id',
+        //     'joinType' => 'INNER'
+        // ]);
+        // $this->belongsTo('Trackings', [
+        //     'foreignKey' => 'tracking_id'
+        // ]);
          $this->belongsTo('Warehouses', [
             'foreignKey' => 'warehouses_id'
         ]);
@@ -200,9 +200,9 @@ class OrdersTable extends Table
     {
         $rules->add($rules->existsIn(['customer_id'], 'Customers'));
         $rules->add($rules->existsIn(['customer_address_id'], 'CustomerAddresses'));
-        $rules->add($rules->existsIn(['delivery_charge_id'], 'DeliveryCharges'));
-        $rules->add($rules->existsIn(['promo_code_id'], 'PromoCodes'));
-        $rules->add($rules->existsIn(['tracking_id'], 'Trackings'));
+        // $rules->add($rules->existsIn(['delivery_charge_id'], 'DeliveryCharges'));
+        // $rules->add($rules->existsIn(['promo_code_id'], 'PromoCodes'));
+        // $rules->add($rules->existsIn(['tracking_id'], 'Trackings'));
 
         return $rules;
     }

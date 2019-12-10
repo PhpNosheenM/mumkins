@@ -51,6 +51,16 @@ class OrdersController extends AppController
         $this->set(compact('orders','customers','order','warehouses'));
     }
 
+    public function updateWarehouse($warehouse_id = null,$id=null)
+    {
+
+        $orders=$this->Orders->get($id);
+        $orders->warehouses_id=$warehouse_id;
+        //echo($orders->warehouses_id);exit;
+        if($this->Orders->save($orders))
+            exit;
+         
+    }
     /**
      * View method
      *

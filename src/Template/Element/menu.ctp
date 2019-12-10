@@ -167,6 +167,12 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li>
+                                    <a href="<?= $this->Url->build(['controller'=>'Orders','action' =>'index'])?>">
+                                                <i class="metismenu-icon">
+                                                </i>Orders
+                                    </a>
+                                </li>
                                <!-- <li>
                                     <a href="#">
                                         <i class="metismenu-icon pe-7s-car"></i>

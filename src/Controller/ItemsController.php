@@ -206,7 +206,11 @@ class ItemsController extends AppController
      */
     public function add()
     {
+
         $this->viewBuilder()->layout('index_layout');
+
+       // $file_pointer = 'Desktop/e-shopping.php';
+       // pr(file_exists($file_pointer));exit;
         // $i=$this->Items->find()
         // ->Select(['Items.id'])
         // ->contain(['ItemRows'=>function($q)

@@ -175,6 +175,10 @@ class ItemsController extends AppController
 
     public function index()
     {
+		
+		
+		
+		
         $this->paginate = [
             'contain' => ['Categories']
         ];
@@ -206,7 +210,27 @@ class ItemsController extends AppController
      */
     public function add()
     {
+		/* $ItemRows=$this->Items->ItemRows->find()->contain(['Items','Colors']);
+		//pr($ItemRows->toArray());
+		foreach($ItemRows as $ItemRow){
+			
+				$id=$ItemRow->id;
+				$color_name=strtoupper($ItemRow->color->name);
+				$style_no=$ItemRow->item->style_no;
+				$feature_image="Items/".$style_no."/".$color_name."/1.jpg";
 
+				$query = $this->Items->ItemRows->query();
+				$query->update()
+				->set(['feature_image' =>$feature_image])
+				->where(['id' =>$id])
+				->execute();
+			}
+ */
+		//$colors=$this->Items->ItemRows->Colors->get($rows->color_id);
+		//$color_name=strtoupper($colors->name);
+
+		
+		
         $this->viewBuilder()->layout('index_layout');
 
        // $file_pointer = 'Desktop/e-shopping.php';

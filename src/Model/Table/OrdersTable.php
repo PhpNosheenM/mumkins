@@ -59,6 +59,9 @@ class OrdersTable extends Table
         $this->belongsTo('Trackings', [
             'foreignKey' => 'tracking_id'
         ]);
+         $this->belongsTo('Warehouses', [
+            'foreignKey' => 'warehouses_id'
+        ]);
         $this->hasMany('OrderDetails', [
             'foreignKey' => 'order_id'
         ]);

@@ -64,7 +64,6 @@
                                             </a>
                                         </li>
                                         
-                                        
                                             </ul>
                                             <!-- <li>
                                             <a href="footerContent.html">
@@ -72,6 +71,13 @@
                                                 </i>Footer Content
                                             </a>
                                         </li> -->
+                                        </li>
+                                        
+                                        <li>
+                                            <a href="<?= $this->Url->build(['controller'=>'Warehouses','action' =>'add'])?>">
+                                                <i class="metismenu-icon">
+                                                </i>Warehouses
+                                            </a>
                                         </li>
                                         <li>
                                             <a href="<?= $this->Url->build(['controller'=>'Items','action' =>'salesRateUpdate'])?>">
@@ -169,8 +175,7 @@
                                 </li>
                                 <li>
                                     <a href="<?= $this->Url->build(['controller'=>'Orders','action' =>'index'])?>">
-                                                <i class="metismenu-icon">
-                                                </i>Orders
+                                                <i class="metismenu-icon pe-7s-browser"></i>Orders
                                     </a>
                                 </li>
                                <!-- <li>

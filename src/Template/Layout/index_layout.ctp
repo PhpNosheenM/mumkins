@@ -159,7 +159,8 @@ div.message.error {
 				 </div>
 			</div>
         </div>
-		<?php echo $this->Html->script('/assets/scripts/main.js'); ?>
+        <?php echo $this->Html->script('/assets/scripts/main.js'); ?>
+        
 		
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
@@ -175,6 +176,7 @@ div.message.error {
 	}, delayInMilliseconds);
 	
 	$(document).ready(function(){ 
+        // /ComponentsPickers.init();
 	  $("#myInput").on("keyup", function() {
 		var value = $(this).val().toLowerCase();
 		$("#myTable tr").filter(function() {
@@ -222,7 +224,7 @@ div.message.error {
 				</div>
 			</div>
 		
-		
+	
 		
 		
 		

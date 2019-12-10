@@ -10,92 +10,106 @@
         <meta name="msapplication-tap-highlight" content="no">
        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
         <link rel="stylesheet" href="./assets/css/choices.css">
-    <link href="./main.css" rel="stylesheet"></head>
+
+
+</head>
     <script src="./assets/scripts/choices.min.js"></script>
 
+<div class="row">
+    <div class="col-md-12 card">
+        <div class="card-header-tab card-header">
+            <div class="card-header-title">
+                
+               Orders
+            </div>
+            <ul class="nav">
+                <!-- <li class="nav-item"><a class="mb-2 mr-2 btn btn-warning" href="#" style="background-color: #309b04;border-color: #309b04;"><i class="fa fa-file-excel"></i>&nbsp;&nbsp;Upload</a></li> -->
 
+               <!--  <li class="nav-item"><a data-toggle="tab" href="#tab-eg5-0" class="active nav-link">Add</a></li>
+                <li class="nav-item"><a data-toggle="tab" href="#tab-eg5-1" class="nav-link">View</a></li>
+-->
+                <!-- <li class="nav-item"><a data-toggle="tab" href="#tab-eg5-2" class="nav-link"><i class="fa fa-file-excel"></i>&nbsp;&nbsp;Upload</a></li> -->
 
-                   <div class="row">
-                       <div class="col-md-12 card">
-                                                <div class="card-header-tab card-header">
-                                                    <div class="card-header-title">
-                                                        
-                                                       Orders
-                                                    </div>
-                                                    <ul class="nav">
-                                                        <!-- <li class="nav-item"><a class="mb-2 mr-2 btn btn-warning" href="#" style="background-color: #309b04;border-color: #309b04;"><i class="fa fa-file-excel"></i>&nbsp;&nbsp;Upload</a></li> -->
-
-                                                       <!--  <li class="nav-item"><a data-toggle="tab" href="#tab-eg5-0" class="active nav-link">Add</a></li>
-                                                        <li class="nav-item"><a data-toggle="tab" href="#tab-eg5-1" class="nav-link">View</a></li>
- -->
-                                                        <!-- <li class="nav-item"><a data-toggle="tab" href="#tab-eg5-2" class="nav-link"><i class="fa fa-file-excel"></i>&nbsp;&nbsp;Upload</a></li> -->
-
-                                                    </ul>
-                                                </div>
-                                                
-                                                    <div class="tab-content">
-                                                     
-                            
-
-                                        <div class="tab-pane active" id="tab-eg5-1" role="tabpanel">
-                                            <div class="col-m-10">
-                                    
-                                        <div class="card-body">
-                                           <table class="table table-striped table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Order No</th>
-                                                        <th>Customer</th>
-                                                        <th>Mobile</th>
-                                                        <th>Address</th>
-                                                        <th>Grand Total</th>
-                                                        <th>Mode Of Payment</th>
-                                                        <th>Order From</th>
-                                                        <th>Order Date</th>
-                                                        <th>Status</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                   <?php $i=1;foreach ($orders as $order) {?>
-                                                        <td><?= $i;$i++; ?></td>
-                                                        <td><?= @$order->order_no ?></td>
-                                                        <td><?= @$order->customer->name ?></td>
-                                                        <td><?= @$order->customer->mobile ?></td>
-                                                        <td><?= @$order->customer_address->name ?></td>
-                                                        <td><?= @$order->grand_total ?></td>
-                                                        <td>COD</td>
-                                                        <td><?= @$order->order_from ?></td>
-                                                        <td><?= @$order->order_date ?></td>
-                                                        <td><?= @$order->order_status ?></td>
-                                                   <?php } ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        </div>
-                                    </div>
-                                     <div class="tab-pane" id="tab-eg5-2" role="tabpanel">
-                                        <div class="card-body">
-                                            <form class="">
-                                            <div class="form-row">
-                                                <div class="col-md-12">
-                                                        <div class="position-relative form-group" style="margin-top: 10px;">
-                                                            <input id="fileselect" type="file" class="form-control-file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                        <small class="form-text text-muted">Select Excel File | Make sure rows & coloumns are in exact order else problem may occur.</small>
-                                                    </div>
-                                                    
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                    <button class="btn btn-warning" style="padding:6px 30px;font-size: 14px;margin-top: 30px;margin-left: -19px;">Upload</button></div>
-                                            </div>
-
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                            </div>
+            </ul>
+        </div>
+        <div class="tab-content">
+             <?= $this->Form->create($order) ?>
+                <table width="50%" class="table table-condensed">
+                    <tbody>
+                        <tr>
+                            <td width="8%">
+                                <label>Order No</label>
+                                <?php echo $this->Form->input('order_no', ['label' => false,'class' => 'form-control input-sm','placeholder'=>'Order No','autocomplete'=>'off']); ?>
+                            </td>
+                            <td width="5%">
+                                <label>Customer</label>
+                                <?php echo $this->Form->input('customer_id', ['empty'=>'--Customer--','options' => $customers,'label' => false,'class' => 'form-control input-sm select2me','placeholder'=>'Category']); ?>
+                            </td>
+                           
+                            <td width="5%">
+                                <label class=" control-label">Status </label>
+                                <select name="status" class="form-control select2me input-sm">
+                                    <option value="">--Select--</option>
+                                    <option value="In Process">In Process</option>
+                                    <option value="Packed">Packed</option>
+                                    <option value="Dispatch">Dispatch</option>
+                                    <option value="Delivered">Delivered</option>
+                                </select>
+                            </td>
+                            <td width="5%">
+                                <label>From</label>
+                                <input type="text" name="From" class="form-control input-sm date-picker" placeholder="Transaction From"  data-date-format="dd-mm-yyyy" autocomplete="off">
+                            </td>   
+                            <td width="5%">
+                                <label>To</label>
+                                <input type="text" name="To" class="form-control input-sm date-picker" placeholder="Transaction To"   data-date-format="dd-mm-yyyy" autocomplete="off">
+                            </td>
+                            <td width="10%">
+                                <button type="submit" class="btn btn-success btn-sm" style="margin-top: 23px !important;"><i class="fa fa-filter"></i> Filter</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            <?= $this->Form->end() ?>
+            <div class="tab-pane active" id="tab-eg5-1" role="tabpanel">
+                <div class="col-m-10">
+                    <div class="card-body">
+                       <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Order No</th>
+                                    <th>Customer</th>
+                                    <th>Mobile</th>
+                                    <th>Address</th>
+                                    <th>Grand Total</th>
+                                    <th>Mode Of Payment</th>
+                                    <th>Order From</th>
+                                    <th>Order Date</th>
+                                    <th>Status</th>
+                                    <th>Warehouses</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               <?php $i=1;foreach ($orders as $order) {?>
+                                    <td><?= $i;$i++; ?></td>
+                                    <td><?= @$order->order_no ?></td>
+                                    <td><?= @$order->customer->name ?></td>
+                                    <td><?= @$order->customer->mobile ?></td>
+                                    <td><?= @$order->customer_address->name ?></td>
+                                    <td><?= @$order->grand_total ?></td>
+                                    <td>COD</td>
+                                    <td><?= @$order->order_from ?></td>
+                                    <td><?= @$order->order_date ?></td>
+                                    <td><?= @$order->order_status ?></td>
+                                    <td><?php echo $this->Form->control('warehouses_id', ['empty'=>'--select--','options' =>$warehouses,'class'=>'form-control input-sm attribute warehouses','label'=>false]); ?>
+                                    </td>
+                               <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

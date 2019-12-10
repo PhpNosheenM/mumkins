@@ -82,6 +82,7 @@ class Order extends Entity
         'customer_address' => true,
         'promo_code' => true,
         'tracking' => true,
+        'warehouses_id' => true,
         'order_details' => true
     ];
 }

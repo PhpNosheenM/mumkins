@@ -20,14 +20,35 @@ class OrdersController extends AppController
     public function index()
     {
         $this->viewBuilder()->layout('index_layout');
+        $order = $this->Orders->newEntity();
         // $this->paginate = [
         //     'contain' => ['Customers', 'CustomerAddresses', 'DeliveryCharges', 'PromoCodes', 'Trackings']
         // ];
         // $orders = $this->paginate($this->Orders);
 
         $orders=$this->Orders->find()->contain(['Customers','CustomerAddresses']);
+        if ($this->request->is('post')) {
+            $order_no=$this->request->getData('order_no');          
+            $customer_id=$this->request->getData('customer_id');          
+            $status=$this->request->getData('status'); 
+            if(!empty($order_no))         
+            {
+                $orders->where(['Orders.order_no'=>$order_no]);
+            }
+            if(!empty($customer_id))         
+            {
+                $orders->where(['Orders.customer_id'=>$customer_id]);
+            }
+            if(!empty($status))         
+            {
+                $orders->where(['Orders.order_status'=>$status]);
+            }
+        }
 
-        $this->set(compact('orders'));
+       $customers=$this->Orders->Customers->find('list')->where(['is_deleted'=>0]);
+       $warehouses=$this->Orders->Warehouses->find('list')->where(['is_deleted'=>0]);
+
+        $this->set(compact('orders','customers','order','warehouses'));
     }
 
     /**

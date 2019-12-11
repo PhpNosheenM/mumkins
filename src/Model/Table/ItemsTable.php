@@ -45,6 +45,12 @@ class ItemsTable extends Table
         $this->hasMany('ItemRows', [
             'foreignKey' => 'item_id'
         ]);
+        $this->hasMany('Customers', [
+            'foreignKey' => 'item_id'
+        ]);
+        $this->hasMany('OrderDetails', [
+            'foreignKey' => 'item_id'
+        ]);
         $this->hasMany('ProductSections', [
             'foreignKey' => 'item_id'
         ]);

@@ -87,10 +87,12 @@ class CustomersController extends AppController
 
 		public function customeraddress()
 		{
-			$customer_address=$this->Customers->CustomerAdresses->newEntity();
+			$customer_address=$this->Customers->CustomerAddresses->newEntity();
 			if ($this->request->is('post')) {
-				$customer_address = $this->Customers->CustomerAdresses->patchEntity($customer_address, $this->request->getData());
-	            if ($this->Customers->CustomerAdresses->save($customer_address)) {
+				$customer_address = $this->Customers->CustomerAddresses->patchEntity($customer_address, $this->request->getData());
+				//pr($customer_address);exit;	
+	            if ($this->Customers->CustomerAddresses->save($customer_address)) {
+
 
 				   $success = 'true';
 				   $message = 'Address Added sucessfully';		
@@ -102,5 +104,17 @@ class CustomersController extends AppController
 			}
 			$this->set(compact('success','message'));
 			$this->set('_serialize',['success','message']);
+			
 		}
+
+		public function getaddress()
+		{
+			$customer_id=$this->request->query('customer_id');
+			$Addresses=$this->Customers->CustomerAddresses->find()->where(['customer_id'=>$customer_id])->contain(['States','Cities']);
+			
+			$this->set(compact('Addresses'));
+			$this->set('_serialize',['Addresses']);
+		}
+		
+
 }

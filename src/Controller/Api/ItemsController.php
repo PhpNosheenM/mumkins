@@ -11,6 +11,41 @@ use App\Controller\Api\AppController;
  */
 class ItemsController extends AppController
 {
+
+	public function state(){
+		
+		$States=$this->Items->OrderDetails->Orders->CustomerAddresses->States->find()->where(['States.delete_status'=>0]);
+		$success = true;
+		$message = 'Data Add successfully.';
+
+		$this->set(compact('success','message','States'));
+		$this->set('_serialize',['success','message','States']);	
+		
+	}
+	
+	public function city(){
+		
+		$state_id=$this->request->query('state_id');
+		
+		$Cities=$this->Items->OrderDetails->Orders->CustomerAddresses->Cities->find()->where(['Cities.delete_status'=>0,'state_id'=>$state_id]);
+		$success = true;
+		$message = 'Data Add successfully.';
+
+		$this->set(compact('success','message','Cities'));
+		$this->set('_serialize',['success','message','Cities']);	
+		
+	}
+	
+	public function cartcount(){
+		
+		$customer_id=$this->request->query('customer_id');
+		$Cartscount=$this->Items->Carts->find()->where(['customer_id'=>$customer_id])->count();
+		$success = true;
+		$message = 'Data Add successfully.';
+
+		$this->set(compact('success','message','list','Cartscount'));
+		$this->set('_serialize',['success','message','list','Cartscount']);	
+	}
 	
 	public function addtocart(){
 		
